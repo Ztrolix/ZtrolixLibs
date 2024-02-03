@@ -1,6 +1,6 @@
 <h1 align="center">Ztrolix Libs</h1>
 
-> [!CAUTION]
+> [!WARNING]
 > This library is still in development and may break some mods if in use!
 
 ## Features!
