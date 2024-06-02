@@ -1,25 +1,51 @@
-<h1 align="center">Ztrolix Libs</h1>
+# Ztrolix Libs
 
-> [!WARNING]
-> This library is still in development and may break some mods if in use!
 
-## Features!
+## Dependencies
 
-- Ztrolix Libs is a Ztrolix Library that is publicly available for use!
-- This Library allows mods to run smoother and supports more more use for mods!
+<details>
+<summary>1.1.0 Neo & Forge & Spigot</summary>
+
+- None
+
+</details>
+
+<details>
+<summary>1.1.0 Fabric & Quilt</summary>
+
+- [FabricAPI](https://modrinth.com/mod/fabric-api/versions?g=1.20.4&g=1.20.2&g=1.20.3&g=1.20.1&g=1.20&g=1.20.6&g=1.20.5) [ONLY IF FABRIC]
+- [Quilted Fabric API](https://modrinth.com/mod/qsl/versions?g=1.20&g=1.20.1&g=1.20.2&g=1.20.4) [ONLY IF QUILT]
+
+</details>
+
+<details>
+<summary>A1.1.0 - 1.0.0</summary>
+
+- [TerraBlender](https://modrinth.com/mod/terrablender/versions?l=fabric&g=1.20.4&g=1.20.3&g=1.20.2&g=1.20.1&g=1.20)
+- [GeckoLib](https://modrinth.com/mod/geckolib/versions?l=fabric&g=1.20.4&g=1.20.3&g=1.20.2&g=1.20.1&g=1.20)
+- [FabricAPI](https://modrinth.com/mod/fabric-api/versions?g=1.20.4&g=1.20.2&g=1.20.3&g=1.20.1&g=1.20)
+
+</details>
+
+<details>
+<summary>A1.0.0</summary>
+
+- [FabricAPI](https://modrinth.com/mod/fabric-api/versions?g=1.20.4&g=1.20.2&g=1.20.3&g=1.20.1&g=1.20)
+
+</details>
 
 ## FAQ
 
 <details>
 <summary>API</summary>
 
-The API will not be able to use until later in development.
+The API will not be available.
 
 </details>
 
 <details>
 <summary>Source</summary>
 
-The source code will not be available at this current time.
+The Source will not be available.
 
 </details>
