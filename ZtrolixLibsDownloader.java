@@ -3,6 +3,8 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.geom.RoundRectangle2D;
 import java.io.BufferedInputStream;
 import java.io.FileOutputStream;
@@ -18,7 +20,6 @@ public class ZtrolixLibsDownloader {
     private static final String FORGE_URL = "https://github.com/ZtrolixGit/ZtrolixLibs/releases/latest/download/forge.jar";
 
     public static void main(String[] args) {
-        // Set the look and feel to Nimbus with flat colors
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -44,36 +45,65 @@ public class ZtrolixLibsDownloader {
             e.printStackTrace();
         }
 
-        JFrame frame = new JFrame("Ztrolix Libs!");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(400, 200);
+        JFrame frame = new JFrame("ZtrolixLibs Downloader");
+        frame.setSize(300, 200);
         frame.setUndecorated(true);
-        frame.setShape(new RoundRectangle2D.Double(0, 0, frame.getWidth(), frame.getHeight(), 30, 30));
-        frame.setLocationRelativeTo(null); // Open in the center of the screen
+        frame.setShape(new RoundRectangle2D.Double(0, 0, frame.getWidth(), frame.getHeight(), 20, 20));
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JPanel panel = new JPanel(new BorderLayout());
         panel.setBorder(new EmptyBorder(10, 10, 10, 10));
         panel.setBackground(new Color(50, 50, 50));
 
-        JLabel titleLabel = new JLabel("Ztrolix Libs!", SwingConstants.CENTER);
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
-        titleLabel.setForeground(new Color(255, 255, 255));
+        JPanel topPanel = new JPanel(new BorderLayout());
+        topPanel.setOpaque(false);
 
-        String[] options = {"Fabric/Quilt", "Spigot", "NeoForge", "Forge"};
+        JLabel titleLabel = new JLabel("Ztrolix Libs", SwingConstants.CENTER);
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        titleLabel.setForeground(new Color(230, 230, 230));
+        titleLabel.setPreferredSize(new Dimension(frame.getWidth(), 40));  // Center across the entire width
+        topPanel.add(titleLabel, BorderLayout.CENTER);
+
+        JPanel controlPanel = new JPanel();
+        controlPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+        controlPanel.setOpaque(false);
+        JButton minimizeButton = new JButton("_");
+        minimizeButton.addActionListener(e -> frame.setState(Frame.ICONIFIED));
+        JButton closeButton = new JButton("X");
+        closeButton.addActionListener(e -> System.exit(0));
+        controlPanel.add(minimizeButton);
+        controlPanel.add(closeButton);
+        topPanel.add(controlPanel, BorderLayout.EAST);
+        closeButton.setBackground(new Color(169, 46, 34));
+        closeButton.setForeground(new Color(255, 255, 255));
+        minimizeButton.setBackground(new Color(191, 98, 4));
+        minimizeButton.setForeground(new Color(255, 255, 255));
+
+        JPanel centerPanel = new JPanel(new BorderLayout());
+        centerPanel.setOpaque(false);
+
+        JLabel selectLabel = new JLabel("Select Loader to Download:");
+        selectLabel.setForeground(new Color(230, 230, 230));
+        centerPanel.add(selectLabel, BorderLayout.NORTH);
+
+        String[] options = {"Fabric", "Quilt", "Spigot", "NeoForge", "Forge"};
         JComboBox<String> dropdown = new JComboBox<>(options);
-        dropdown.setBackground(new Color(60, 60, 60));
-        dropdown.setForeground(new Color(230, 230, 230));
+        dropdown.setPreferredSize(new Dimension(270, 30));  // Same size as download button
+        
+        JPanel dropdownPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        dropdownPanel.setOpaque(false);
+        dropdownPanel.add(dropdown);
+        centerPanel.add(dropdownPanel, BorderLayout.CENTER);
 
         JButton downloadButton = new JButton("Download");
         downloadButton.setBackground(new Color(104, 93, 156));
         downloadButton.setForeground(new Color(255, 255, 255));
-
+        downloadButton.setPreferredSize(new Dimension(200, 30));
         downloadButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String selectedOption = (String) dropdown.getSelectedItem();
                 String downloadUrl = getDownloadUrl(selectedOption);
-
                 JFileChooser fileChooser = new JFileChooser();
                 fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
                 int result = fileChooser.showOpenDialog(frame);
@@ -81,7 +111,7 @@ public class ZtrolixLibsDownloader {
                 if (result == JFileChooser.APPROVE_OPTION) {
                     Path downloadDirectory = fileChooser.getSelectedFile().toPath();
                     try {
-                        downloadFile(downloadUrl, downloadDirectory);
+                        downloadFile(downloadUrl, downloadDirectory, selectedOption);
                         JOptionPane.showMessageDialog(frame, "Download completed!");
                     } catch (IOException ex) {
                         JOptionPane.showMessageDialog(frame, "Download failed: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -90,17 +120,24 @@ public class ZtrolixLibsDownloader {
             }
         });
 
-        panel.add(titleLabel, BorderLayout.NORTH);
-        panel.add(dropdown, BorderLayout.CENTER);
-        panel.add(downloadButton, BorderLayout.SOUTH);
+        JPanel bottomPanel = new JPanel(new BorderLayout());
+        bottomPanel.setOpaque(false);
+        bottomPanel.add(centerPanel, BorderLayout.NORTH);
+        bottomPanel.add(downloadButton, BorderLayout.SOUTH);
+
+        panel.add(topPanel, BorderLayout.NORTH);
+        panel.add(bottomPanel, BorderLayout.SOUTH);
 
         frame.add(panel);
+        frame.setLocationRelativeTo(null);  // Center the frame
         frame.setVisible(true);
     }
 
     private static String getDownloadUrl(String option) {
         switch (option) {
-            case "Fabric/Quilt":
+            case "Fabric":
+                return FABRIC_QUILT_URL;
+            case "Quilt":
                 return FABRIC_QUILT_URL;
             case "Spigot":
                 return SPIGOT_URL;
@@ -113,10 +150,10 @@ public class ZtrolixLibsDownloader {
         }
     }
 
-    private static void downloadFile(String url, Path downloadDirectory) throws IOException {
+    private static void downloadFile(String url, Path downloadDirectory, String version) throws IOException {
         URL downloadUrl = new URL(url);
         try (BufferedInputStream in = new BufferedInputStream(downloadUrl.openStream());
-             FileOutputStream fileOutputStream = new FileOutputStream(downloadDirectory.resolve("downloaded_file").toFile())) {
+             FileOutputStream fileOutputStream = new FileOutputStream(downloadDirectory.resolve("ZtrolixLibs-" + version + ".jar").toFile())) {
             byte[] dataBuffer = new byte[1024];
             int bytesRead;
             while ((bytesRead = in.read(dataBuffer, 0, 1024)) != -1) {
