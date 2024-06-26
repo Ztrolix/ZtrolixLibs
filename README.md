@@ -4,33 +4,18 @@
 ## Dependencies
 
 <details>
-<summary>1.1.0 Neo & Forge & Spigot</summary>
+<summary>1.2.0 Quilt</summary>
 
-- None
-
-</details>
-
-<details>
-<summary>1.1.0 Fabric & Quilt</summary>
-
-- [FabricAPI](https://modrinth.com/mod/fabric-api/versions?g=1.20.4&g=1.20.2&g=1.20.3&g=1.20.1&g=1.20&g=1.20.6&g=1.20.5) [ONLY IF FABRIC]
-- [Quilted Fabric API](https://modrinth.com/mod/qsl/versions?g=1.20&g=1.20.1&g=1.20.2&g=1.20.4) [ONLY IF QUILT]
+- [ZtrolixLibs](https://modrinth.com/plugin/ztrolixlibs/versions?l=quilt)
+- [Quilted Fabric API](https://modrinth.com/mod/qsl/versions?g=1.20.4&g=1.20.1&g=1.20.2&g=1.20)
 
 </details>
 
 <details>
-<summary>A1.1.0 - 1.0.0</summary>
+<summary>1.2.0 Fabric</summary>
 
-- [TerraBlender](https://modrinth.com/mod/terrablender/versions?l=fabric&g=1.20.4&g=1.20.3&g=1.20.2&g=1.20.1&g=1.20)
-- [GeckoLib](https://modrinth.com/mod/geckolib/versions?l=fabric&g=1.20.4&g=1.20.3&g=1.20.2&g=1.20.1&g=1.20)
-- [FabricAPI](https://modrinth.com/mod/fabric-api/versions?g=1.20.4&g=1.20.2&g=1.20.3&g=1.20.1&g=1.20)
-
-</details>
-
-<details>
-<summary>A1.0.0</summary>
-
-- [FabricAPI](https://modrinth.com/mod/fabric-api/versions?g=1.20.4&g=1.20.2&g=1.20.3&g=1.20.1&g=1.20)
+- [ZtrolixLibs](https://modrinth.com/plugin/ztrolixlibs/versions?l=fabric)
+- [FabricAPI](https://modrinth.com/mod/fabric-api/versions?g=1.20&g=1.20.1&g=1.20.2&g=1.20.3&g=1.20.4&g=1.20.5&g=1.20.6)
 
 </details>
 
