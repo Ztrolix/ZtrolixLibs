@@ -11,6 +11,8 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 
 public class ZtrolixLibsDownloader {
     private static final String FABRIC_API_BASE_URL = "https://cdn.modrinth.com/data/P7dR8mSH/versions/";
@@ -47,11 +49,12 @@ public class ZtrolixLibsDownloader {
             e.printStackTrace();
         }
 
-        JFrame frame = new JFrame("ZtrolixLibs Downloader");
+        JFrame frame = new JFrame("ZLibs Installer");
         frame.setSize(400, 250);
         frame.setUndecorated(true);
         frame.setShape(new RoundRectangle2D.Double(0, 0, frame.getWidth(), frame.getHeight(), 20, 20));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setCustomIcon(frame, "https://raw.githubusercontent.com/ZtrolixGit/ZtrolixLibs/main/icon.png");
 
         JPanel panel = new JPanel(new BorderLayout());
         panel.setBorder(new EmptyBorder(10, 10, 10, 10));
@@ -104,7 +107,7 @@ public class ZtrolixLibsDownloader {
         dropdown.addActionListener(e -> updateVersionDropdown((String) dropdown.getSelectedItem(), versionDropdown));
         dropdown.addActionListener(e -> updateLoaderDropdown(dropdown));
 
-        JButton downloadButton = new JButton("Download");
+        JButton downloadButton = new JButton("Download & Install");
         downloadButton.setBackground(new Color(104, 93, 156));
         downloadButton.setForeground(new Color(255, 255, 255));
         downloadButton.setPreferredSize(new Dimension(200, 30));
@@ -291,5 +294,21 @@ public class ZtrolixLibsDownloader {
 
     private static void updateLoaderDropdown(JComboBox<String> dropdown) {
         dropdown.removeItem("Select Loader");
+    }
+
+    private static void setCustomIcon(JFrame frame, String iconUrl) {
+        try {
+            // Download the icon image
+            URL url = new URL(iconUrl);
+            BufferedImage image = ImageIO.read(url);
+            if (image != null) {
+                // Set the application icon for the JFrame
+                frame.setIconImage(image);
+            } else {
+                System.err.println("Failed to load icon image from URL: " + iconUrl);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
