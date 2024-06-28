@@ -18,10 +18,10 @@ public class ZtrolixLibsDownloader {
     private static final String FABRIC_API_BASE_URL = "https://cdn.modrinth.com/data/P7dR8mSH/versions/";
     private static final String QUILT_API_BASE_URL = "https://cdn.modrinth.com/data/qvIfYCYJ/versions/";
 
-    private static final String FABRIC_QUILT_URL = "https://github.com/ZtrolixGit/ZtrolixLibs/releases/latest/download/fabric.jar";
-    private static final String SPIGOT_URL = "https://github.com/ZtrolixGit/ZtrolixLibs/releases/latest/download/spigot.jar";
-    private static final String NEOFORGE_URL = "https://github.com/ZtrolixGit/ZtrolixLibs/releases/latest/download/neo.jar";
-    private static final String FORGE_URL = "https://github.com/ZtrolixGit/ZtrolixLibs/releases/latest/download/forge.jar";
+    private static final String FABRIC_QUILT_URL = "https://github.com/ZtrolixGit/ZtrolixLibs/raw/main/fabric.jar";
+    private static final String SPIGOT_URL = "https://github.com/ZtrolixGit/ZtrolixLibs/raw/main/spigot.jar";
+    private static final String NEOFORGE_URL = "https://github.com/ZtrolixGit/ZtrolixLibs/raw/main/neo.jar";
+    private static final String FORGE_URL = "https://github.com/ZtrolixGit/ZtrolixLibs/raw/main/forge.jar";
 
     public static void main(String[] args) {
         try {
@@ -107,7 +107,7 @@ public class ZtrolixLibsDownloader {
         dropdown.addActionListener(e -> updateVersionDropdown((String) dropdown.getSelectedItem(), versionDropdown));
         dropdown.addActionListener(e -> updateLoaderDropdown(dropdown));
 
-        JButton downloadButton = new JButton("Download & Install");
+        JButton downloadButton = new JButton("Download and Install");
         downloadButton.setBackground(new Color(104, 93, 156));
         downloadButton.setForeground(new Color(255, 255, 255));
         downloadButton.setPreferredSize(new Dimension(200, 30));
@@ -139,7 +139,7 @@ public class ZtrolixLibsDownloader {
                             try {
                                 downloadFile(downloadUrl, folderPath, "ZtrolixLibs-" + selectedLoader + "-" + selectedVersion, progressBar);
                                 if (modUrl != null) {
-                                    downloadLibraryFile(modUrl, folderPath, "Library-" + selectedLoader + "-" + selectedVersion, progressBar);
+                                    downloadLibraryFile(modUrl, folderPath, "ZtrolixLibs-API-" + selectedLoader + "-" + selectedVersion, progressBar);
                                 }
                                 JOptionPane.showMessageDialog(frame, "Download completed!");
                                 progressBar.setVisible(false);
@@ -208,6 +208,10 @@ public class ZtrolixLibsDownloader {
                         return FABRIC_API_BASE_URL + "Yolngp3s/fabric-api-0.91.1%2B1.20.3.jar";
                     case "1.20.4":
                         return FABRIC_API_BASE_URL + "tAwdMmKY/fabric-api-0.97.1%2B1.20.4.jar";
+                    case "1.20.5 EXPERIMENTAL":
+                        return FABRIC_API_BASE_URL + "GCdY4I8I/fabric-api-0.97.8%2B1.20.5.jar";
+                    case "1.20.6 EXPERIMENTAL":
+                        return FABRIC_API_BASE_URL + "GT0R5Mz7/fabric-api-0.100.4%2B1.20.6.jar";
                     default:
                         throw new IllegalArgumentException("Unknown version: " + version);
                 }
@@ -270,6 +274,14 @@ public class ZtrolixLibsDownloader {
         
         switch (loader) {
             case "Fabric":
+                versionDropdown.addItem("1.20");
+                versionDropdown.addItem("1.20.1");
+                versionDropdown.addItem("1.20.2");
+                versionDropdown.addItem("1.20.3");
+                versionDropdown.addItem("1.20.4");
+                versionDropdown.addItem("1.20.5 EXPERIMENTAL");
+                versionDropdown.addItem("1.20.6 EXPERIMENTAL");
+                break;
             case "Spigot":
                 versionDropdown.addItem("1.20");
                 versionDropdown.addItem("1.20.1");
