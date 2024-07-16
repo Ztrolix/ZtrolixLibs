@@ -11,7 +11,7 @@
 		"homepage": "https://ztrolix.vercel.app/mc/zlibs",
 		"sources": "https://github.com/ZtrolixGit/ZtrolixLibs"
 	},
-	"license": "CC0-1.0",
+	"license": "Apache-2.0",
 	"icon": "assets/ztrolix-libs/icon.png",
 	"environment": "*",
 	"entrypoints": {
@@ -38,7 +38,8 @@
 		"java": ">=21",
 		"fabric-api": "*"
 	},
-	"suggests": {
+	"recommends": {
+		"modmenu-badges-lib": "*",
 		"modmenu": "*"
 	},
 	"custom": {
@@ -52,6 +53,13 @@
 				"badges": [ "library" ]
 			},
 			"update_checker": true
-		}
+		},
+		"mcb": [
+			{
+				"name": "Alpha",
+				"fillColor": -5098675,
+				"outlineColor": -46738
+			}
+		]
 	}
 }
