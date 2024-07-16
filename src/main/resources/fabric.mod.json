@@ -3,13 +3,13 @@
 	"id": "ztrolix-libs",
 	"version": "${version}",
 	"name": "Ztrolix Libs",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "This is a mod/modpack library and counter for Ztrolix's mods and modpacks.",
 	"authors": [
-		"Me!"
+		"Ztrolix"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://ztrolix.vercel.app/mc/zlibs",
+		"sources": "https://github.com/ZtrolixGit/ZtrolixLibs"
 	},
 	"license": "CC0-1.0",
 	"icon": "assets/ztrolix-libs/icon.png",
@@ -39,6 +39,19 @@
 		"fabric-api": "*"
 	},
 	"suggests": {
-		"another-mod": "*"
+		"modmenu": "*"
+	},
+	"custom": {
+		"modmenu": {
+			"badges": [ "library" ],
+			"parent": {
+				"id": "ztrolix-zlibs",
+				"name": "Ztrolix Libs",
+				"description": "This is a mod/modpack library and counter for Ztrolix's mods and modpacks.",
+				"icon": "assets/ztrolix-libs/icon.png",
+				"badges": [ "library" ]
+			},
+			"update_checker": true
+		}
 	}
 }
