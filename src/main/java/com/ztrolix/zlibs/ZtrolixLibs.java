@@ -5,6 +5,8 @@ import com.ztrolix.zlibs.init.ItemGroupInit;
 import com.ztrolix.zlibs.init.ItemInit;
 
 import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,12 +19,15 @@ public class ZtrolixLibs implements ModInitializer {
 		LOGGER.info("ZtrolixLibs - Loading...");
 
 		ItemGroupInit.load();
+		LOGGER.info("ZtrolixLibs - Loaded: ItemGroupInit");
 		ItemInit.load();
+		LOGGER.info("ZtrolixLibs - Loaded: ItemInit");
 
 		LOGGER.info("ZtrolixLibs - Loaded!");
 	}
 
-	public static Identifier id(String path) {
+	@Contract("_ -> new")
+	public static @NotNull Identifier id(String path) {
 		return Identifier.of(MOD_ID, path);
 	}
 }

@@ -18,10 +18,11 @@ public class ZtrolixLibsDownloader {
     private static final String FABRIC_API_BASE_URL = "https://cdn.modrinth.com/data/P7dR8mSH/versions/";
     private static final String QUILT_API_BASE_URL = "https://cdn.modrinth.com/data/qvIfYCYJ/versions/";
 
-    private static final String FABRIC_QUILT_URL = "https://github.com/ZtrolixGit/ZtrolixLibs/raw/main/api/fabric.jar";
-    private static final String SPIGOT_URL = "https://github.com/ZtrolixGit/ZtrolixLibs/raw/main/api/spigot.jar";
-    private static final String NEOFORGE_URL = "https://github.com/ZtrolixGit/ZtrolixLibs/raw/main/api/neo.jar";
-    private static final String FORGE_URL = "https://github.com/ZtrolixGit/ZtrolixLibs/raw/main/api/forge.jar";
+    private static final String FABRIC_QUILT_21_URL = "https://github.com/ZtrolixGit/ZtrolixLibs/raw/main/api/1.21/fabric.jar";
+    private static final String FABRIC_QUILT_URL = "https://github.com/ZtrolixGit/ZtrolixLibs/raw/main/api/1.20/fabric.jar";
+    private static final String SPIGOT_URL = "https://github.com/ZtrolixGit/ZtrolixLibs/raw/main/api/1.20/spigot.jar";
+    private static final String NEOFORGE_URL = "https://github.com/ZtrolixGit/ZtrolixLibs/raw/main/api/1.20/neo.jar";
+    private static final String FORGE_URL = "https://github.com/ZtrolixGit/ZtrolixLibs/raw/main/api/1.20/forge.jar";
 
     public static void main(String[] args) {
         try {
@@ -49,275 +50,145 @@ public class ZtrolixLibsDownloader {
             e.printStackTrace();
         }
 
-        JFrame frame = new JFrame("ZLibs Installer");
-        frame.setSize(400, 250);
-        frame.setUndecorated(true);
-        frame.setShape(new RoundRectangle2D.Double(0, 0, frame.getWidth(), frame.getHeight(), 20, 20));
+        JFrame frame = new JFrame("Ztrolix Libs Downloader");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setCustomIcon(frame, "https://raw.githubusercontent.com/ZtrolixGit/ZtrolixLibs/main/icon.png");
+        frame.setSize(600, 400);
+        frame.setUndecorated(true);
 
-        JPanel panel = new JPanel(new BorderLayout());
-        panel.setBorder(new EmptyBorder(10, 10, 10, 10));
-        panel.setBackground(new Color(50, 50, 50));
+        JPanel panel = new JPanel();
+        panel.setBackground(new Color(30, 30, 30));
+        panel.setBorder(new EmptyBorder(15, 15, 15, 15));
+        frame.setContentPane(panel);
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-        JPanel topPanel = new JPanel(new BorderLayout());
-        topPanel.setOpaque(false);
+        JLabel titleLabel = new JLabel("Ztrolix Libs Downloader");
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 22));
+        titleLabel.setForeground(Color.WHITE);
+        titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(titleLabel);
 
-        JLabel titleLabel = new JLabel("Ztrolix Libs", SwingConstants.CENTER);
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 30));
-        titleLabel.setForeground(new Color(230, 230, 230));
-        titleLabel.setPreferredSize(new Dimension(frame.getWidth(), 40));
-        topPanel.add(titleLabel, BorderLayout.CENTER);
+        panel.add(Box.createRigidArea(new Dimension(0, 15)));
 
-        JPanel controlPanel = new JPanel();
-        controlPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
-        controlPanel.setOpaque(false);
-        JButton minimizeButton = new JButton("_");
-        minimizeButton.addActionListener(e -> frame.setState(Frame.ICONIFIED));
-        JButton closeButton = new JButton("X");
-        closeButton.addActionListener(e -> System.exit(0));
-        controlPanel.add(minimizeButton);
-        controlPanel.add(closeButton);
-        topPanel.add(controlPanel, BorderLayout.EAST);
-        closeButton.setBackground(new Color(169, 46, 34));
-        closeButton.setForeground(new Color(255, 255, 255));
-        minimizeButton.setBackground(new Color(191, 98, 4));
-        minimizeButton.setForeground(new Color(255, 255, 255));
+        JComboBox<String> loaderDropdown = new JComboBox<>(new String[]{"Fabric", "Quilt", "Spigot", "NeoForge", "Forge"});
+        loaderDropdown.setFont(new Font("Arial", Font.PLAIN, 16));
+        panel.add(loaderDropdown);
+        loaderDropdown.setPreferredSize(new Dimension(370, 30));
 
-        JPanel centerPanel = new JPanel(new BorderLayout());
-        centerPanel.setOpaque(false);
-
-        String[] options = {"Select Loader", "Fabric", "Quilt", "Spigot", "NeoForge", "Forge"};
-        JComboBox<String> dropdown = new JComboBox<>(options);
-        dropdown.setPreferredSize(new Dimension(370, 30));
-        
-        JPanel dropdownPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        dropdownPanel.setOpaque(false);
-        dropdownPanel.add(dropdown);
-        centerPanel.add(dropdownPanel, BorderLayout.CENTER);
+        panel.add(Box.createRigidArea(new Dimension(0, 15)));
 
         JComboBox<String> versionDropdown = new JComboBox<>();
+        versionDropdown.setFont(new Font("Arial", Font.PLAIN, 16));
+        panel.add(versionDropdown);
         versionDropdown.setPreferredSize(new Dimension(370, 30));
 
-        JPanel versionDropdownPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        versionDropdownPanel.setOpaque(false);
-        versionDropdownPanel.add(versionDropdown);
-        centerPanel.add(versionDropdownPanel, BorderLayout.SOUTH);
+        JButton downloadButton = new JButton("Download");
+        downloadButton.setFont(new Font("Arial", Font.BOLD, 18));
+        downloadButton.setBackground(new Color(70, 70, 70));
+        downloadButton.setForeground(Color.WHITE);
+        downloadButton.setFocusPainted(false);
+        downloadButton.setBorder(new EmptyBorder(10, 25, 10, 25));
+        panel.add(downloadButton);
 
-        dropdown.addActionListener(e -> updateVersionDropdown((String) dropdown.getSelectedItem(), versionDropdown));
-        dropdown.addActionListener(e -> updateLoaderDropdown(dropdown));
-
-        JButton downloadButton = new JButton("Download and Install");
-        downloadButton.setBackground(new Color(104, 93, 156));
-        downloadButton.setForeground(new Color(255, 255, 255));
-        downloadButton.setPreferredSize(new Dimension(200, 30));
-
-        JProgressBar progressBar = new JProgressBar(0, 100);
-        progressBar.setStringPainted(true);
-        progressBar.setVisible(false);
+        loaderDropdown.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                versionDropdown.removeAllItems();
+                String loader = (String) loaderDropdown.getSelectedItem();
+                switch (loader) {
+                    case "Fabric":
+                    case "Quilt":
+                        versionDropdown.addItem("1.20");
+                        versionDropdown.addItem("1.20.1");
+                        versionDropdown.addItem("1.20.2");
+                        versionDropdown.addItem("1.20.3");
+                        versionDropdown.addItem("1.20.4");
+                        versionDropdown.addItem("1.20.5 EXPERIMENTAL");
+                        versionDropdown.addItem("1.20.6 EXPERIMENTAL");
+                        versionDropdown.addItem("1.21 EXPERIMENTAL");
+                        break;
+                    case "Spigot":
+                        versionDropdown.addItem("1.20");
+                        versionDropdown.addItem("1.20.1");
+                        versionDropdown.addItem("1.20.2");
+                        versionDropdown.addItem("1.20.3");
+                        versionDropdown.addItem("1.20.4");
+                        break;
+                    case "NeoForge":
+                        versionDropdown.addItem("1.20.4");
+                        break;
+                    case "Forge":
+                        versionDropdown.addItem("1.20.1");
+                        break;
+                }
+            }
+        });
 
         downloadButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String selectedLoader = (String) dropdown.getSelectedItem();
-                String selectedVersion = (String) versionDropdown.getSelectedItem();
-                String downloadUrl = getDownloadUrl(selectedLoader, selectedVersion);
-                String modUrl = getModUrl(selectedLoader, selectedVersion);
-                JFileChooser fileChooser = new JFileChooser();
-                fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-                int result = fileChooser.showOpenDialog(frame);
+                String loader = (String) loaderDropdown.getSelectedItem();
+                String version = (String) versionDropdown.getSelectedItem();
+                String downloadUrl = null;
 
-                if (result == JFileChooser.APPROVE_OPTION) {
-                    Path downloadDirectory = fileChooser.getSelectedFile().toPath();
-                    String folderName = selectedLoader.equals("Spigot") ? "plugins" : "mods";
-                    Path folderPath = downloadDirectory.resolve(folderName);
+                switch (loader) {
+                    case "Fabric":
+                    case "Quilt":
+                        if ("1.21 EXPERIMENTAL".equals(version)) {
+                            downloadUrl = FABRIC_QUILT_21_URL;
+                        } else {
+                            downloadUrl = FABRIC_QUILT_URL;
+                        }
+                        break;
+                    case "Spigot":
+                        downloadUrl = SPIGOT_URL;
+                        break;
+                    case "NeoForge":
+                        downloadUrl = NEOFORGE_URL;
+                        break;
+                    case "Forge":
+                        downloadUrl = FORGE_URL;
+                        break;
+                }
 
+                if (downloadUrl != null) {
                     try {
-                        Files.createDirectories(folderPath);
-                        progressBar.setVisible(true);
-                        new Thread(() -> {
-                            try {
-                                downloadFile(downloadUrl, folderPath, "ZtrolixLibs-" + selectedLoader + "-" + selectedVersion, progressBar);
-                                if (modUrl != null) {
-                                    downloadLibraryFile(modUrl, folderPath, "ZtrolixLibs-API-" + selectedLoader + "-" + selectedVersion, progressBar);
-                                }
-                                JOptionPane.showMessageDialog(frame, "Download completed!");
-                                progressBar.setVisible(false);
-                                progressBar.setValue(0);
-                            } catch (IOException ex) {
-                                JOptionPane.showMessageDialog(frame, "Download failed: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                                progressBar.setVisible(false);
-                                progressBar.setValue(0);
-                            }
-                        }).start();
+                        downloadFile(downloadUrl);
+                        JOptionPane.showMessageDialog(frame, "Download completed successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
                     } catch (IOException ex) {
-                        JOptionPane.showMessageDialog(frame, "Failed to create directory: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                        ex.printStackTrace();
+                        JOptionPane.showMessageDialog(frame, "Download failed!", "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             }
         });
 
-        JPanel bottomPanel = new JPanel(new BorderLayout());
-        bottomPanel.setOpaque(false);
-        bottomPanel.add(centerPanel, BorderLayout.NORTH);
-        bottomPanel.add(downloadButton, BorderLayout.CENTER);
-        bottomPanel.add(progressBar, BorderLayout.SOUTH);
+        setCustomIcon(frame, "https://github.com/ZtrolixGit/ZtrolixLibs/raw/main/icon.png");
 
-        panel.add(topPanel, BorderLayout.NORTH);
-        panel.add(bottomPanel, BorderLayout.SOUTH);
-
-        frame.add(panel);
+        frame.setShape(new RoundRectangle2D.Double(0, 0, frame.getWidth(), frame.getHeight(), 50, 50));
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
 
-    private static String getDownloadUrl(String loader, String version) {
-        switch (loader) {
-            case "Fabric":
-            case "Quilt":
-                return FABRIC_QUILT_URL;
-            case "Spigot":
-                return SPIGOT_URL;
-            case "NeoForge":
-                return NEOFORGE_URL;
-            case "Forge":
-                return FORGE_URL;
-            default:
-                throw new IllegalArgumentException("Unknown loader: " + loader);
+    private static void downloadFile(String urlString) throws IOException {
+        URL url = new URL(urlString);
+        BufferedInputStream bis = new BufferedInputStream(url.openStream());
+        Path path = Paths.get("libs/" + Paths.get(url.getPath()).getFileName().toString());
+        Files.createDirectories(path.getParent());
+        FileOutputStream fis = new FileOutputStream(path.toFile());
+        byte[] buffer = new byte[1024];
+        int count = 0;
+        while ((count = bis.read(buffer, 0, 1024)) != -1) {
+            fis.write(buffer, 0, count);
         }
-    }
-
-    private static String getModUrl(String loader, String version) {
-        if (loader.equals("Quilt") || loader.equals("Fabric")) {
-            return getModrinthUrl(loader, version);
-        }
-        return null;
-    }
-
-    private static String getModrinthUrl(String loader, String version) {
-        switch (loader) {
-            case "Fabric":
-                switch (version) {
-                    case "1.20":
-                        return FABRIC_API_BASE_URL + "n2c5lxAo/fabric-api-0.83.0%2B1.20.jar";
-                    case "1.20.1":
-                        return FABRIC_API_BASE_URL + "P7uGFii0/fabric-api-0.92.2%2B1.20.1.jar";
-                    case "1.20.2":
-                        return FABRIC_API_BASE_URL + "8GVp7wDk/fabric-api-0.91.6%2B1.20.2.jar";
-                    case "1.20.3":
-                        return FABRIC_API_BASE_URL + "Yolngp3s/fabric-api-0.91.1%2B1.20.3.jar";
-                    case "1.20.4":
-                        return FABRIC_API_BASE_URL + "tAwdMmKY/fabric-api-0.97.1%2B1.20.4.jar";
-                    case "1.20.5 EXPERIMENTAL":
-                        return FABRIC_API_BASE_URL + "GCdY4I8I/fabric-api-0.97.8%2B1.20.5.jar";
-                    case "1.20.6 EXPERIMENTAL":
-                        return FABRIC_API_BASE_URL + "GT0R5Mz7/fabric-api-0.100.4%2B1.20.6.jar";
-                    default:
-                        throw new IllegalArgumentException("Unknown version: " + version);
-                }
-            case "Quilt":
-                switch (version) {
-                    case "1.20":
-                        return QUILT_API_BASE_URL + "vTQynnGn/qfapi-7.2.2_qsl-6.1.2_fapi-0.88.1_mc-1.20.1.jar";
-                    case "1.20.1":
-                        return QUILT_API_BASE_URL + "Gydw2vxY/qfapi-7.5.0_qsl-6.1.2_fapi-0.92.2_mc-1.20.1.jar";
-                    case "1.20.2":
-                        return QUILT_API_BASE_URL + "zHVlrS0A/quilted-fabric-api-8.0.0-alpha.6%2B0.91.6-1.20.2.jar";
-                    case "1.20.4":
-                        return QUILT_API_BASE_URL + "AljqyvST/quilted-fabric-api-9.0.0-alpha.8%2B0.97.0-1.20.4.jar";
-                    case "1.20.6 EXPERIMENTAL":
-                        return QUILT_API_BASE_URL + "IQQyeJNR/quilted-fabric-api-10.0.0-alpha.3%2B0.100.4-1.20.6.jar";
-                    default:
-                        throw new IllegalArgumentException("Unknown version: " + version);
-                }
-            default:
-                throw new IllegalArgumentException("Unknown loader: " + loader);
-        }
-    }
-
-    private static void downloadFile(String url, Path downloadDirectory, String fileName, JProgressBar progressBar) throws IOException {
-        URL downloadUrl = new URL(url);
-        try (BufferedInputStream in = new BufferedInputStream(downloadUrl.openStream());
-             FileOutputStream fileOutputStream = new FileOutputStream(downloadDirectory.resolve(fileName + ".jar").toFile())) {
-            byte[] dataBuffer = new byte[1024];
-            int bytesRead;
-            int totalBytesRead = 0;
-            int fileSize = downloadUrl.openConnection().getContentLength();
-
-            while ((bytesRead = in.read(dataBuffer, 0, 1024)) != -1) {
-                fileOutputStream.write(dataBuffer, 0, bytesRead);
-                totalBytesRead += bytesRead;
-                int progress = (int) ((totalBytesRead / (double) fileSize) * 100);
-                SwingUtilities.invokeLater(() -> progressBar.setValue(progress));
-            }
-        }
-    }
-
-    private static void downloadLibraryFile(String url, Path downloadDirectory, String fileName, JProgressBar progressBar) throws IOException {
-        URL downloadUrl = new URL(url);
-        try (BufferedInputStream in = new BufferedInputStream(downloadUrl.openStream());
-             FileOutputStream fileOutputStream = new FileOutputStream(downloadDirectory.resolve(fileName + ".jar").toFile())) {
-            byte[] dataBuffer = new byte[1024];
-            int bytesRead;
-            int totalBytesRead = 0;
-            int fileSize = downloadUrl.openConnection().getContentLength();
-
-            while ((bytesRead = in.read(dataBuffer, 0, 1024)) != -1) {
-                fileOutputStream.write(dataBuffer, 0, bytesRead);
-                totalBytesRead += bytesRead;
-                int progress = (int) ((totalBytesRead / (double) fileSize) * 100);
-                SwingUtilities.invokeLater(() -> progressBar.setValue(progress));
-            }
-        }
-    }
-
-    private static void updateVersionDropdown(String loader, JComboBox<String> versionDropdown) {
-        versionDropdown.removeAllItems();
-        
-        switch (loader) {
-            case "Fabric":
-                versionDropdown.addItem("1.20");
-                versionDropdown.addItem("1.20.1");
-                versionDropdown.addItem("1.20.2");
-                versionDropdown.addItem("1.20.3");
-                versionDropdown.addItem("1.20.4");
-                versionDropdown.addItem("1.20.5 EXPERIMENTAL");
-                versionDropdown.addItem("1.20.6 EXPERIMENTAL");
-                break;
-            case "Spigot":
-                versionDropdown.addItem("1.20");
-                versionDropdown.addItem("1.20.1");
-                versionDropdown.addItem("1.20.2");
-                versionDropdown.addItem("1.20.3");
-                versionDropdown.addItem("1.20.4");
-                break;
-            case "Quilt":
-                versionDropdown.addItem("1.20");
-                versionDropdown.addItem("1.20.1");
-                versionDropdown.addItem("1.20.2");
-                versionDropdown.addItem("1.20.4");
-                versionDropdown.addItem("1.20.6 EXPERIMENTAL");
-                break;
-            case "NeoForge":
-                versionDropdown.addItem("1.20.4");
-                break;
-            case "Forge":
-                versionDropdown.addItem("1.20.1");
-                break;
-        }
-    }
-
-    private static void updateLoaderDropdown(JComboBox<String> dropdown) {
-        dropdown.removeItem("Select Loader");
+        bis.close();
+        fis.close();
     }
 
     private static void setCustomIcon(JFrame frame, String iconUrl) {
         try {
-            // Download the icon image
             URL url = new URL(iconUrl);
             BufferedImage image = ImageIO.read(url);
             if (image != null) {
-                // Set the application icon for the JFrame
                 frame.setIconImage(image);
             } else {
                 System.err.println("Failed to load icon image from URL: " + iconUrl);
