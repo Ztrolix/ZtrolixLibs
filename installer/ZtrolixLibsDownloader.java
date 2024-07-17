@@ -176,7 +176,11 @@ public class ZtrolixLibsDownloader {
         switch (loader) {
             case "Fabric":
             case "Quilt":
-                return FABRIC_QUILT_URL;
+                if (version.equals("1.21 EXPERIMENTAL")) {
+                    return FABRIC_QUILT_21_URL;
+                } else {
+                    return FABRIC_QUILT_URL;
+                }
             case "Spigot":
                 return SPIGOT_URL;
             case "NeoForge":
