@@ -10,10 +10,10 @@ import net.minecraft.text.Text;
 import java.util.Optional;
 
 public class ItemGroupInit {
-    public static final Text EXAMPLE_TITLE = Text.translatable("itemGroup." + ZtrolixLibs.MOD_ID + ".example_group");
+    public static final Text TITLE = Text.translatable("itemGroup." + ZtrolixLibs.MOD_ID + ".example_group");
 
     public static final ItemGroup EXAMPLE_GROUP = register("ztrolix-libs", FabricItemGroup.builder()
-            .displayName(EXAMPLE_TITLE)
+            .displayName(TITLE)
             .icon(ItemInit.EXAMPLE_ITEM::getDefaultStack)
             .entries((displayContext, entries) -> Registries.ITEM.getIds()
                     .stream()
