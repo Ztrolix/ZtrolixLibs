@@ -16,14 +16,18 @@ public class ZtrolixLibs implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		LOGGER.info("-----------------------------------");
 		LOGGER.info("ZtrolixLibs - Loading...");
+		LOGGER.info("-- -- -- -- -- -- -- -- -- -- -- --");
 
 		ItemGroupInit.load();
 		LOGGER.info("ZtrolixLibs - Loaded: ItemGroupInit");
 		ItemInit.load();
 		LOGGER.info("ZtrolixLibs - Loaded: ItemInit");
 
+		LOGGER.info("-- -- -- -- -- -- -- -- -- -- -- --");
 		LOGGER.info("ZtrolixLibs - Loaded!");
+		LOGGER.info("-----------------------------------");
 	}
 
 	@Contract("_ -> new")

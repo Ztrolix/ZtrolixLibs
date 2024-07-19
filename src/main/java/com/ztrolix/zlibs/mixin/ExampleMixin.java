@@ -11,11 +11,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(MinecraftServer.class)
 public class ExampleMixin {
-	Integer logLevel = 1;
-	String logText = "ZtrolixLibs - Loaded World!";
+	Logger LOGGER = LoggerFactory.getLogger("ztrolix-libs");
 
 	@Inject(at = @At("HEAD"), method = "loadWorld")
 	private void init(CallbackInfo info) {
-		FMLLog.log(ZtrolixLibs.MOD_ID, logLevel, logText);
+		LOGGER.info("ZtrolixLibs - Injected to World!");
 	}
 }
