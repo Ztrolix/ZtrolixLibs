@@ -17,7 +17,7 @@ import org.slf4j.LoggerFactory;
 
 public class ZtrolixLibs implements ModInitializer {
     public static final Logger LOGGER = LoggerFactory.getLogger("ztrolix-libs");
-	public static final String MOD_ID = "zlibs";
+	public static final String MOD_ID = "ztrolix-libs";
 
 	@Override
 	public void onInitialize() {
@@ -29,7 +29,7 @@ public class ZtrolixLibs implements ModInitializer {
 		LOGGER.info("ZtrolixLibs - Loaded: ItemGroupInit");
 		ItemInit.load();
 		LOGGER.info("ZtrolixLibs - Loaded: ItemInit");
-		AutoConfig.register(ZLibsConfig.class, GsonConfigSerializer::new);
+		//AutoConfig.register(ZLibsConfig.class, GsonConfigSerializer::new);
 		LOGGER.info("ZtrolixLibs - Loaded: Config");
 
 		LOGGER.info("-- -- -- -- -- -- -- -- -- -- -- --");
