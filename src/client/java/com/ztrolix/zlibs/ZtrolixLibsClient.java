@@ -6,11 +6,13 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.screen.Screen;
+import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 
 public class ZtrolixLibsClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
-
+		AutoConfig.register(ZLibsConfig.class, GsonConfigSerializer::new);
+		ZLibsConfig config = AutoConfig.getConfigHolder(ZLibsConfig.class).getConfig();
 	}
 
 	public static Screen getConfigScreen(Screen parent) {

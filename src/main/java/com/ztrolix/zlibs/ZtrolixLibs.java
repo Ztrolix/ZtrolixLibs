@@ -29,7 +29,7 @@ public class ZtrolixLibs implements ModInitializer {
 		LOGGER.info("ZtrolixLibs - Loaded: ItemGroupInit");
 		ItemInit.load();
 		LOGGER.info("ZtrolixLibs - Loaded: ItemInit");
-		//AutoConfig.register(ZLibsConfig.class, GsonConfigSerializer::new);
+
 		LOGGER.info("ZtrolixLibs - Loaded: Config");
 
 		LOGGER.info("-- -- -- -- -- -- -- -- -- -- -- --");
