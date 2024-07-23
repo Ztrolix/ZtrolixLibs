@@ -1,13 +1,11 @@
 package com.ztrolix.zlibs;
 
-import net.fabricmc.api.ClientModInitializer;
-import me.shedaniel.autoconfig.AutoConfig;
-import com.terraformersmc.modmenu.api.ConfigScreenFactory;
-import com.terraformersmc.modmenu.api.ModMenuApi;
-import net.minecraft.client.gui.screen.Screen;
 import com.ztrolix.zlibs.config.ZLibsConfig;
+import me.shedaniel.autoconfig.AutoConfig;
+import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.gui.screen.Screen;
 
 public class ZtrolixLibsClient implements ClientModInitializer {
 	@Override
