@@ -50,7 +50,7 @@
 		"modmenu": {
 			"badges": [ "library" ],
 			"parent": {
-				"id": "ztrolix-zlibs",
+				"id": "ztrolix-libs",
 				"name": "Ztrolix Libs",
 				"description": "This is a mod/modpack library and counter for Ztrolix's mods and modpacks.",
 				"icon": "assets/ztrolix-libs/icon.png",

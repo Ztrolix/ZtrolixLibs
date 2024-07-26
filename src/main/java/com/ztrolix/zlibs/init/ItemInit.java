@@ -1,8 +1,6 @@
 package com.ztrolix.zlibs.init;
 
 import com.ztrolix.zlibs.ZtrolixLibs;
-import com.ztrolix.zlibs.list.FoodList;
-import com.ztrolix.zlibs.list.enums.ZtrolixLibsToolMaterials;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;

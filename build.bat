@@ -2,6 +2,6 @@
 title Ztrolix Libs - Building
 cls
 
-gradlew build
+gradlew clean build
 
 pause

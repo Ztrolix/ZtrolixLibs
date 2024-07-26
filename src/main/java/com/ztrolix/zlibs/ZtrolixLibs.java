@@ -4,11 +4,6 @@ import net.fabricmc.api.ModInitializer;
 import com.ztrolix.zlibs.init.ItemGroupInit;
 import com.ztrolix.zlibs.init.ItemInit;
 
-import me.shedaniel.autoconfig.ConfigData;
-import me.shedaniel.autoconfig.annotation.Config;
-import me.shedaniel.autoconfig.AutoConfig;
-import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
-
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
@@ -29,7 +24,6 @@ public class ZtrolixLibs implements ModInitializer {
 		LOGGER.info("ZtrolixLibs - Loaded: ItemGroupInit");
 		ItemInit.load();
 		LOGGER.info("ZtrolixLibs - Loaded: ItemInit");
-
 		LOGGER.info("ZtrolixLibs - Loaded: Config");
 
 		LOGGER.info("-- -- -- -- -- -- -- -- -- -- -- --");
