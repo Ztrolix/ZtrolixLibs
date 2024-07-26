@@ -1,3 +1,7 @@
+import com.formdev.flatlaf.FlatDarkLaf;
+import com.formdev.flatlaf.FlatLaf;
+import com.formdev.flatlaf.FlatLightLaf;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -26,27 +30,8 @@ public class ZtrolixLibsDownloader {
 
     public static void main(String[] args) {
         try {
-            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-            UIManager.put("control", new Color(50, 50, 50));
-            UIManager.put("info", new Color(50, 50, 50));
-            UIManager.put("nimbusBase", new Color(35, 35, 35));
-            UIManager.put("nimbusAlertYellow", new Color(248, 187, 0));
-            UIManager.put("nimbusDisabledText", new Color(128, 128, 128));
-            UIManager.put("nimbusFocus", new Color(115, 164, 209));
-            UIManager.put("nimbusGreen", new Color(176, 179, 50));
-            UIManager.put("nimbusInfoBlue", new Color(66, 139, 221));
-            UIManager.put("nimbusLightBackground", new Color(50, 50, 50));
-            UIManager.put("nimbusOrange", new Color(191, 98, 4));
-            UIManager.put("nimbusRed", new Color(169, 46, 34));
-            UIManager.put("nimbusSelectedText", new Color(255, 255, 255));
-            UIManager.put("nimbusSelectionBackground", new Color(104, 93, 156));
-            UIManager.put("text", new Color(230, 230, 230));
-        } catch (Exception e) {
+            UIManager.setLookAndFeel(new FlatDarkLaf());
+        } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
 
@@ -58,7 +43,7 @@ public class ZtrolixLibsDownloader {
         setCustomIcon(frame, "https://raw.githubusercontent.com/ZtrolixGit/ZtrolixLibs/main/icon.png");
 
         JPanel panel = new JPanel(new BorderLayout());
-        panel.setBorder(new EmptyBorder(10, 10, 10, 10));
+        panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         panel.setBackground(new Color(50, 50, 50));
 
         JPanel topPanel = new JPanel(new BorderLayout());
@@ -73,17 +58,13 @@ public class ZtrolixLibsDownloader {
         JPanel controlPanel = new JPanel();
         controlPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
         controlPanel.setOpaque(false);
-        JButton minimizeButton = new JButton("_");
+        JButton minimizeButton = createRoundedButton("_", new Color(237, 132, 26), 10);
         minimizeButton.addActionListener(e -> frame.setState(Frame.ICONIFIED));
-        JButton closeButton = new JButton("X");
+        JButton closeButton = createRoundedButton("X", new Color(216, 77, 63), 10);
         closeButton.addActionListener(e -> System.exit(0));
         controlPanel.add(minimizeButton);
         controlPanel.add(closeButton);
         topPanel.add(controlPanel, BorderLayout.EAST);
-        closeButton.setBackground(new Color(169, 46, 34));
-        closeButton.setForeground(new Color(255, 255, 255));
-        minimizeButton.setBackground(new Color(191, 98, 4));
-        minimizeButton.setForeground(new Color(255, 255, 255));
 
         JPanel centerPanel = new JPanel(new BorderLayout());
         centerPanel.setOpaque(false);
@@ -108,9 +89,7 @@ public class ZtrolixLibsDownloader {
         dropdown.addActionListener(e -> updateVersionDropdown((String) dropdown.getSelectedItem(), versionDropdown));
         dropdown.addActionListener(e -> updateLoaderDropdown(dropdown));
 
-        JButton downloadButton = new JButton("Download and Install");
-        downloadButton.setBackground(new Color(104, 93, 156));
-        downloadButton.setForeground(new Color(255, 255, 255));
+        JButton downloadButton = createOutlinedButton("Download and Install", new Color(158, 147, 211));
         downloadButton.setPreferredSize(new Dimension(200, 30));
 
         JProgressBar progressBar = new JProgressBar(0, 100);
@@ -216,7 +195,7 @@ public class ZtrolixLibsDownloader {
                     case "1.21 EXPERIMENTAL":
                         return FABRIC_API_BASE_URL + "vMQdA5QJ/fabric-api-0.100.7%2B1.21.jar";
                     default:
-                        throw new IllegalArgumentException("Unknown version: " + version);
+                        return null;
                 }
             case "Quilt":
                 switch (version) {
@@ -229,60 +208,35 @@ public class ZtrolixLibsDownloader {
                     case "1.20.4":
                         return QUILT_API_BASE_URL + "AljqyvST/quilted-fabric-api-9.0.0-alpha.8%2B0.97.0-1.20.4.jar";
                     case "1.21 EXPERIMENTAL":
-                        return FABRIC_API_BASE_URL + "PNhUOnZI/quilted-fabric-api-11.0.0-alpha.3%2B0.100.7-1.21.jar";
+                        return QUILT_API_BASE_URL + "PNhUOnZI/quilted-fabric-api-11.0.0-alpha.3%2B0.100.7-1.21.jar";
                     default:
-                        throw new IllegalArgumentException("Unknown version: " + version);
+                        return null;
                 }
             default:
-                throw new IllegalArgumentException("Unknown loader: " + loader);
+                return null;
         }
     }
 
-    private static void downloadFile(String url, Path downloadDirectory, String fileName, JProgressBar progressBar) throws IOException {
-        URL downloadUrl = new URL(url);
-        try (BufferedInputStream in = new BufferedInputStream(downloadUrl.openStream());
-             FileOutputStream fileOutputStream = new FileOutputStream(downloadDirectory.resolve(fileName + ".jar").toFile())) {
-            byte[] dataBuffer = new byte[1024];
-            int bytesRead;
-            int totalBytesRead = 0;
-            int fileSize = downloadUrl.openConnection().getContentLength();
-
-            while ((bytesRead = in.read(dataBuffer, 0, 1024)) != -1) {
-                fileOutputStream.write(dataBuffer, 0, bytesRead);
-                totalBytesRead += bytesRead;
-                int progress = (int) ((totalBytesRead / (double) fileSize) * 100);
-                SwingUtilities.invokeLater(() -> progressBar.setValue(progress));
-            }
-        }
+    private static void updateLoaderDropdown(JComboBox<String> dropdown) {
+        String selectedLoader = (String) dropdown.getSelectedItem();
+        System.out.println("Selected loader: " + selectedLoader);
     }
 
-    private static void downloadLibraryFile(String url, Path downloadDirectory, String fileName, JProgressBar progressBar) throws IOException {
-        URL downloadUrl = new URL(url);
-        try (BufferedInputStream in = new BufferedInputStream(downloadUrl.openStream());
-             FileOutputStream fileOutputStream = new FileOutputStream(downloadDirectory.resolve(fileName + ".jar").toFile())) {
-            byte[] dataBuffer = new byte[1024];
-            int bytesRead;
-            int totalBytesRead = 0;
-            int fileSize = downloadUrl.openConnection().getContentLength();
-
-            while ((bytesRead = in.read(dataBuffer, 0, 1024)) != -1) {
-                fileOutputStream.write(dataBuffer, 0, bytesRead);
-                totalBytesRead += bytesRead;
-                int progress = (int) ((totalBytesRead / (double) fileSize) * 100);
-                SwingUtilities.invokeLater(() -> progressBar.setValue(progress));
-            }
-        }
-    }
-
-    private static void updateVersionDropdown(String loader, JComboBox<String> versionDropdown) {
+    private static void updateVersionDropdown(String selectedLoader, JComboBox<String> versionDropdown) {
         versionDropdown.removeAllItems();
-
-        switch (loader) {
+        switch (selectedLoader) {
             case "Fabric":
                 versionDropdown.addItem("1.20");
                 versionDropdown.addItem("1.20.1");
                 versionDropdown.addItem("1.20.2");
                 versionDropdown.addItem("1.20.3");
+                versionDropdown.addItem("1.20.4");
+                versionDropdown.addItem("1.21 EXPERIMENTAL");
+                break;
+            case "Quilt":
+                versionDropdown.addItem("1.20");
+                versionDropdown.addItem("1.20.1");
+                versionDropdown.addItem("1.20.2");
                 versionDropdown.addItem("1.20.4");
                 versionDropdown.addItem("1.21 EXPERIMENTAL");
                 break;
@@ -293,13 +247,6 @@ public class ZtrolixLibsDownloader {
                 versionDropdown.addItem("1.20.3");
                 versionDropdown.addItem("1.20.4");
                 break;
-            case "Quilt":
-                versionDropdown.addItem("1.20");
-                versionDropdown.addItem("1.20.1");
-                versionDropdown.addItem("1.20.2");
-                versionDropdown.addItem("1.20.4");
-                versionDropdown.addItem("1.21 EXPERIMENTAL");
-                break;
             case "NeoForge":
                 versionDropdown.addItem("1.20.4");
                 break;
@@ -309,23 +256,87 @@ public class ZtrolixLibsDownloader {
         }
     }
 
-    private static void updateLoaderDropdown(JComboBox<String> dropdown) {
-        dropdown.removeItem("Select Loader");
+    private static void downloadFile(String fileURL, Path folderPath, String fileName, JProgressBar progressBar) throws IOException {
+        URL url = new URL(fileURL);
+        try (BufferedInputStream in = new BufferedInputStream(url.openStream());
+             FileOutputStream fileOutputStream = new FileOutputStream(folderPath.resolve(fileName).toString())) {
+            byte[] dataBuffer = new byte[1024];
+            int bytesRead;
+            int totalBytesRead = 0;
+            while ((bytesRead = in.read(dataBuffer, 0, 1024)) != -1) {
+                fileOutputStream.write(dataBuffer, 0, bytesRead);
+                totalBytesRead += bytesRead;
+                final int progress = (int) (((double) totalBytesRead / in.available()) * 100);
+                SwingUtilities.invokeLater(() -> progressBar.setValue(progress));
+            }
+        }
+    }
+
+    private static void downloadLibraryFile(String fileURL, Path folderPath, String fileName, JProgressBar progressBar) throws IOException {
+        URL url = new URL(fileURL);
+        try (BufferedInputStream in = new BufferedInputStream(url.openStream());
+             FileOutputStream fileOutputStream = new FileOutputStream(folderPath.resolve(fileName).toString())) {
+            byte[] dataBuffer = new byte[1024];
+            int bytesRead;
+            int totalBytesRead = 0;
+            while ((bytesRead = in.read(dataBuffer, 0, 1024)) != -1) {
+                fileOutputStream.write(dataBuffer, 0, bytesRead);
+                totalBytesRead += bytesRead;
+                final int progress = (int) (((double) totalBytesRead / in.available()) * 100);
+                SwingUtilities.invokeLater(() -> progressBar.setValue(progress));
+            }
+        }
+    }
+
+    private static JButton createRoundedButton(String text, Color outlineColor, int cornerRadius) {
+        JButton button = new JButton(text) {
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2d = (Graphics2D) g.create();
+                g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2d.setColor(getBackground());
+                g2d.fillRoundRect(0, 0, getWidth(), getHeight(), cornerRadius, cornerRadius); // Fill the button background
+                g2d.setColor(outlineColor);
+                g2d.setStroke(new BasicStroke(2)); // Outline width
+                g2d.drawRoundRect(1, 1, getWidth() - 2, getHeight() - 2, cornerRadius, cornerRadius); // Draw rounded outline
+                g2d.dispose();
+                super.paintComponent(g);
+            }
+        };
+        button.setContentAreaFilled(false);
+        button.setFocusPainted(false);
+        button.setOpaque(false);
+        return button;
+    }
+
+    private static JButton createOutlinedButton(String text, Color outlineColor) {
+        JButton button = new JButton(text) {
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2d = (Graphics2D) g.create();
+                g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2d.setColor(new Color(50, 50, 50)); // Background color
+                g2d.fillRoundRect(0, 0, getWidth(), getHeight(), 20, 20); // Fill the button background
+                g2d.setColor(outlineColor);
+                g2d.setStroke(new BasicStroke(2)); // Outline width
+                g2d.drawRoundRect(1, 1, getWidth() - 2, getHeight() - 2, 20, 20); // Draw rounded outline
+                g2d.dispose();
+                super.paintComponent(g);
+            }
+        };
+        button.setContentAreaFilled(false);
+        button.setFocusPainted(false);
+        button.setOpaque(false);
+        return button;
     }
 
     private static void setCustomIcon(JFrame frame, String iconUrl) {
         try {
-            // Download the icon image
             URL url = new URL(iconUrl);
-            BufferedImage image = ImageIO.read(url);
-            if (image != null) {
-                // Set the application icon for the JFrame
-                frame.setIconImage(image);
-            } else {
-                System.err.println("Failed to load icon image from URL: " + iconUrl);
-            }
+            BufferedImage icon = ImageIO.read(url);
+            frame.setIconImage(icon);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("Failed to load icon: " + e.getMessage());
         }
     }
 }
