@@ -6,5 +6,6 @@ import me.shedaniel.autoconfig.annotation.Config;
 @Config(name = "ztrolix-libs")
 public class ZLibsConfig implements ConfigData {
     boolean modEnabled = true;
+    boolean clientSide = true;
     boolean contributeToPlayerCount = true;
 }

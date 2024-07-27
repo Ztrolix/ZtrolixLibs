@@ -24,7 +24,10 @@ public class ZtrolixLibs implements ModInitializer {
 		LOGGER.info("ZtrolixLibs - Loaded: ItemGroupInit");
 		ItemInit.load();
 		LOGGER.info("ZtrolixLibs - Loaded: ItemInit");
+		LOGGER.info("ZtrolixLibs - Loaded: Commands");
 		LOGGER.info("ZtrolixLibs - Loaded: Config");
+		LOGGER.warn("ZtrolixLibs - Warning: 'Error loading parent data from mod: ztrolix-libs' is a allowed error please do not report this error!");
+
 
 		LOGGER.info("-- -- -- -- -- -- -- -- -- -- -- --");
 		LOGGER.info("ZtrolixLibs - Loaded!");

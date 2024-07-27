@@ -17,6 +17,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ZtrolixLibsDownloader {
     private static final String FABRIC_API_BASE_URL = "https://cdn.modrinth.com/data/P7dR8mSH/versions/";
@@ -42,9 +44,11 @@ public class ZtrolixLibsDownloader {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setCustomIcon(frame, "https://raw.githubusercontent.com/ZtrolixGit/ZtrolixLibs/main/icon.png");
 
+        addDraggableFeature(frame);
+
         JPanel panel = new JPanel(new BorderLayout());
         panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        panel.setBackground(new Color(50, 50, 50));
+        panel.setBackground(new Color(60, 63, 65));
 
         JPanel topPanel = new JPanel(new BorderLayout());
         topPanel.setOpaque(false);
@@ -58,9 +62,9 @@ public class ZtrolixLibsDownloader {
         JPanel controlPanel = new JPanel();
         controlPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
         controlPanel.setOpaque(false);
-        JButton minimizeButton = createRoundedButton("_", new Color(237, 132, 26), 10);
+        JButton minimizeButton = createOutlinedButton("_", new Color(237, 132, 26), 5);
         minimizeButton.addActionListener(e -> frame.setState(Frame.ICONIFIED));
-        JButton closeButton = createRoundedButton("X", new Color(216, 77, 63), 10);
+        JButton closeButton = createOutlinedButton("X", new Color(216, 77, 63), 5);
         closeButton.addActionListener(e -> System.exit(0));
         controlPanel.add(minimizeButton);
         controlPanel.add(closeButton);
@@ -89,7 +93,7 @@ public class ZtrolixLibsDownloader {
         dropdown.addActionListener(e -> updateVersionDropdown((String) dropdown.getSelectedItem(), versionDropdown));
         dropdown.addActionListener(e -> updateLoaderDropdown(dropdown));
 
-        JButton downloadButton = createOutlinedButton("Download and Install", new Color(158, 147, 211));
+        JButton downloadButton = createOutlinedButton("Download and Install", new Color(158, 147, 211), 20);
         downloadButton.setPreferredSize(new Dimension(200, 30));
 
         JProgressBar progressBar = new JProgressBar(0, 100);
@@ -117,9 +121,9 @@ public class ZtrolixLibsDownloader {
                         progressBar.setVisible(true);
                         new Thread(() -> {
                             try {
-                                downloadFile(downloadUrl, folderPath, "ZtrolixLibs-" + selectedLoader + "-" + selectedVersion, progressBar);
+                                downloadFile(downloadUrl, folderPath, "ZtrolixLibs-" + selectedLoader + "-" + selectedVersion + ".jar", progressBar);
                                 if (modUrl != null) {
-                                    downloadLibraryFile(modUrl, folderPath, "ZtrolixLibs-API-" + selectedLoader + "-" + selectedVersion, progressBar);
+                                    downloadLibraryFile(modUrl, folderPath, "ZtrolixLibs-API-" + selectedLoader + "-" + selectedVersion + ".jar", progressBar);
                                 }
                                 JOptionPane.showMessageDialog(frame, "Download completed!");
                                 progressBar.setVisible(false);
@@ -139,6 +143,11 @@ public class ZtrolixLibsDownloader {
 
         JPanel bottomPanel = new JPanel(new BorderLayout());
         bottomPanel.setOpaque(false);
+
+        JPanel paddingPanel = new JPanel();
+        paddingPanel.setPreferredSize(new Dimension(frame.getWidth(), 20)); // Adjust space as needed
+        bottomPanel.add(paddingPanel, BorderLayout.NORTH);
+
         bottomPanel.add(centerPanel, BorderLayout.NORTH);
         bottomPanel.add(downloadButton, BorderLayout.CENTER);
         bottomPanel.add(progressBar, BorderLayout.SOUTH);
@@ -149,6 +158,27 @@ public class ZtrolixLibsDownloader {
         frame.add(panel);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+    }
+
+    private static void addDraggableFeature(JFrame frame) {
+        final int[] dragStart = new int[2];
+
+        frame.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                dragStart[0] = e.getX();
+                dragStart[1] = e.getY();
+            }
+        });
+
+        frame.addMouseMotionListener(new MouseAdapter() {
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                int x = e.getXOnScreen() - dragStart[0];
+                int y = e.getYOnScreen() - dragStart[1];
+                frame.setLocation(x, y);
+            }
+        });
     }
 
     private static String getDownloadUrl(String loader, String version) {
@@ -309,17 +339,17 @@ public class ZtrolixLibsDownloader {
         return button;
     }
 
-    private static JButton createOutlinedButton(String text, Color outlineColor) {
+    private static JButton createOutlinedButton(String text, Color outlineColor, int cornerRadius) {
         JButton button = new JButton(text) {
             @Override
             protected void paintComponent(Graphics g) {
                 Graphics2D g2d = (Graphics2D) g.create();
                 g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-                g2d.setColor(new Color(50, 50, 50)); // Background color
-                g2d.fillRoundRect(0, 0, getWidth(), getHeight(), 20, 20); // Fill the button background
+                g2d.setColor(new Color(60, 63, 65)); // Background color
+                g2d.fillRoundRect(0, 0, getWidth(), getHeight(), cornerRadius, cornerRadius); // Fill the button background
                 g2d.setColor(outlineColor);
                 g2d.setStroke(new BasicStroke(2)); // Outline width
-                g2d.drawRoundRect(1, 1, getWidth() - 2, getHeight() - 2, 20, 20); // Draw rounded outline
+                g2d.drawRoundRect(1, 1, getWidth() - 2, getHeight() - 2, cornerRadius, cornerRadius); // Draw rounded outline
                 g2d.dispose();
                 super.paintComponent(g);
             }
