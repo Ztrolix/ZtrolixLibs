@@ -21,13 +21,16 @@ public class ZtrolixLibs implements ModInitializer {
 		LOGGER.info("-- -- -- -- -- -- -- -- -- -- -- --");
 
 		ItemGroupInit.load();
-		LOGGER.info("ZtrolixLibs - Loaded: ItemGroupInit");
+		LOGGER.info("Loaded: ItemGroupInit");
 		ItemInit.load();
-		LOGGER.info("ZtrolixLibs - Loaded: ItemInit");
-		LOGGER.info("ZtrolixLibs - Loaded: Commands");
-		LOGGER.info("ZtrolixLibs - Loaded: Config");
-		LOGGER.warn("ZtrolixLibs - Warning: 'Error loading parent data from mod: ztrolix-libs' is a allowed error please do not report this error!");
+		LOGGER.info("Loaded: ItemInit");
 
+		LOGGER.info("Loaded: Commands");
+		LOGGER.info("Loaded: Config");
+
+		LOGGER.info("-- -- -- -- -- -- -- -- -- -- -- --");
+		LOGGER.warn("Warning: 'Error loading parent data from mod: ztrolix-libs' is a allowed error please do not report this error!");
+		LOGGER.warn("Warning: 'Unsupported root entry \"author\" at line 10 column 10' is a allowed error please do not report this error!");
 
 		LOGGER.info("-- -- -- -- -- -- -- -- -- -- -- --");
 		LOGGER.info("ZtrolixLibs - Loaded!");

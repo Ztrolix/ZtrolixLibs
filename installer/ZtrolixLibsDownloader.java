@@ -19,6 +19,8 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.border.AbstractBorder;
+
 
 public class ZtrolixLibsDownloader {
     private static final String FABRIC_API_BASE_URL = "https://cdn.modrinth.com/data/P7dR8mSH/versions/";
@@ -49,6 +51,7 @@ public class ZtrolixLibsDownloader {
         JPanel panel = new JPanel(new BorderLayout());
         panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         panel.setBackground(new Color(60, 63, 65));
+        //panel.setBorder(new RoundedBorder(new Color(247, 79, 45), 20, 1));
 
         JPanel topPanel = new JPanel(new BorderLayout());
         topPanel.setOpaque(false);
@@ -62,9 +65,9 @@ public class ZtrolixLibsDownloader {
         JPanel controlPanel = new JPanel();
         controlPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
         controlPanel.setOpaque(false);
-        JButton minimizeButton = createOutlinedButton("_", new Color(237, 132, 26), 5);
+        JButton minimizeButton = createOutlinedButton("_", new Color(255, 191, 0), 5);
         minimizeButton.addActionListener(e -> frame.setState(Frame.ICONIFIED));
-        JButton closeButton = createOutlinedButton("X", new Color(216, 77, 63), 5);
+        JButton closeButton = createOutlinedButton("X", new Color(255, 87, 51), 5);
         closeButton.addActionListener(e -> System.exit(0));
         controlPanel.add(minimizeButton);
         controlPanel.add(closeButton);
@@ -324,7 +327,7 @@ public class ZtrolixLibsDownloader {
             protected void paintComponent(Graphics g) {
                 Graphics2D g2d = (Graphics2D) g.create();
                 g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-                g2d.setColor(getBackground());
+                g2d.setColor(new Color(70, 73, 75));
                 g2d.fillRoundRect(0, 0, getWidth(), getHeight(), cornerRadius, cornerRadius); // Fill the button background
                 g2d.setColor(outlineColor);
                 g2d.setStroke(new BasicStroke(2)); // Outline width
@@ -367,6 +370,37 @@ public class ZtrolixLibsDownloader {
             frame.setIconImage(icon);
         } catch (IOException e) {
             System.err.println("Failed to load icon: " + e.getMessage());
+        }
+    }
+
+    static class RoundedBorder extends AbstractBorder {
+        private final Color color;
+        private final int radius;
+        private final int thickness;
+
+        public RoundedBorder(Color color, int radius, int thickness) {
+            this.color = color;
+            this.radius = radius;
+            this.thickness = thickness;
+        }
+
+        @Override
+        public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+            Graphics2D g2 = (Graphics2D) g;
+            g2.setColor(color);
+            g2.setStroke(new BasicStroke(thickness));
+            g2.drawRoundRect(x, y, width - thickness, height - thickness, radius, radius);
+        }
+
+        @Override
+        public Insets getBorderInsets(Component c) {
+            return new Insets(thickness, thickness, thickness, thickness);
+        }
+
+        @Override
+        public Insets getBorderInsets(Component c, Insets insets) {
+            insets.left = insets.right = insets.top = insets.bottom = thickness;
+            return insets;
         }
     }
 }

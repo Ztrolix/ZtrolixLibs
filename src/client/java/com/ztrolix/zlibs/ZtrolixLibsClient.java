@@ -21,25 +21,9 @@ public class ZtrolixLibsClient implements ClientModInitializer {
 			dispatcher.register(ClientCommandManager.literal("zlibs").executes(context -> {
 				context.getSource().sendFeedback(Text.literal("-------------------------------"));
 				context.getSource().sendFeedback(Text.literal("          Welcome to ZLibs!"));
-				context.getSource().sendFeedback(Text.literal("   To get started run /zlibs help!"));
 				context.getSource().sendFeedback(Text.literal("-------------------------------"));
 				return 1;
 			}));
-		});
-
-		ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> {
-			dispatcher.register(ClientCommandManager.literal("zlibs")
-				.then(ClientCommandManager.argument("help", StringArgumentType.string())
-					.executes(context -> {
-						int value1 = StringArgumentType.getString(context,);
-							context.getSource().sendFeedback(Text.literal("-------------------------------"));
-							context.getSource().sendFeedback(Text.literal("          Welcome to ZLibs!"));
-							context.getSource().sendFeedback(Text.literal("   To get started run /zlibs help!"));
-							context.getSource().sendFeedback(Text.literal("-------------------------------"));
-						return 1;
-					})
-				)
-			);
 		});
 	}
 

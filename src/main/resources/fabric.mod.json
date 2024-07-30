@@ -45,7 +45,9 @@
 	},
 	"recommends": {
 		"modmenu-badges-lib": "*",
-		"modmenu": "*"
+		"modmenu": "*",
+		"cloth-config": "*",
+		"fabric-api": "*"
 	},
 	"custom": {
 		"modmenu": {

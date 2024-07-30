@@ -14,6 +14,8 @@ public class ExampleMixin {
 
 	@Inject(at = @At("HEAD"), method = "loadWorld")
 	private void init(CallbackInfo info) {
+		LOGGER.info("-----------------------------------");
 		LOGGER.info("ZtrolixLibs - Injected to World!");
+		LOGGER.info("-----------------------------------");
 	}
 }
