@@ -26,6 +26,9 @@ public class ZtrolixLibsDownloader {
     private static final String FABRIC_API_BASE_URL = "https://cdn.modrinth.com/data/P7dR8mSH/versions/";
     private static final String QUILT_API_BASE_URL = "https://cdn.modrinth.com/data/qvIfYCYJ/versions/";
 
+    private static final String CLOTH_CONFIG_BASE_URL = "https://cdn.modrinth.com/data/9s6osm5g/versions/";
+    private static final String CLOTH_CONFIG_URL = "gY9NB5Rj/cloth-config-15.0.128-fabric.jar";
+
     private static final String FABRIC_QUILT_21_URL = "https://github.com/ZtrolixGit/ZtrolixLibs/raw/main/api/1.21/fabric.jar";
     private static final String FABRIC_QUILT_URL = "https://github.com/ZtrolixGit/ZtrolixLibs/raw/main/api/1.20/fabric.jar";
     private static final String SPIGOT_URL = "https://github.com/ZtrolixGit/ZtrolixLibs/raw/main/api/1.20/spigot.jar";
@@ -126,7 +129,12 @@ public class ZtrolixLibsDownloader {
                             try {
                                 downloadFile(downloadUrl, folderPath, "ZtrolixLibs-" + selectedLoader + "-" + selectedVersion + ".jar", progressBar);
                                 if (modUrl != null) {
-                                    downloadLibraryFile(modUrl, folderPath, "ZtrolixLibs-API-" + selectedLoader + "-" + selectedVersion + ".jar", progressBar);
+                                    downloadLibraryFile(modUrl, folderPath, selectedLoader + "-API" + ".jar", progressBar);
+                                }
+                                if (selectedLoader.equals("Fabric") || selectedLoader.equals("Quilt")) {
+                                    if (selectedVersion.equals("1.21 EXPERIMENTAL")) {
+                                        downloadFile(CLOTH_CONFIG_BASE_URL + CLOTH_CONFIG_URL, folderPath, "cloth-config-15.0.128-fabric.jar", progressBar);
+                                    }
                                 }
                                 JOptionPane.showMessageDialog(frame, "Download completed!");
                                 progressBar.setVisible(false);
@@ -226,7 +234,7 @@ public class ZtrolixLibsDownloader {
                     case "1.20.4":
                         return FABRIC_API_BASE_URL + "tAwdMmKY/fabric-api-0.97.1%2B1.20.4.jar";
                     case "1.21 EXPERIMENTAL":
-                        return FABRIC_API_BASE_URL + "vMQdA5QJ/fabric-api-0.100.7%2B1.21.jar";
+                        return FABRIC_API_BASE_URL + "iS2jNAxk/fabric-api-0.100.8%2B1.21.jar";
                     default:
                         return null;
                 }
@@ -235,7 +243,7 @@ public class ZtrolixLibsDownloader {
                     case "1.20":
                         return QUILT_API_BASE_URL + "vTQynnGn/qfapi-7.2.2_qsl-6.1.2_fapi-0.88.1_mc-1.20.1.jar";
                     case "1.20.1":
-                        return QUILT_API_BASE_URL + "Gydw2vxY/qfapi-7.5.0_qsl-6.1.2_fapi-0.92.2_mc-1.20.1.jar";
+                        return QUILT_API_BASE_URL + "zEhzQDsY/qfapi-7.6.0_qsl-6.2.0_fapi-0.92.2_mc-1.20.1.jar";
                     case "1.20.2":
                         return QUILT_API_BASE_URL + "zHVlrS0A/quilted-fabric-api-8.0.0-alpha.6%2B0.91.6-1.20.2.jar";
                     case "1.20.4":
@@ -279,6 +287,9 @@ public class ZtrolixLibsDownloader {
                 versionDropdown.addItem("1.20.2");
                 versionDropdown.addItem("1.20.3");
                 versionDropdown.addItem("1.20.4");
+                versionDropdown.addItem("1.20.5");
+                versionDropdown.addItem("1.20.6");
+                versionDropdown.addItem("1.21");
                 break;
             case "NeoForge":
                 versionDropdown.addItem("1.20.4");
