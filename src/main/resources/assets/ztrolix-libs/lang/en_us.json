@@ -1,0 +1,8 @@
+{
+  "text.autoconfig.ztrolix-libs.option.modEnabled": "Enable Mod",
+  "text.autoconfig.ztrolix-libs.option.injectToWorld": "Inject To World",
+  "text.autoconfig.ztrolix-libs.option.contributeToPlayerCount": "Contribute To Player Count",
+  "text.autoconfig.ztrolix-libs.title": "Ztrolix Libs",
+  "itemGroup.ztrolix-libs.example_group": "Ztrolix Libs",
+  "item.ztrolix-libs.example_item": "ZLibs Item"
+}

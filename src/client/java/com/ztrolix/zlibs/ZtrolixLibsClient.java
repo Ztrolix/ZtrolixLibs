@@ -1,7 +1,5 @@
 package com.ztrolix.zlibs;
 
-import com.mojang.brigadier.arguments.IntegerArgumentType;
-import com.mojang.brigadier.arguments.StringArgumentType;
 import com.ztrolix.zlibs.config.ZLibsConfig;
 import me.shedaniel.autoconfig.AutoConfig;
 import net.fabricmc.api.ClientModInitializer;
@@ -10,12 +8,27 @@ import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallba
 import net.minecraft.client.gui.screen.Screen;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.minecraft.text.Text;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ZtrolixLibsClient implements ClientModInitializer {
+	public static final Logger LOGGER = LoggerFactory.getLogger("ztrolix-libs");
+	public static final ZLibsConfig CONFIG = new ZLibsConfig();
+
 	@Override
 	public void onInitializeClient() {
 		AutoConfig.register(ZLibsConfig.class, GsonConfigSerializer::new);
 		ZLibsConfig config = AutoConfig.getConfigHolder(ZLibsConfig.class).getConfig();
+
+		if (config.modEnabled) {
+			LOGGER.info("-----------------------------------");
+			LOGGER.info("Ztrolix Libs - Mod Enabled!");
+			LOGGER.info("-----------------------------------");
+		} else {
+			LOGGER.info("-----------------------------------");
+			LOGGER.info("Ztrolix Libs - Mod Disabled!");
+			LOGGER.info("-----------------------------------");
+		}
 
 		ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> {
 			dispatcher.register(ClientCommandManager.literal("zlibs").executes(context -> {

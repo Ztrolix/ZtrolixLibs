@@ -47,7 +47,8 @@
 		"modmenu-badges-lib": "*",
 		"modmenu": "*",
 		"cloth-config": "*",
-		"fabric-api": "*"
+		"fabric-api": "*",
+		"fabricloader": ">=0.15.11"
 	},
 	"custom": {
 		"modmenu": {
