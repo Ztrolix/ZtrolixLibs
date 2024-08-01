@@ -1,8 +1,8 @@
 {
 	"credit": "Ztrolix",
 	"textures": {
-		"0": "ztrolix-libs:item/example_item",
-		"particle": "ztrolix-libs:item/example_item"
+		"0": "ztrolix-libs:item/zlibs_item",
+		"particle": "ztrolix-libs:item/zlibs_item"
 	},
 	"elements": [
 		{

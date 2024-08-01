@@ -10,6 +10,7 @@ import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.minecraft.text.Text;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import com.ztrolix.zlibs.sodium.CustomOptions;
 
 public class ZtrolixLibsClient implements ClientModInitializer {
 	public static final Logger LOGGER = LoggerFactory.getLogger("ztrolix-libs");
@@ -20,15 +21,29 @@ public class ZtrolixLibsClient implements ClientModInitializer {
 		AutoConfig.register(ZLibsConfig.class, GsonConfigSerializer::new);
 		ZLibsConfig config = AutoConfig.getConfigHolder(ZLibsConfig.class).getConfig();
 
+		CustomOptions.integrate();
+
+		LOGGER.info("-----------------------------------");
+		LOGGER.info("Ztrolix Libs - Applying Config...");
+		LOGGER.info("-- -- -- -- -- -- -- -- -- -- -- --");
 		if (config.modEnabled) {
-			LOGGER.info("-----------------------------------");
-			LOGGER.info("Ztrolix Libs - Mod Enabled!");
-			LOGGER.info("-----------------------------------");
+			LOGGER.info("Mod Enabled!");
 		} else {
-			LOGGER.info("-----------------------------------");
-			LOGGER.info("Ztrolix Libs - Mod Disabled!");
-			LOGGER.info("-----------------------------------");
+			LOGGER.info("Mod Disabled!");
 		}
+		if (config.injectToWorld) {
+			LOGGER.info("Inject Enabled!");
+		} else {
+			LOGGER.info("Inject Disabled!");
+		}
+		if (config.contributeToPlayerCount) {
+			LOGGER.info("Player Count Enabled!");
+		} else {
+			LOGGER.info("Player Count Disabled!");
+		}
+		LOGGER.info("-- -- -- -- -- -- -- -- -- -- -- --");
+		LOGGER.info("Ztrolix Libs - Applied Config!");
+		LOGGER.info("-----------------------------------");
 
 		ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> {
 			dispatcher.register(ClientCommandManager.literal("zlibs").executes(context -> {

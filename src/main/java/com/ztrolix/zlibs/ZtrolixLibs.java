@@ -35,6 +35,7 @@ public class ZtrolixLibs implements ModInitializer {
 		ModNetworkHandler.registerServer();
 		LOGGER.info("Loaded: ModNetworkHandler");
 
+		LOGGER.info("Loaded: SodiumOptions");
 		LOGGER.info("Loaded: Commands");
 		LOGGER.info("Loaded: Text");
 		LOGGER.info("Loaded: Textures");
@@ -42,7 +43,6 @@ public class ZtrolixLibs implements ModInitializer {
 
 		LOGGER.info("-- -- -- -- -- -- -- -- -- -- -- --");
 		LOGGER.warn("Warning: 'Error loading parent data from mod: ztrolix-libs' is a allowed error please do not report this error!");
-		LOGGER.warn("Warning: 'Unsupported root entry \"author\" at line 10 column 10' is a allowed warning please do not report this warning!");
 
 		LOGGER.info("-- -- -- -- -- -- -- -- -- -- -- --");
 		LOGGER.info("ZtrolixLibs - Loaded!");
