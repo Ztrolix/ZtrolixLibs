@@ -12,6 +12,7 @@ base {
 }
 
 repositories {
+	jcenter()
 	maven { url "https://maven.shedaniel.me/" }
 	maven { url "https://maven.terraformersmc.com/releases/" }
 	maven { url "https://server.bbkr.space/artifactory/libs-release/" }
@@ -20,6 +21,15 @@ repositories {
 		content {
 			includeGroup "maven.modrinth"
 		}
+	}
+	maven {
+		url = "https://jitpack.io/"
+		content {
+			includeGroup("com.github.MinnDevelopment")
+		}
+	}
+	flatDir {
+		dirs 'libs'
 	}
 }
 
@@ -49,14 +59,11 @@ dependencies {
 	modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_version}") {
 		exclude(group: "net.fabricmc.fabric-api")
 	}
-
 	implementation "org.lwjgl:lwjgl:3.3.4"
 	implementation "org.lwjgl:lwjgl-glfw:3.3.4"
 	implementation "org.lwjgl:lwjgl-opengl:3.3.4"
-	compileOnly "org.lwjgl:lwjgl:3.3.4"
-	compileOnly "org.lwjgl:lwjgl-glfw:3.3.4"
-	compileOnly "org.lwjgl:lwjgl-opengl:3.3.4"
-
+	include(implementation ('club.minnced:discord-rpc-release:v3.4.0'))
+	include(implementation("com.github.MinnDevelopment:java-discord-rpc:v2.0.1"))
 }
 
 processResources {

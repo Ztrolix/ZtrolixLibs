@@ -10,12 +10,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(MinecraftServer.class)
 public class ExampleMixin {
-	Logger LOGGER = LoggerFactory.getLogger("ztrolix-libs");
+    Logger LOGGER = LoggerFactory.getLogger("ztrolix-libs");
 
-	@Inject(at = @At("HEAD"), method = "loadWorld")
-	private void init(CallbackInfo info) {
-		LOGGER.info("-----------------------------------");
-		LOGGER.info("ZtrolixLibs - Injected to World!");
-		LOGGER.info("-----------------------------------");
-	}
+    @Inject(at = @At("HEAD"), method = "loadWorld")
+    private void init(CallbackInfo info) {
+        LOGGER.info("-----------------------------------");
+        LOGGER.info("ZtrolixLibs - Injected to World!");
+        LOGGER.info("-----------------------------------");
+    }
 }

@@ -1,11 +1,16 @@
 package com.ztrolix.zlibs.config;
 
-import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
+import me.shedaniel.autoconfig.annotation.ConfigEntry;
+import me.shedaniel.autoconfig.serializer.PartitioningSerializer;
 
 @Config(name = "ztrolix-libs")
-public class ZLibsConfig implements ConfigData {
-    public boolean modEnabled = true;
-    public boolean injectToWorld = true;
-    public boolean contributeToPlayerCount = true;
+public class ZLibsConfig extends PartitioningSerializer.GlobalData {
+    @ConfigEntry.Category("main")
+    @ConfigEntry.Gui.TransitiveObject
+    public main main = new main();
+
+    @ConfigEntry.Category("compatibility")
+    @ConfigEntry.Gui.TransitiveObject
+    public compatibility compatibility = new compatibility();
 }

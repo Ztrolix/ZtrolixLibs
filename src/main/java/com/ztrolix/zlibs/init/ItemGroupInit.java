@@ -27,5 +27,6 @@ public class ItemGroupInit {
         return Registry.register(Registries.ITEM_GROUP, ZtrolixLibs.id(name), itemGroup);
     }
 
-    public static void load() {}
+    public static void load() {
+    }
 }

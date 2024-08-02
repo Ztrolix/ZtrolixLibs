@@ -1,78 +1,82 @@
 {
-	"schemaVersion": 1,
-	"id": "ztrolix-libs",
-	"version": "${version}",
-	"name": "Ztrolix Libs",
-	"description": "This is a mod/modpack library and counter for Ztrolix's mods and modpacks.",
-	"authors": [
-		{
-			"name": "Ztrolix",
-			"contact": {
-				"homepage": "https://ztrolix.vercel.app"
-			}
-		}
-	],
-	"contact": {
-		"homepage": "https://ztrolix.vercel.app/mc/zlibs",
-		"sources": "https://github.com/ZtrolixGit/ZtrolixLibs",
-		"issues": "https://github.com/ZtrolixGit/ZtrolixLibs/issues"
-	},
-	"license": "Apache-2.0",
-	"icon": "assets/ztrolix-libs/icon.png",
-	"environment": "*",
-	"entrypoints": {
-		"main": [
-			"com.ztrolix.zlibs.ZtrolixLibs"
-		],
-		"client": [
-			"com.ztrolix.zlibs.ZtrolixLibsClient"
-		],
-		"fabric-datagen": [
-			"com.ztrolix.zlibs.ZtrolixLibsDataGenerator"
-		],
-		"modmenu": [
-			"com.ztrolix.zlibs.ModMenuIntegration"
-		]
-	},
-	"mixins": [
-		"ztrolix-libs.mixins.json",
-		{
-			"config": "ztrolix-libs.client.mixins.json",
-			"environment": "client"
-		}
-	],
-	"depends": {
-		"fabricloader": ">=0.15.11",
-		"minecraft": "~1.21",
-		"java": ">=21",
-		"fabric-api": "*",
-		"cloth-config": ">=15.0.128"
-	},
-	"recommends": {
-		"modmenu-badges-lib": "*",
-		"modmenu": "*"
-	},
-	"custom": {
-		"modmenu": {
-			"badges": [ "library" ],
-			"parent": {
-				"id": "ztrolix-libs",
-				"name": "Ztrolix Libs",
-				"description": "This is a mod/modpack library and counter for Ztrolix's mods and modpacks.",
-				"icon": "assets/ztrolix-libs/icon.png",
-				"badges": [ "library" ]
-			},
-			"links": {
-				"modmenu.modrinth": "https://modrinth.com/plugin/ztrolixlibs"
-			},
-			"update_checker": true
-		},
-		"mcb": [
-			{
-				"name": "Alpha",
-				"fillColor": -5098675,
-				"outlineColor": -46738
-			}
-		]
-	}
+  "schemaVersion": 1,
+  "id": "ztrolix-libs",
+  "version": "${version}",
+  "name": "Ztrolix Libs",
+  "description": "This is a mod/modpack library and counter for Ztrolix's mods and modpacks.",
+  "authors": [
+    {
+      "name": "Ztrolix",
+      "contact": {
+        "homepage": "https://ztrolix.vercel.app"
+      }
+    }
+  ],
+  "contact": {
+    "homepage": "https://ztrolix.vercel.app/mc/zlibs",
+    "sources": "https://github.com/ZtrolixGit/ZtrolixLibs",
+    "issues": "https://github.com/ZtrolixGit/ZtrolixLibs/issues"
+  },
+  "license": "Apache-2.0",
+  "icon": "assets/ztrolix-libs/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.ztrolix.zlibs.ZtrolixLibs"
+    ],
+    "client": [
+      "com.ztrolix.zlibs.ZtrolixLibsClient"
+    ],
+    "fabric-datagen": [
+      "com.ztrolix.zlibs.ZtrolixLibsDataGenerator"
+    ],
+    "modmenu": [
+      "com.ztrolix.zlibs.ModMenuIntegration"
+    ]
+  },
+  "mixins": [
+    "ztrolix-libs.mixins.json",
+    {
+      "config": "ztrolix-libs.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=0.15.11",
+    "minecraft": "~1.21",
+    "java": ">=21",
+    "fabric-api": "*",
+    "cloth-config": ">=15.0.128"
+  },
+  "recommends": {
+    "modmenu-badges-lib": "*",
+    "modmenu": "*"
+  },
+  "custom": {
+    "modmenu": {
+      "badges": [
+        "library"
+      ],
+      "parent": {
+        "id": "ztrolix-libs",
+        "name": "Ztrolix Libs",
+        "description": "This is a mod/modpack library and counter for Ztrolix's mods and modpacks.",
+        "icon": "assets/ztrolix-libs/icon.png",
+        "badges": [
+          "library"
+        ]
+      },
+      "links": {
+        "modmenu.modrinth": "https://modrinth.com/plugin/ztrolixlibs"
+      },
+      "update_checker": true
+    },
+    "mcb": [
+      {
+        "name": "Alpha",
+        "fillColor": -5098675,
+        "outlineColor": -46738
+      }
+    ]
+  }
 }

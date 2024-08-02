@@ -1,7 +1,7 @@
 package com.ztrolix.zlibs.init;
 
 import com.ztrolix.zlibs.ZtrolixLibs;
-import net.minecraft.item.*;
+import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 
