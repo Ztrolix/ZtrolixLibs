@@ -7,10 +7,16 @@ import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
 
 public class ZtrolixLibsClient implements ClientModInitializer {
     public static final Logger LOGGER = LoggerFactory.getLogger("ztrolix-libs");
@@ -23,6 +29,20 @@ public class ZtrolixLibsClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         AutoConfig.register(ZLibsConfig.class, GsonConfigSerializer::new);
+        ZLibsConfig config = AutoConfig.getConfigHolder(ZLibsConfig.class).getConfig();
+        applyConfig();
+
+        ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> {
+            dispatcher.register(ClientCommandManager.literal("zlibs").executes(context -> {
+                context.getSource().sendFeedback(Text.literal("-------------------------------"));
+                context.getSource().sendFeedback(Text.literal("          Welcome to ZLibs!"));
+                context.getSource().sendFeedback(Text.literal("-------------------------------"));
+                return 1;
+            }));
+        });
+    }
+
+    public void applyConfig() {
         ZLibsConfig config = AutoConfig.getConfigHolder(ZLibsConfig.class).getConfig();
 
         LOGGER.info("-----------------------------------");
@@ -39,12 +59,20 @@ public class ZtrolixLibsClient implements ClientModInitializer {
             LOGGER.info("Inject: Disabled!");
         }
         if (config.main.contributeToPlayerCount) {
+            clientOnline();
+            ClientLifecycleEvents.CLIENT_STOPPING.register(client -> {
+                clientOffline();
+            });
             LOGGER.info("Player Count: Enabled!");
         } else {
             LOGGER.info("Player Count: Disabled!");
         }
+        LOGGER.info("-- -- -- -- -- -- -- -- -- -- -- --");
         if (config.compatibility.discordRPC) {
             DiscordRPCHandler.init();
+            ClientLifecycleEvents.CLIENT_STOPPING.register(client -> {
+                DiscordRPCHandler.shutdown();
+            });
             LOGGER.info("Discord RPC: Enabled!");
         } else {
             LOGGER.info("Discord RPC: Disabled!");
@@ -58,14 +86,46 @@ public class ZtrolixLibsClient implements ClientModInitializer {
         LOGGER.info("-- -- -- -- -- -- -- -- -- -- -- --");
         LOGGER.info("Ztrolix Libs - Applied Config!");
         LOGGER.info("-----------------------------------");
+    }
 
-        ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> {
-            dispatcher.register(ClientCommandManager.literal("zlibs").executes(context -> {
-                context.getSource().sendFeedback(Text.literal("-------------------------------"));
-                context.getSource().sendFeedback(Text.literal("          Welcome to ZLibs!"));
-                context.getSource().sendFeedback(Text.literal("-------------------------------"));
-                return 1;
-            }));
-        });
+    private void clientOnline() {
+        try {
+            URL url = new URL("https://ztrolix-server.vercel.app/clientOnline");
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/json; utf-8");
+            connection.setRequestProperty("Accept", "application/json");
+            connection.setDoOutput(true);
+
+            String jsonInputString = "{\"mod\":\"ztrolix-libs\", \"status\":\"online\"}";
+
+            try (OutputStream os = connection.getOutputStream()) {
+                byte[] input = jsonInputString.getBytes(StandardCharsets.UTF_8);
+                os.write(input, 0, input.length);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void clientOffline() {
+        try {
+            URL url = new URL("https://ztrolix-server.vercel.app/clientOffline");
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/json; utf-8");
+            connection.setRequestProperty("Accept", "application/json");
+            connection.setDoOutput(true);
+
+            String jsonInputString = "{\"mod\":\"ztrolix-libs\", \"status\":\"offline\"}";
+
+            try (OutputStream os = connection.getOutputStream()) {
+                byte[] input = jsonInputString.getBytes(StandardCharsets.UTF_8);
+                os.write(input, 0, input.length);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

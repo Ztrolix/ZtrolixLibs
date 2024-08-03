@@ -7,9 +7,10 @@ import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.Comment;
 
 @Config(name = "compatibility")
 public class compatibility implements ConfigData {
-    @ConfigEntry.Gui.PrefixText
-    @Comment("Enable Discord RPC")
+    @ConfigEntry.Gui.RequiresRestart
+    @Comment("Enable Discord RPC (Restart Required)")
     public boolean discordRPC = true;
-    @Comment("Add ZtrolixLibs Settings to Sodium Video Settings")
+    @ConfigEntry.Gui.RequiresRestart
+    @Comment("Add ZtrolixLibs Settings to Sodium Video Settings (Restart Required)")
     public boolean sodiumIntegration = false;
 }

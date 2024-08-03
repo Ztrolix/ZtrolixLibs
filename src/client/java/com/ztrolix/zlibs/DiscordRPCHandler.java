@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 public class DiscordRPCHandler {
     public static final Logger LOGGER = LoggerFactory.getLogger("ztrolix-libs");
+    private static Thread callbackThread;
 
     public static void init() {
         DiscordRPC lib = DiscordRPC.INSTANCE;
@@ -20,7 +21,8 @@ public class DiscordRPCHandler {
         presence.startTimestamp = System.currentTimeMillis() / 1000; // epoch second
         presence.details = "Playing Minecraft";
         lib.Discord_UpdatePresence(presence);
-        new Thread(() -> {
+
+        callbackThread = new Thread(() -> {
             while (!Thread.currentThread().isInterrupted()) {
                 lib.Discord_RunCallbacks();
                 try {
@@ -28,6 +30,15 @@ public class DiscordRPCHandler {
                 } catch (InterruptedException ignored) {
                 }
             }
-        }, "RPC-Callback-Handler").start();
+        }, "RPC-Callback-Handler");
+        callbackThread.start();
+    }
+
+    public static void shutdown() {
+        if (callbackThread != null && !callbackThread.isInterrupted()) {
+            callbackThread.interrupt();
+        }
+        DiscordRPC.INSTANCE.Discord_Shutdown();
+        LOGGER.info("ZtrolixLibs - Discord RPC Shutdown Successfully!");
     }
 }

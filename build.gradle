@@ -64,6 +64,7 @@ dependencies {
 	implementation "org.lwjgl:lwjgl-opengl:3.3.4"
 	include(implementation ('club.minnced:discord-rpc-release:v3.4.0'))
 	include(implementation("com.github.MinnDevelopment:java-discord-rpc:v2.0.1"))
+	implementation 'com.squareup.okhttp3:okhttp:4.9.3'
 }
 
 processResources {
