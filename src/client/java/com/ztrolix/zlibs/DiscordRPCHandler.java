@@ -27,18 +27,25 @@ public class DiscordRPCHandler {
                 lib.Discord_RunCallbacks();
                 try {
                     Thread.sleep(2000);
-                } catch (InterruptedException ignored) {
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
                 }
             }
+            LOGGER.info("ZtrolixLibs - Callback thread interrupted.");
         }, "RPC-Callback-Handler");
         callbackThread.start();
     }
 
     public static void shutdown() {
-        if (callbackThread != null && !callbackThread.isInterrupted()) {
+        if (callbackThread != null && callbackThread.isAlive()) {
             callbackThread.interrupt();
+            try {
+                callbackThread.join();
+            } catch (InterruptedException e) {
+                LOGGER.error("ZtrolixLibs - Failed to join callback thread.", e);
+                Thread.currentThread().interrupt();
+            }
         }
         DiscordRPC.INSTANCE.Discord_Shutdown();
-        LOGGER.info("ZtrolixLibs - Discord RPC Shutdown Successfully!");
     }
 }

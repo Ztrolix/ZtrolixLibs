@@ -3,6 +3,7 @@ package com.ztrolix.zlibs;
 import com.ztrolix.zlibs.config.ZLibsConfig;
 import com.ztrolix.zlibs.sodium.CustomOptions;
 import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.ConfigHolder;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
@@ -10,6 +11,7 @@ import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallba
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,6 +33,12 @@ public class ZtrolixLibsClient implements ClientModInitializer {
         AutoConfig.register(ZLibsConfig.class, GsonConfigSerializer::new);
         ZLibsConfig config = AutoConfig.getConfigHolder(ZLibsConfig.class).getConfig();
         applyConfig();
+
+        ConfigHolder<ZLibsConfig> holder = AutoConfig.getConfigHolder(ZLibsConfig.class);
+        holder.registerSaveListener((configHolder, config1) -> {
+            applyConfig();
+            return ActionResult.SUCCESS;
+        });
 
         ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> {
             dispatcher.register(ClientCommandManager.literal("zlibs").executes(context -> {
@@ -65,6 +73,7 @@ public class ZtrolixLibsClient implements ClientModInitializer {
             });
             LOGGER.info("Player Count: Enabled!");
         } else {
+            clientOffline();
             LOGGER.info("Player Count: Disabled!");
         }
         LOGGER.info("-- -- -- -- -- -- -- -- -- -- -- --");
@@ -75,6 +84,7 @@ public class ZtrolixLibsClient implements ClientModInitializer {
             });
             LOGGER.info("Discord RPC: Enabled!");
         } else {
+            DiscordRPCHandler.shutdown();
             LOGGER.info("Discord RPC: Disabled!");
         }
         if (config.compatibility.sodiumIntegration) {
