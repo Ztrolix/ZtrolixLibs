@@ -11,6 +11,10 @@ public class ZLibsConfig extends PartitioningSerializer.GlobalData {
     @ConfigEntry.Gui.TransitiveObject
     public main main = new main();
 
+    @ConfigEntry.Category("features")
+    @ConfigEntry.Gui.TransitiveObject
+    public features features = new features();
+
     @ConfigEntry.Category("compatibility")
     @ConfigEntry.Gui.TransitiveObject
     public compatibility compatibility = new compatibility();

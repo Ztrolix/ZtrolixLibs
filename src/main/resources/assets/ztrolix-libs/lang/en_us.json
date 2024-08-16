@@ -4,8 +4,13 @@
   "text.autoconfig.ztrolix-libs.option.main.contributeToPlayerCount": "Contribute To Player Count",
   "text.autoconfig.ztrolix-libs.option.compatibility.discordRPC": "Discord RPC",
   "text.autoconfig.ztrolix-libs.option.compatibility.sodiumIntegration": "Integrate with Sodium",
+  "text.autoconfig.ztrolix-libs.option.features.customBlocks": "Custom Blocks/Items",
+  "text.autoconfig.ztrolix-libs.option.features.worldGen": "World Generation",
+  "text.autoconfig.ztrolix-libs.option.features.uiFramework": "UI Framework",
+  "text.autoconfig.ztrolix-libs.option.features.modmenuCustomBadges": "Modmenu Custom Badges",
   "text.autoconfig.ztrolix-libs.category.main": "Main",
   "text.autoconfig.ztrolix-libs.category.compatibility": "Compatibility",
+  "text.autoconfig.ztrolix-libs.category.features": "Features",
   "text.autoconfig.ztrolix-libs.title": "Ztrolix Libs",
   "itemGroup.ztrolix-libs.zlibs_group": "Ztrolix Libs",
   "item.ztrolix-libs.zlibs_item": "ZLibs Item"

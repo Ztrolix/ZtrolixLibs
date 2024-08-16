@@ -32,7 +32,69 @@ public class ZtrolixLibsClient implements ClientModInitializer {
     public void onInitializeClient() {
         AutoConfig.register(ZLibsConfig.class, GsonConfigSerializer::new);
         ZLibsConfig config = AutoConfig.getConfigHolder(ZLibsConfig.class).getConfig();
-        applyConfig();
+
+        LOGGER.info("-----------------------------------");
+        LOGGER.info("Ztrolix Libs - Applying Config...");
+        LOGGER.info("-- -- -- -- -- -- -- -- -- -- -- --");
+        if (config.main.modEnabled) {
+            LOGGER.info("Mod: Enabled!");
+        } else {
+            LOGGER.info("Mod: Disabled!");
+        }
+        if (config.main.injectToWorld) {
+            LOGGER.info("Inject: Enabled!");
+        } else {
+            LOGGER.info("Inject: Disabled!");
+        }
+        if (config.main.contributeToPlayerCount) {
+            clientOnline();
+            ClientLifecycleEvents.CLIENT_STOPPING.register(client -> {
+                clientOffline();
+            });
+            LOGGER.info("Player Count: Enabled!");
+        } else {
+            LOGGER.info("Player Count: Disabled!");
+        }
+        LOGGER.info("-- -- -- -- -- -- -- -- -- -- -- --");
+        if (config.compatibility.discordRPC) {
+            DiscordRPCHandler.init();
+            ClientLifecycleEvents.CLIENT_STOPPING.register(client -> {
+                DiscordRPCHandler.shutdown();
+            });
+            LOGGER.info("Discord RPC: Enabled!");
+        } else {
+            LOGGER.info("Discord RPC: Disabled!");
+        }
+        if (config.compatibility.sodiumIntegration) {
+            CustomOptions.integrate();
+            LOGGER.info("Sodium Integration: Enabled!");
+        } else {
+            LOGGER.info("Sodium Integration: Disabled!");
+        }
+        LOGGER.info("-- -- -- -- -- -- -- -- -- -- -- --");
+        if (config.features.customBlocks) {
+            LOGGER.info("Custom Blocks: Enabled!");
+        } else {
+            LOGGER.info("Custom Blocks: Disabled!");
+        }
+        if (config.features.uiFramework) {
+            LOGGER.info("UI Framework: Enabled!");
+        } else {
+            LOGGER.info("UI Framework: Disabled!");
+        }
+        if (config.features.worldGen) {
+            LOGGER.info("World Gen: Enabled!");
+        } else {
+            LOGGER.info("World Gen: Disabled!");
+        }
+        if (config.features.modmenuCustomBadges) {
+            LOGGER.info("Custom Badges: Enabled!");
+        } else {
+            LOGGER.info("Custom Badges: Disabled!");
+        }
+        LOGGER.info("-- -- -- -- -- -- -- -- -- -- -- --");
+        LOGGER.info("Ztrolix Libs - Applied Config!");
+        LOGGER.info("-----------------------------------");
 
         ConfigHolder<ZLibsConfig> holder = AutoConfig.getConfigHolder(ZLibsConfig.class);
         holder.registerSaveListener((configHolder, config1) -> {
@@ -92,6 +154,27 @@ public class ZtrolixLibsClient implements ClientModInitializer {
             LOGGER.info("Sodium Integration: Enabled!");
         } else {
             LOGGER.info("Sodium Integration: Disabled!");
+        }
+        LOGGER.info("-- -- -- -- -- -- -- -- -- -- -- --");
+        if (config.features.customBlocks) {
+            LOGGER.info("Custom Blocks: Enabled!");
+        } else {
+            LOGGER.info("Custom Blocks: Disabled!");
+        }
+        if (config.features.uiFramework) {
+            LOGGER.info("UI Framework: Enabled!");
+        } else {
+            LOGGER.info("UI Framework: Disabled!");
+        }
+        if (config.features.worldGen) {
+            LOGGER.info("World Gen: Enabled!");
+        } else {
+            LOGGER.info("World Gen: Disabled!");
+        }
+        if (config.features.modmenuCustomBadges) {
+            LOGGER.info("Custom Badges: Enabled!");
+        } else {
+            LOGGER.info("Custom Badges: Disabled!");
         }
         LOGGER.info("-- -- -- -- -- -- -- -- -- -- -- --");
         LOGGER.info("Ztrolix Libs - Applied Config!");

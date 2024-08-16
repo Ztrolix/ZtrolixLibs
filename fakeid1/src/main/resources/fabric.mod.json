@@ -1,0 +1,20 @@
+{
+	"schemaVersion": 1,
+	"id": "modmenu-badges-lib",
+	"version": "${version}",
+	"name": "Fake ID 1",
+	"description": "We have included Modmenu Badges Lib in ZtrolixLibs so this is to stop the Recommended to use modmenu-badges-lib.",
+	"authors": [
+		"Ztrolix"
+	],
+	"license": "CC0-1.0",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.ztrolix.fakeid1.FakeID1"
+		],
+		"client": [
+			"com.ztrolix.fakeid1.FakeID1Client"
+		]
+	}
+}
