@@ -16,5 +16,10 @@
 		"client": [
 			"com.ztrolix.fakeid1.FakeID1Client"
 		]
+	},
+	"custom": {
+		"modmenu": {
+			"badges": ["library"]
+		}
 	}
 }

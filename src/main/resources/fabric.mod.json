@@ -53,17 +53,11 @@
   },
   "custom": {
     "modmenu": {
-      "badges": [
-        "library"
-      ],
       "parent": {
         "id": "ztrolix-libs",
         "name": "Ztrolix Libs",
         "description": "This is a mod/modpack library and counter for Ztrolix's mods and modpacks.",
-        "icon": "assets/ztrolix-libs/icon.png",
-        "badges": [
-          "library"
-        ]
+        "icon": "assets/ztrolix-libs/icon.png"
       },
       "links": {
         "modmenu.modrinth": "https://modrinth.com/plugin/ztrolixlibs"
@@ -71,6 +65,11 @@
       "update_checker": true
     },
     "modmenu-badges": [
+      {
+        "name": "Client or Server",
+        "fillColor": -16172759,
+        "outlineColor": -15698860
+      },
       {
         "name": "Beta",
         "fillColor": -5939429,

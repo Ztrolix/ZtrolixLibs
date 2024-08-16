@@ -4,7 +4,9 @@
   "compatibilityLevel": "JAVA_21",
   "client": [
     "ExampleClientMixin",
-    "ModBadgeRendererMixin"
+    "ModBadgeRendererMixin",
+    "MiddleClickFix",
+    "MixinKeyboard"
   ],
   "injectors": {
     "defaultRequire": 1
