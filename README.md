@@ -1,51 +1,77 @@
+<img src="https://raw.githubusercontent.com/ZtrolixGit/ZtrolixLibs/main/assets/strip.png">
+
 <h1 align="center">Ztrolix Libs</h1>
-<h3 align="center">This is a mod/modpack library and counter for Ztrolix's mods and modpacks.</h3>
 
+<img src="https://raw.githubusercontent.com/ZtrolixGit/ZtrolixLibs/main/assets/strip.png">
 
-## Dependencies
+<img src="https://raw.githubusercontent.com/ZtrolixGit/ZtrolixLibs/main/assets/installer.png">
+
+The universal installer is an installer that installs the library straight into the folder you want. It is not recommended if you use the Modrinth app!
+
+[**`Download`**](https://github.com/ZtrolixGit/ZtrolixLibs/releases/latest/download/zlibsinstaller.jar)
+
+<img src="https://raw.githubusercontent.com/ZtrolixGit/ZtrolixLibs/main/assets/strip.png">
+
+<img src="https://raw.githubusercontent.com/ZtrolixGit/ZtrolixLibs/main/assets/installation.png">
+
+### How to Install
+
+▶️ Download the [latest version ](https://modrinth.com/plugin/ztrolixlibs/versions) that you want.
+
+▶️ Download [Fabric API](https://modrinth.com/mod/fabric-api/versions?g=1.21&g=1.21.1) and [Cloth Config](https://modrinth.com/mod/cloth-config/versions?l=fabric&g=1.21&g=1.21.1)
+
+▶️ Move the `.jar` files into the `mods` folder of your Minecraft installation
+
+▶️ Run your Minecraft and you are ready!
+
+### Dependencies
 
 <details>
-<summary>2.0.0 Quilt</summary>
+<summary>1.21 - 1.21.1 Fabric (2.X.X)</summary>
+
+- [FabricAPI](https://modrinth.com/mod/fabric-api/versions?g=1.21&g=1.21.1)
+- [Cloth Config](https://modrinth.com/mod/cloth-config/versions?l=fabric&g=1.21&g=1.21.1)
+
+</details>
+
+<details>
+<summary>1.21 - 1.21.1 Quilt (2.X.X)</summary>
 
 - [QSL](https://modrinth.com/mod/qsl/versions?g=1.21)
-- [Cloth Config](https://modrinth.com/mod/cloth-config/versions?l=fabric&g=1.21)
+- [Cloth Config](https://modrinth.com/mod/cloth-config/versions?l=fabric&g=1.21&g=1.21.1)
 
 </details>
 
 <details>
-<summary>2.0.0 Fabric</summary>
+<summary>1.20 - 1.20.4 Fabric (1.X.X)</summary>
 
-- [FabricAPI](https://modrinth.com/mod/fabric-api/versions?l=fabric&g=1.21)
-- [Cloth Config](https://modrinth.com/mod/cloth-config/versions?l=fabric&g=1.21)
-
-</details>
-
-<details>
-<summary>1.2.0 Quilt</summary>
-
-- [Quilted Fabric API](https://modrinth.com/mod/qsl/versions?g=1.20.4&g=1.20.1&g=1.20.2&g=1.20)
+- [FabricAPI](https://modrinth.com/mod/fabric-api/versions?g=1.20&g=1.20.1&g=1.20.2&g=1.20.3&g=1.20.4)
 
 </details>
 
 <details>
-<summary>1.2.0 Fabric</summary>
+<summary>1.20 - 1.20.4 Quilt (1.X.X)</summary>
 
-- [FabricAPI](https://modrinth.com/mod/fabric-api/versions?g=1.20&g=1.20.1&g=1.20.2&g=1.20.3&g=1.20.4&g=1.20.5&g=1.20.6)
+- [QSL](https://modrinth.com/mod/qsl/versions?g=1.20&g=1.20.1&g=1.20.2&g=1.20.4)
 
 </details>
 
-## FAQ
+<img src="https://raw.githubusercontent.com/ZtrolixGit/ZtrolixLibs/main/assets/strip.png">
+
+<img src="https://raw.githubusercontent.com/ZtrolixGit/ZtrolixLibs/main/assets/faq.png">
 
 <details>
 <summary>API</summary>
 
-The API will not be available currently.
+The API will only be available for `2.0.0` or above builds and only `Release` builds. 
 
 </details>
 
 <details>
 <summary>Source</summary>
 
-The Source will not be available for 1.20.x.
+The Source is currently available but not for any versions below `2.0.0`.
 
 </details>
+
+<img src="https://raw.githubusercontent.com/ZtrolixGit/ZtrolixLibs/main/assets/strip.png">
