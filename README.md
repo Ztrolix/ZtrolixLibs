@@ -58,12 +58,22 @@ The universal installer is an installer that installs the library straight into 
 
 <img src="https://raw.githubusercontent.com/ZtrolixGit/ZtrolixLibs/main/assets/strip.png">
 
+<img src="https://raw.githubusercontent.com/ZtrolixGit/ZtrolixLibs/main/assets/building.png">
+
+▶️ Clone the [Git Repo](https://github.com/ZtrolixGit/ZtrolixLibs/tree/main)
+
+▶️ Either run `build.bat` or in terminal run `gradlew build`
+
+▶️ The mod will be made in `build\libs`
+
+<img src="https://raw.githubusercontent.com/ZtrolixGit/ZtrolixLibs/main/assets/strip.png">
+
 <img src="https://raw.githubusercontent.com/ZtrolixGit/ZtrolixLibs/main/assets/faq.png">
 
 <details>
 <summary>API</summary>
 
-The API will only be available for `2.0.0` or above builds and only `Release` builds. 
+The API will only be available for `2.0.0` or above builds and only `Release` builds.
 
 </details>
 
