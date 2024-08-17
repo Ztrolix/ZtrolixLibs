@@ -21,12 +21,10 @@ import java.util.Objects;
 public abstract class ModBadgeRendererMixin {
     @Unique
     private static final ZLibsConfig CONFIG = new ZLibsConfig();
-
-    @Unique
-    ZLibsConfig config = AutoConfig.getConfigHolder(ZLibsConfig.class).getConfig();
-
     @Shadow(remap = false)
     protected Mod mod;
+    @Unique
+    ZLibsConfig config = AutoConfig.getConfigHolder(ZLibsConfig.class).getConfig();
 
     @Shadow
     public abstract void drawBadge(DrawContext DrawContext, OrderedText text, int outlineColor, int fillColor, int mouseX, int mouseY);
@@ -51,7 +49,8 @@ public abstract class ModBadgeRendererMixin {
                             var fill = obj.get("fillColor").getAsNumber().intValue();
                             drawBadge(DrawContext, Text.literal(name).asOrderedText(), outline, fill, mouseX, mouseY);
                         });
-            } catch (Exception ignored) { }
+            } catch (Exception ignored) {
+            }
         }
     }
 }

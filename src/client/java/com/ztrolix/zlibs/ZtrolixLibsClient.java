@@ -30,6 +30,7 @@ public class ZtrolixLibsClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
+        String osName = System.getProperty("os.name").toLowerCase();
         AutoConfig.register(ZLibsConfig.class, GsonConfigSerializer::new);
         ZLibsConfig config = AutoConfig.getConfigHolder(ZLibsConfig.class).getConfig();
 
@@ -57,11 +58,21 @@ public class ZtrolixLibsClient implements ClientModInitializer {
         }
         LOGGER.info("-- -- -- -- -- -- -- -- -- -- -- --");
         if (config.compatibility.discordRPC) {
-            DiscordRPCHandler.init();
-            ClientLifecycleEvents.CLIENT_STOPPING.register(client -> {
-                DiscordRPCHandler.shutdown();
-            });
-            LOGGER.info("Discord RPC: Enabled!");
+
+            if (osName.contains("win")) {
+                DiscordRPCHandler.init();
+                ClientLifecycleEvents.CLIENT_STOPPING.register(client -> {
+                    DiscordRPCHandler.shutdown();
+                });
+                LOGGER.info("Discord RPC: Enabled!");
+            } else {
+                LOGGER.info("Discord RPC: Enabled!");
+                LOGGER.info("Running on an unsupported OS: " + osName);
+                LOGGER.info("Disabled DiscordRPC you can ReEnable it in config!");
+                LOGGER.info("Discord RPC: Disabled!");
+
+                config.compatibility.discordRPC = false;
+            }
         } else {
             LOGGER.info("Discord RPC: Disabled!");
         }

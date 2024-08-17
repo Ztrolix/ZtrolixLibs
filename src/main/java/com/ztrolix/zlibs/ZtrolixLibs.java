@@ -116,6 +116,15 @@ public class ZtrolixLibs implements ModInitializer {
         LOGGER.info("-----------------------------------");
         LOGGER.info("ZtrolixLibs - Loading...");
         LOGGER.info("-- -- -- -- -- -- -- -- -- -- -- --");
+        String osName = System.getProperty("os.name").toLowerCase();
+        if (osName.contains("mac")) {
+            LOGGER.info("Running on MacOS");
+        } else if (osName.contains("win")) {
+            LOGGER.info("Running on Windows");
+        } else {
+            LOGGER.info("Running on an unsupported OS: " + osName);
+        }
+        LOGGER.info("-- -- -- -- -- -- -- -- -- -- -- --");
 
         ItemGroupInit.load();
         LOGGER.info("Loaded: ItemGroupInit");

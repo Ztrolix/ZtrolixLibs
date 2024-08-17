@@ -6,7 +6,12 @@
     "ExampleClientMixin",
     "ModBadgeRendererMixin",
     "MiddleClickFix",
-    "MixinKeyboard"
+    "MixinKeyboard",
+    "AbstractSoundInstanceMixin",
+    "SoundSystemMixin",
+    "EntryListWidgetMixin",
+    "CursorFixMixin",
+    "TitleFixMixin"
   ],
   "injectors": {
     "defaultRequire": 1
