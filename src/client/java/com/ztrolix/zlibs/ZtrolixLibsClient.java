@@ -167,6 +167,11 @@ public class ZtrolixLibsClient implements ClientModInitializer {
             LOGGER.info("Sodium Integration: Disabled!");
         }
         LOGGER.info("-- -- -- -- -- -- -- -- -- -- -- --");
+        if (config.features.customItems) {
+            LOGGER.info("Custom Items: Enabled!");
+        } else {
+            LOGGER.info("Custom Items: Disabled!");
+        }
         if (config.features.customBlocks) {
             LOGGER.info("Custom Blocks: Enabled!");
         } else {
@@ -186,6 +191,11 @@ public class ZtrolixLibsClient implements ClientModInitializer {
             LOGGER.info("Custom Badges: Enabled!");
         } else {
             LOGGER.info("Custom Badges: Disabled!");
+        }
+        if (config.features.popup) {
+            LOGGER.info("Alerts: Enabled!");
+        } else {
+            LOGGER.info("Alerts: Disabled!");
         }
         LOGGER.info("-- -- -- -- -- -- -- -- -- -- -- --");
         LOGGER.info("Ztrolix Libs - Applied Config!");
