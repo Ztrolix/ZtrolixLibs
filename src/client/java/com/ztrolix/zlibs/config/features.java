@@ -18,4 +18,6 @@ public class features implements ConfigData {
     public boolean worldGen = true;
     @Comment("Custom Modmenu Badges")
     public boolean modmenuCustomBadges = true;
+    @Comment("Shows a Window Popup")
+    public boolean popup = true;
 }

@@ -4,6 +4,7 @@
   "text.autoconfig.ztrolix-libs.option.main.contributeToPlayerCount": "Contribute To Player Count",
   "text.autoconfig.ztrolix-libs.option.compatibility.discordRPC": "Discord RPC",
   "text.autoconfig.ztrolix-libs.option.compatibility.sodiumIntegration": "Integrate with Sodium",
+  "text.autoconfig.ztrolix-libs.option.features.popup": "Popup Window",
   "text.autoconfig.ztrolix-libs.option.features.customBlocks": "Custom Blocks/Items",
   "text.autoconfig.ztrolix-libs.option.features.worldGen": "World Generation",
   "text.autoconfig.ztrolix-libs.option.features.uiFramework": "UI Framework",
