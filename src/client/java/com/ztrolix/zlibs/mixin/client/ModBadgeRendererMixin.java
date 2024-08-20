@@ -31,26 +31,24 @@ public abstract class ModBadgeRendererMixin {
 
     @Inject(method = "draw", at = @At("TAIL"))
     public void drawCustomBadges(DrawContext DrawContext, int mouseX, int mouseY, CallbackInfo ci) {
-        if (config.features.modmenuCustomBadges) {
-            try {
-                Objects.requireNonNull(FabricLoader.getInstance().getModContainer(mod.getId()).orElse(null))
-                        .getMetadata().getCustomValue("modmenu-badges").getAsArray().forEach(customValue -> {
-                            var obj = customValue.getAsObject();
-                            var name = obj.get("name").getAsString();
-                            var outline = obj.get("outlineColor").getAsNumber().intValue();
-                            var fill = obj.get("fillColor").getAsNumber().intValue();
-                            drawBadge(DrawContext, Text.literal(name).asOrderedText(), outline, fill, mouseX, mouseY);
-                        });
-                Objects.requireNonNull(FabricLoader.getInstance().getModContainer(mod.getId()).orElse(null))
-                        .getMetadata().getCustomValue("mcb").getAsArray().forEach(customValue -> {
-                            var obj = customValue.getAsObject();
-                            var name = obj.get("name").getAsString();
-                            var outline = obj.get("outlineColor").getAsNumber().intValue();
-                            var fill = obj.get("fillColor").getAsNumber().intValue();
-                            drawBadge(DrawContext, Text.literal(name).asOrderedText(), outline, fill, mouseX, mouseY);
-                        });
-            } catch (Exception ignored) {
-            }
+        try {
+            Objects.requireNonNull(FabricLoader.getInstance().getModContainer(mod.getId()).orElse(null))
+                    .getMetadata().getCustomValue("modmenu-badges").getAsArray().forEach(customValue -> {
+                        var obj = customValue.getAsObject();
+                        var name = obj.get("name").getAsString();
+                        var outline = obj.get("outlineColor").getAsNumber().intValue();
+                        var fill = obj.get("fillColor").getAsNumber().intValue();
+                        drawBadge(DrawContext, Text.literal(name).asOrderedText(), outline, fill, mouseX, mouseY);
+                    });
+            Objects.requireNonNull(FabricLoader.getInstance().getModContainer(mod.getId()).orElse(null))
+                    .getMetadata().getCustomValue("mcb").getAsArray().forEach(customValue -> {
+                        var obj = customValue.getAsObject();
+                        var name = obj.get("name").getAsString();
+                        var outline = obj.get("outlineColor").getAsNumber().intValue();
+                        var fill = obj.get("fillColor").getAsNumber().intValue();
+                        drawBadge(DrawContext, Text.literal(name).asOrderedText(), outline, fill, mouseX, mouseY);
+                    });
+        } catch (Exception ignored) {
         }
     }
 }
