@@ -2,6 +2,7 @@ package com.ztrolix.zlibs;
 
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import com.ztrolix.zlibs.api.custom;
 import com.ztrolix.zlibs.init.ItemGroupInit;
 import com.ztrolix.zlibs.init.ItemInit;
 import net.fabricmc.api.ModInitializer;
@@ -163,6 +164,11 @@ public class ZtrolixLibs implements ModInitializer {
         LOGGER.info("Loaded: ModmenuCustomBadges");
         LOGGER.info("Loaded: LinuxKeyboardFix");
         LOGGER.info("Loaded: MiddleClickFix");
+        LOGGER.info("Loaded: CustomBlocks");
+        LOGGER.info("Loaded: CustomItems");
+        LOGGER.info("Loaded: PopupAlert");
+        LOGGER.info("Loaded: LanguageUtil");
+        LOGGER.info("Loaded: Sounds");
 
         LOGGER.info("-- -- -- -- -- -- -- -- -- -- -- --");
         LOGGER.warn("Warning: 'Error loading parent data from mod: ztrolix-libs' is a allowed error please do not report this error!");
