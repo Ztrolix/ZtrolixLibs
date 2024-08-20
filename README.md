@@ -8,7 +8,9 @@
 
 The universal installer is an installer that installs the library straight into the folder you want. It is not recommended if you use the Modrinth app!
 
-[**`Download`**](https://github.com/ZtrolixGit/ZtrolixLibs/releases/latest/download/zlibsinstaller.jar)
+[<kbd> <br>    Download    <br> </kbd>][DWLD]
+
+[DWLD]: https://github.com/ZtrolixGit/ZtrolixLibs/releases/latest/download/zlibsinstaller.jar
 
 <img src="https://raw.githubusercontent.com/ZtrolixGit/ZtrolixLibs/main/assets/strip.png">
 
