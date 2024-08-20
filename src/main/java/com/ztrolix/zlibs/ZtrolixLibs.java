@@ -2,7 +2,6 @@ package com.ztrolix.zlibs;
 
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import com.ztrolix.zlibs.api.custom;
 import com.ztrolix.zlibs.init.ItemGroupInit;
 import com.ztrolix.zlibs.init.ItemInit;
 import net.fabricmc.api.ModInitializer;
