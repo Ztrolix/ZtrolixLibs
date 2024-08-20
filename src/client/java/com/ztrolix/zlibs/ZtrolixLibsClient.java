@@ -37,11 +37,6 @@ public class ZtrolixLibsClient implements ClientModInitializer {
         LOGGER.info("-----------------------------------");
         LOGGER.info("Ztrolix Libs - Applying Config...");
         LOGGER.info("-- -- -- -- -- -- -- -- -- -- -- --");
-        if (config.main.modEnabled) {
-            LOGGER.info("Mod: Enabled!");
-        } else {
-            LOGGER.info("Mod: Disabled!");
-        }
         if (config.main.injectToWorld) {
             LOGGER.info("Inject: Enabled!");
         } else {
@@ -83,37 +78,6 @@ public class ZtrolixLibsClient implements ClientModInitializer {
             LOGGER.info("Sodium Integration: Disabled!");
         }
         LOGGER.info("-- -- -- -- -- -- -- -- -- -- -- --");
-        if (config.features.customItems) {
-            LOGGER.info("Custom Items: Enabled!");
-        } else {
-            LOGGER.info("Custom Items: Disabled!");
-        }
-        if (config.features.customBlocks) {
-            LOGGER.info("Custom Blocks: Enabled!");
-        } else {
-            LOGGER.info("Custom Blocks: Disabled!");
-        }
-        if (config.features.uiFramework) {
-            LOGGER.info("UI Framework: Enabled!");
-        } else {
-            LOGGER.info("UI Framework: Disabled!");
-        }
-        if (config.features.worldGen) {
-            LOGGER.info("World Gen: Enabled!");
-        } else {
-            LOGGER.info("World Gen: Disabled!");
-        }
-        if (config.features.modmenuCustomBadges) {
-            LOGGER.info("Custom Badges: Enabled!");
-        } else {
-            LOGGER.info("Custom Badges: Disabled!");
-        }
-        if (config.features.popup) {
-            LOGGER.info("Alerts: Enabled!");
-        } else {
-            LOGGER.info("Alerts: Disabled!");
-        }
-        LOGGER.info("-- -- -- -- -- -- -- -- -- -- -- --");
         LOGGER.info("Ztrolix Libs - Applied Config!");
         LOGGER.info("-----------------------------------");
 
@@ -140,11 +104,6 @@ public class ZtrolixLibsClient implements ClientModInitializer {
         LOGGER.info("-----------------------------------");
         LOGGER.info("Ztrolix Libs - Applying Config...");
         LOGGER.info("-- -- -- -- -- -- -- -- -- -- -- --");
-        if (config.main.modEnabled) {
-            LOGGER.info("Mod: Enabled!");
-        } else {
-            LOGGER.info("Mod: Disabled!");
-        }
         if (config.main.injectToWorld) {
             LOGGER.info("Inject: Enabled!");
         } else {
@@ -182,37 +141,6 @@ public class ZtrolixLibsClient implements ClientModInitializer {
             LOGGER.info("Sodium Integration: Enabled!");
         } else {
             LOGGER.info("Sodium Integration: Disabled!");
-        }
-        LOGGER.info("-- -- -- -- -- -- -- -- -- -- -- --");
-        if (config.features.customItems) {
-            LOGGER.info("Custom Items: Enabled!");
-        } else {
-            LOGGER.info("Custom Items: Disabled!");
-        }
-        if (config.features.customBlocks) {
-            LOGGER.info("Custom Blocks: Enabled!");
-        } else {
-            LOGGER.info("Custom Blocks: Disabled!");
-        }
-        if (config.features.uiFramework) {
-            LOGGER.info("UI Framework: Enabled!");
-        } else {
-            LOGGER.info("UI Framework: Disabled!");
-        }
-        if (config.features.worldGen) {
-            LOGGER.info("World Gen: Enabled!");
-        } else {
-            LOGGER.info("World Gen: Disabled!");
-        }
-        if (config.features.modmenuCustomBadges) {
-            LOGGER.info("Custom Badges: Enabled!");
-        } else {
-            LOGGER.info("Custom Badges: Disabled!");
-        }
-        if (config.features.popup) {
-            LOGGER.info("Alerts: Enabled!");
-        } else {
-            LOGGER.info("Alerts: Disabled!");
         }
         LOGGER.info("-- -- -- -- -- -- -- -- -- -- -- --");
         LOGGER.info("Ztrolix Libs - Applied Config!");

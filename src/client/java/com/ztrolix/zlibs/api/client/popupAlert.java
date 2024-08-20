@@ -9,8 +9,6 @@ public class popupAlert {
     public static void show(String Title, String Text) {
         ZLibsConfig config = AutoConfig.getConfigHolder(ZLibsConfig.class).getConfig();
 
-        if (config.features.popup) {
-            JOptionPane.showMessageDialog(null, Text, Title, JOptionPane.INFORMATION_MESSAGE);
-        }
+        JOptionPane.showMessageDialog(null, Text, Title, JOptionPane.INFORMATION_MESSAGE);
     }
 }
