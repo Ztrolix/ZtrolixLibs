@@ -4,6 +4,7 @@ import com.mojang.brigadier.Command;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.ztrolix.zlibs.init.ItemGroupInit;
 import com.ztrolix.zlibs.init.ItemInit;
+import lombok.Getter;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.command.argument.EntityArgumentType;
@@ -28,6 +29,13 @@ import static net.minecraft.server.command.CommandManager.literal;
 public class ZtrolixLibs implements ModInitializer {
     public static final Logger LOGGER = LoggerFactory.getLogger("ztrolix-libs");
     public static final String MOD_ID = "ztrolix-libs";
+
+    @Getter
+    private static boolean eulaAccepted = false;
+
+    public static void acceptEula() {
+        eulaAccepted = true;
+    }
 
     @Contract("_ -> new")
     public static @NotNull Identifier id(String path) {
@@ -130,13 +138,6 @@ public class ZtrolixLibs implements ModInitializer {
         LOGGER.info("Loaded: ItemGroupInit");
         ItemInit.load();
         LOGGER.info("Loaded: ItemInit");
-        //AutoConfig.register(ModConfig.class, GsonConfigSerializer::new);
-        //config = AutoConfig.getConfigHolder(ModConfig.class).getConfig();
-        //if (config.modEnabled) {
-        //	registerItems();
-        //	registerItemGroups();
-        //	registerCommands();
-        //}
         LOGGER.info("Loaded: Config");
         ModNetworkHandler.registerServer();
         LOGGER.info("Loaded: ModNetworkHandler");

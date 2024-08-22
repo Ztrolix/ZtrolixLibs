@@ -3,7 +3,8 @@
   "package": "com.ztrolix.zlibs.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "ExampleMixin"
+    "ExampleMixin",
+    "EulaMixin"
   ],
   "injectors": {
     "defaultRequire": 1
