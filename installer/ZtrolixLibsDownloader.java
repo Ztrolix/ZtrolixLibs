@@ -233,9 +233,9 @@ public class ZtrolixLibsDownloader {
                         return FABRIC_API_BASE_URL + "Yolngp3s/fabric-api-0.91.1%2B1.20.3.jar";
                     case "1.20.4":
                         return FABRIC_API_BASE_URL + "tAwdMmKY/fabric-api-0.97.1%2B1.20.4.jar";
-                    case "1.21 EXPERIMENTAL":
+                    case "1.21 [Beta]":
                         return FABRIC_API_BASE_URL + "oGwyXeEI/fabric-api-0.102.0%2B1.21.jar";
-                    case "1.21.1 EXPERIMENTAL":
+                    case "1.21.1 [Beta]":
                         return FABRIC_API_BASE_URL + "bK6OgzFj/fabric-api-0.102.1%2B1.21.1.jar";
                     default:
                         return null;
@@ -250,8 +250,8 @@ public class ZtrolixLibsDownloader {
                         return QUILT_API_BASE_URL + "zHVlrS0A/quilted-fabric-api-8.0.0-alpha.6%2B0.91.6-1.20.2.jar";
                     case "1.20.4":
                         return QUILT_API_BASE_URL + "AljqyvST/quilted-fabric-api-9.0.0-alpha.8%2B0.97.0-1.20.4.jar";
-                    case "1.21 EXPERIMENTAL":
-                        return QUILT_API_BASE_URL + "PNhUOnZI/quilted-fabric-api-11.0.0-alpha.3%2B0.100.7-1.21.jar";
+                    case "1.21 [Beta]":
+                        return QUILT_API_BASE_URL + "WDWNp8qJ/quilted-fabric-api-11.0.0-alpha.3%2B0.102.0-1.21.jar";
                     default:
                         return null;
                 }
@@ -285,6 +285,11 @@ public class ZtrolixLibsDownloader {
                 versionDropdown.addItem("1.21 [Beta]");
                 break;
             case "Spigot":
+                versionDropdown.addItem("1.19 [Experimental]");
+                versionDropdown.addItem("1.19.1 [Experimental]");
+                versionDropdown.addItem("1.19.2 [Experimental]");
+                versionDropdown.addItem("1.19.3 [Experimental]");
+                versionDropdown.addItem("1.19.4 [Experimental]");
                 versionDropdown.addItem("1.20");
                 versionDropdown.addItem("1.20.1");
                 versionDropdown.addItem("1.20.2");
