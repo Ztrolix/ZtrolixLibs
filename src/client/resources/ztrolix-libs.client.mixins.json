@@ -11,7 +11,10 @@
     "SoundSystemMixin",
     "EntryListWidgetMixin",
     "CursorFixMixin",
-    "TitleFixMixin"
+    "TitleFixMixin",
+    "ItemRendererMixin",
+    "AddServerMixin",
+    "PlayerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
