@@ -51,6 +51,9 @@
   "recommends": {
     "modmenu": "*"
   },
+  "breaks": {
+    "sodium": "<0.5.9"
+  },
   "custom": {
     "modmenu": {
       "parent": {
