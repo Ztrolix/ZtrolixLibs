@@ -2,6 +2,7 @@
 build/
 out/
 fakeid1/
+mods/
 classes/
 *.launch
 .idea/
