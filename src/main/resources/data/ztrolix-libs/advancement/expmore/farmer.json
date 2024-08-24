@@ -1,0 +1,110 @@
+{
+    "display": {
+      "icon": {
+        "id": "minecraft:beetroot_seeds"
+      },
+      "title": "General Farmer",
+      "description": "Obtain 1 of each common crop",
+      "frame": "goal",
+      "show_toast": true,
+      "announce_to_chat": true,
+      "hidden": false
+    },
+    "parent": "cusadv:expmore/root",
+    "criteria": {
+      "beat": {
+        "trigger": "minecraft:inventory_changed",
+        "conditions": {
+          "items": [
+            {
+              "items": [
+                "minecraft:beetroot"
+              ]
+            }
+          ]
+        }
+      },
+      "wheat": {
+        "trigger": "minecraft:inventory_changed",
+        "conditions": {
+          "items": [
+            {
+              "items": [
+                "minecraft:wheat"
+              ]
+            }
+          ]
+        }
+      },
+      "carrot": {
+        "trigger": "minecraft:inventory_changed",
+        "conditions": {
+          "items": [
+            {
+              "items": [
+                "minecraft:carrot"
+              ]
+            }
+          ]
+        }
+      },
+      "potato": {
+        "trigger": "minecraft:inventory_changed",
+        "conditions": {
+          "items": [
+            {
+              "items": [
+                "minecraft:potato"
+              ]
+            }
+          ]
+        }
+      },
+      "melon": {
+        "trigger": "minecraft:inventory_changed",
+        "conditions": {
+          "items": [
+            {
+              "items": [
+                "minecraft:melon_slice"
+              ]
+            }
+          ]
+        }
+      },
+      "pumpkin": {
+        "trigger": "minecraft:inventory_changed",
+        "conditions": {
+          "items": [
+            {
+              "items": [
+                "minecraft:pumpkin"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "requirements": [
+      [
+        "beat"
+      ],
+      [
+        "wheat"
+      ],
+      [
+        "carrot"
+      ],
+      [
+        "potato"
+      ],
+      [
+        "melon"
+      ],
+      [
+        "pumpkin"
+      ]
+    ],
+    "sends_telemetry_event": false
+  }
+  

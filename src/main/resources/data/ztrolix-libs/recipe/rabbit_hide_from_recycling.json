@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "rabbit_hide",
+  "ingredients": [
+    {
+      "tag": "leather_recycling:recycles_to_rabbit_hide"
+    }
+  ],
+  "result": {
+    "item": "minecraft:rabbit_hide",
+    "count": 1
+  }
+}

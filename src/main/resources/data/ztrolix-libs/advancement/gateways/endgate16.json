@@ -1,0 +1,19 @@
+{
+    "display": {
+      "icon": {
+        "id": "minecraft:ender_eye"
+      },
+      "title": "Gateway Accessed P",
+      "description": "Opened an End Gateway",
+      "show_toast": false,
+      "announce_to_chat": false,
+      "hidden": false
+    },
+    "parent": "cusadv:gateways/root",
+    "criteria": {
+      "enter_gate": {
+        "trigger": "minecraft:impossible"
+      }
+    }
+  }
+  

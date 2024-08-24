@@ -1,0 +1,1 @@
+execute as @a[scores={carrotharvest=1000000..}] run advancement grant @s only cusadv:expmore/carrots

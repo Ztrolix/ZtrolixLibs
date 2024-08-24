@@ -1,0 +1,1 @@
+execute as @a[scores={totems=10..}] run advancement grant @s only cusadv:expmore/totems

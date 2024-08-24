@@ -1,0 +1,21 @@
+{
+    "display": {
+      "icon": {
+        "id": "minecraft:carrot"
+      },
+      "title": "Sup Doc?",
+      "description": "Harvest 1 Million Carrot Plants",
+      "frame": "challenge",
+      "show_toast": true,
+      "announce_to_chat": true,
+      "hidden": false
+    },
+    "parent": "cusadv:expmore/cropcollect",
+    "criteria": {
+      "1 million carrot plants broken": {
+        "trigger": "minecraft:impossible"
+      }
+    },
+    "sends_telemetry_event": false
+  }
+  

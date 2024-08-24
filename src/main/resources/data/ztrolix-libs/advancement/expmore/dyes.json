@@ -1,0 +1,259 @@
+{
+    "display": {
+      "icon": {
+        "id": "minecraft:magenta_dye"
+      },
+      "title": "Colors of the wind",
+      "description": "Collect all dyes",
+      "frame": "goal",
+      "show_toast": true,
+      "announce_to_chat": true,
+      "hidden": false
+    },
+    "parent": "cusadv:expmore/garden",
+    "criteria": {
+      "black dye": {
+        "trigger": "minecraft:inventory_changed",
+        "conditions": {
+          "items": [
+            {
+              "items": [
+                "minecraft:black_dye"
+              ]
+            }
+          ]
+        }
+      },
+      "blue dye": {
+        "trigger": "minecraft:inventory_changed",
+        "conditions": {
+          "items": [
+            {
+              "items": [
+                "minecraft:blue_dye"
+              ]
+            }
+          ]
+        }
+      },
+      "brown dye": {
+        "trigger": "minecraft:inventory_changed",
+        "conditions": {
+          "items": [
+            {
+              "items": [
+                "minecraft:brown_dye"
+              ]
+            }
+          ]
+        }
+      },
+      "cyan dye": {
+        "trigger": "minecraft:inventory_changed",
+        "conditions": {
+          "items": [
+            {
+              "items": [
+                "minecraft:cyan_dye"
+              ]
+            }
+          ]
+        }
+      },
+      "gray dye": {
+        "trigger": "minecraft:inventory_changed",
+        "conditions": {
+          "items": [
+            {
+              "items": [
+                "minecraft:gray_dye"
+              ]
+            }
+          ]
+        }
+      },
+      "green dye": {
+        "trigger": "minecraft:inventory_changed",
+        "conditions": {
+          "items": [
+            {
+              "items": [
+                "minecraft:green_dye"
+              ]
+            }
+          ]
+        }
+      },
+      "light blue dye": {
+        "trigger": "minecraft:inventory_changed",
+        "conditions": {
+          "items": [
+            {
+              "items": [
+                "minecraft:light_blue_dye"
+              ]
+            }
+          ]
+        }
+      },
+      "light gray dye": {
+        "trigger": "minecraft:inventory_changed",
+        "conditions": {
+          "items": [
+            {
+              "items": [
+                "minecraft:light_gray_dye"
+              ]
+            }
+          ]
+        }
+      },
+      "lime dye": {
+        "trigger": "minecraft:inventory_changed",
+        "conditions": {
+          "items": [
+            {
+              "items": [
+                "minecraft:lime_dye"
+              ]
+            }
+          ]
+        }
+      },
+      "magenta dye": {
+        "trigger": "minecraft:inventory_changed",
+        "conditions": {
+          "items": [
+            {
+              "items": [
+                "minecraft:magenta_dye"
+              ]
+            }
+          ]
+        }
+      },
+      "orange dye": {
+        "trigger": "minecraft:inventory_changed",
+        "conditions": {
+          "items": [
+            {
+              "items": [
+                "minecraft:orange_dye"
+              ]
+            }
+          ]
+        }
+      },
+      "pink dye": {
+        "trigger": "minecraft:inventory_changed",
+        "conditions": {
+          "items": [
+            {
+              "items": [
+                "minecraft:pink_dye"
+              ]
+            }
+          ]
+        }
+      },
+      "purple dye": {
+        "trigger": "minecraft:inventory_changed",
+        "conditions": {
+          "items": [
+            {
+              "items": [
+                "minecraft:purple_dye"
+              ]
+            }
+          ]
+        }
+      },
+      "red dye": {
+        "trigger": "minecraft:inventory_changed",
+        "conditions": {
+          "items": [
+            {
+              "items": [
+                "minecraft:red_dye"
+              ]
+            }
+          ]
+        }
+      },
+      "white dye": {
+        "trigger": "minecraft:inventory_changed",
+        "conditions": {
+          "items": [
+            {
+              "items": [
+                "minecraft:white_dye"
+              ]
+            }
+          ]
+        }
+      },
+      "yellow dye": {
+        "trigger": "minecraft:inventory_changed",
+        "conditions": {
+          "items": [
+            {
+              "items": [
+                "minecraft:yellow_dye"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "requirements": [
+      [
+        "black dye"
+      ],
+      [
+        "blue dye"
+      ],
+      [
+        "brown dye"
+      ],
+      [
+        "cyan dye"
+      ],
+      [
+        "gray dye"
+      ],
+      [
+        "green dye"
+      ],
+      [
+        "light blue dye"
+      ],
+      [
+        "light gray dye"
+      ],
+      [
+        "lime dye"
+      ],
+      [
+        "magenta dye"
+      ],
+      [
+        "orange dye"
+      ],
+      [
+        "pink dye"
+      ],
+      [
+        "purple dye"
+      ],
+      [
+        "red dye"
+      ],
+      [
+        "white dye"
+      ],
+      [
+        "yellow dye"
+      ]
+    ]
+  }
+  

@@ -7,6 +7,8 @@ import com.ztrolix.zlibs.init.ItemInit;
 import lombok.Getter;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
+import net.fabricmc.fabric.api.gamerule.v1.GameRuleFactory;
+import net.fabricmc.fabric.api.gamerule.v1.GameRuleRegistry;
 import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.scoreboard.AbstractTeam;
 import net.minecraft.server.command.ServerCommandSource;
@@ -16,6 +18,7 @@ import net.minecraft.text.HoverEvent;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
+import net.minecraft.world.GameRules;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
@@ -29,6 +32,9 @@ import static net.minecraft.server.command.CommandManager.literal;
 public class ZtrolixLibs implements ModInitializer {
     public static final Logger LOGGER = LoggerFactory.getLogger("ztrolix-libs");
     public static final String MOD_ID = "ztrolix-libs";
+
+    public static GameRules.Key<GameRules.IntRule> VAULT_BLOCK_COOLDOWN;
+    public static GameRules.Key<GameRules.IntRule> OMINOUS_VAULT_BLOCK_COOLDOWN;
 
     @Getter
     private static boolean eulaAccepted = false;
@@ -153,6 +159,9 @@ public class ZtrolixLibs implements ModInitializer {
             );
         });
         LOGGER.info("Loaded: ChatLinks");
+        VAULT_BLOCK_COOLDOWN = GameRuleRegistry.register("vaultBlockCooldown", GameRules.Category.MISC, GameRuleFactory.createIntRule(720_000, 1));
+        OMINOUS_VAULT_BLOCK_COOLDOWN = GameRuleRegistry.register("ominousVaultBlockCooldown", GameRules.Category.MISC, GameRuleFactory.createIntRule(864_000, 1));
+        LOGGER.info("Loaded: GameRules");
 
         LOGGER.info("Loaded: SodiumOptions");
         LOGGER.info("Loaded: DiscordRPC");

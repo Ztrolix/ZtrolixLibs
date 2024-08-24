@@ -1,0 +1,20 @@
+{
+    "display": {
+      "icon": {
+        "id": "minecraft:totem_of_undying"
+      },
+      "title": "Accident Prone",
+      "description": "Save yourself 10 times using totems",
+      "frame": "challenge",
+      "show_toast": true,
+      "announce_to_chat": true,
+      "hidden": false
+    },
+    "parent": "cusadv:expmore/city",
+    "criteria": {
+      "10 totems used": {
+        "trigger": "minecraft:impossible"
+      }
+    }
+  }
+  

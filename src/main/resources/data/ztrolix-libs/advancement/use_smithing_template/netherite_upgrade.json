@@ -1,0 +1,76 @@
+{
+    "parent": "dlljs_smithing:use_smithing_template/root",
+    "criteria": {
+      "smith_sword": {
+        "trigger": "minecraft:recipe_crafted",
+        "conditions": {
+          "recipe_id": "minecraft:netherite_sword_smithing"
+        }
+      },
+      "smith_pickaxe": {
+        "trigger": "minecraft:recipe_crafted",
+        "conditions": {
+          "recipe_id": "minecraft:netherite_pickaxe_smithing"
+        }
+      },
+      "smith_axe": {
+        "trigger": "minecraft:recipe_crafted",
+        "conditions": {
+          "recipe_id": "minecraft:netherite_axe_smithing"
+        }
+      },
+      "smith_shovel": {
+        "trigger": "minecraft:recipe_crafted",
+        "conditions": {
+          "recipe_id": "minecraft:netherite_shovel_smithing"
+        }
+      },
+      "smith_hoe": {
+        "trigger": "minecraft:recipe_crafted",
+        "conditions": {
+          "recipe_id": "minecraft:netherite_hoe_smithing"
+        }
+      },
+      "smith_helmet": {
+        "trigger": "minecraft:recipe_crafted",
+        "conditions": {
+          "recipe_id": "minecraft:netherite_helmet_smithing"
+        }
+      },
+      "smith_chestplate": {
+        "trigger": "minecraft:recipe_crafted",
+        "conditions": {
+          "recipe_id": "minecraft:netherite_chestplate_smithing"
+        }
+      },
+      "smith_leggings": {
+        "trigger": "minecraft:recipe_crafted",
+        "conditions": {
+          "recipe_id": "minecraft:netherite_leggings_smithing"
+        }
+      },
+      "smith_boots": {
+        "trigger": "minecraft:recipe_crafted",
+        "conditions": {
+          "recipe_id": "minecraft:netherite_boots_smithing"
+        }
+      }
+    },
+    "requirements": [
+      [
+        "smith_sword",
+        "smith_pickaxe",
+        "smith_axe",
+        "smith_shovel",
+        "smith_hoe",
+        "smith_helmet",
+        "smith_chestplate",
+        "smith_leggings",
+        "smith_boots"
+      ]
+    ],
+    "rewards": {
+      "function": "dlljs_smithing:give_back_smithing_template/netherite_upgrade"
+    }
+  }
+  

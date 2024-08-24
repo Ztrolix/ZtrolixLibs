@@ -14,7 +14,9 @@
     "TitleFixMixin",
     "ItemRendererMixin",
     "AddServerMixin",
-    "PlayerMixin"
+    "PlayerMixin",
+    "AnvilScreenHandlerMixin",
+    "AnvilScreenMixin"
   ],
   "injectors": {
     "defaultRequire": 1

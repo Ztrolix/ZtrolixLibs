@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": {
+      "id": "minecraft:potato"
+    },
+    "title": "Spud-llinaire",
+    "description": "Harvest 1 Million Potato Plants",
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "cusadv:expmore/cropcollect",
+  "criteria": {
+    "1 million potato plants broken": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

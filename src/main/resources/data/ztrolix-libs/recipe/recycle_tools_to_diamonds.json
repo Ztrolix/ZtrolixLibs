@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "recyclable_diamonds",
+  "pattern": [
+    " x ",
+    "xxx",
+    "xxx"
+  ],
+  "key": {
+    "x": {
+      "tag": "diamond_recycling:recyclable_diamond_tools"
+    }
+  },
+  "result": {
+    "item": "minecraft:diamond"
+  }
+}

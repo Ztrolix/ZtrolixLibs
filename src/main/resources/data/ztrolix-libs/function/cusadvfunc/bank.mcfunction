@@ -1,0 +1,1 @@
+execute as @a[scores={bankxp=100..}] run advancement grant @s only cusadv:expmore/bank

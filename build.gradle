@@ -67,6 +67,8 @@ dependencies {
 	include(implementation('club.minnced:discord-rpc-release:v3.4.0'))
 	include(implementation("com.github.MinnDevelopment:java-discord-rpc:v2.0.1"))
 	include(implementation("com.ztrolix.fakeid1:modmenu-badges-lib:0.0.0"))
+	include(implementation("com.ztrolix.api:zlibs-api:1.0.0"))
+	include(implementation("com.ztrolix.zfixes:zfixes:1.0.0"))
 	implementation "com.squareup.okhttp3:okhttp:4.9.3"
 	compileOnly "org.projectlombok:lombok:${rootProject.lombok_version}"
 	annotationProcessor "org.projectlombok:lombok:${rootProject.lombok_version}"
