@@ -2,7 +2,6 @@ plugins {
 	id 'signing'
 	id 'fabric-loom' version '1.7-SNAPSHOT'
 	id 'maven-publish'
-	id "io.freefair.lombok" version "8.6"
 }
 
 version = project.mod_version
@@ -58,20 +57,13 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 	modImplementation("com.terraformersmc:modmenu:${project.modmenu_version}")
 	modImplementation("maven.modrinth:sodium:${project.sodium_version}")
-	modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_version}") {
-		exclude(group: "net.fabricmc.fabric-api")
-	}
-	implementation "org.lwjgl:lwjgl:3.3.4"
-	implementation "org.lwjgl:lwjgl-glfw:3.3.4"
-	implementation "org.lwjgl:lwjgl-opengl:3.3.4"
+	modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_version}")
 	include(implementation('club.minnced:discord-rpc-release:v3.4.0'))
 	include(implementation("com.github.MinnDevelopment:java-discord-rpc:v2.0.1"))
+	implementation "com.squareup.okhttp3:okhttp:4.9.3"
 	include(implementation("com.ztrolix.fakeid1:modmenu-badges-lib:0.0.0"))
 	include(implementation("com.ztrolix.api:zlibs-api:1.0.0"))
 	include(implementation("com.ztrolix.zfixes:zfixes:1.0.0"))
-	implementation "com.squareup.okhttp3:okhttp:4.9.3"
-	compileOnly "org.projectlombok:lombok:${rootProject.lombok_version}"
-	annotationProcessor "org.projectlombok:lombok:${rootProject.lombok_version}"
 }
 
 processResources {

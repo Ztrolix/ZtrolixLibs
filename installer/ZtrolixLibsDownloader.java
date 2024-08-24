@@ -21,13 +21,19 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.border.AbstractBorder;
 
-
 public class ZtrolixLibsDownloader {
     private static final String FABRIC_API_BASE_URL = "https://cdn.modrinth.com/data/P7dR8mSH/versions/";
     private static final String QUILT_API_BASE_URL = "https://cdn.modrinth.com/data/qvIfYCYJ/versions/";
 
     private static final String CLOTH_CONFIG_BASE_URL = "https://cdn.modrinth.com/data/9s6osm5g/versions/";
-    private static final String CLOTH_CONFIG_URL = "7jtvrmVP/cloth-config-15.0.130-fabric.jar";
+    private static final String CLOTH_CONFIG_URL_FABRIC = "7jtvrmVP/cloth-config-15.0.130-fabric.jar";
+    private static final String CLOTH_CONFIG_URL_NEO = "DqgODWcH/cloth-config-15.0.130-neoforge.jar";
+
+    private static final String CONNECTER_121 = "https://cdn.modrinth.com/data/u58R1TMW/versions/PHaoQIFN/connector-2.0.0-beta.1%2B1.21-full.jar";
+    private static final String CONNECTER_1211 = "https://cdn.modrinth.com/data/u58R1TMW/versions/WFiIDhbD/connector-2.0.0-beta.2%2B1.21.1-full.jar";
+
+    private static final String FORGIFIED_121 = "https://cdn.modrinth.com/data/Aqlf1Shp/versions/K5REyk0w/forgified-fabric-api-0.101.2%2B2.0.10%2B1.21.jar";
+    private static final String FORGIFIED_1211 = "https://cdn.modrinth.com/data/Aqlf1Shp/versions/GMkGuXO4/forgified-fabric-api-0.102.0%2B2.0.12%2B1.21.1.jar";
 
     private static final String FABRIC_QUILT_21_URL = "https://github.com/ZtrolixGit/ZtrolixLibs/raw/main/api/1.21/fabric.jar";
     private static final String FABRIC_QUILT_URL = "https://github.com/ZtrolixGit/ZtrolixLibs/raw/main/api/1.20/fabric.jar";
@@ -133,7 +139,19 @@ public class ZtrolixLibsDownloader {
                                 }
                                 if (selectedLoader.equals("Fabric") || selectedLoader.equals("Quilt")) {
                                     if (selectedVersion.equals("1.21 [Beta]") || selectedVersion.equals("1.21.1 [Beta]")) {
-                                        downloadFile(CLOTH_CONFIG_BASE_URL + CLOTH_CONFIG_URL, folderPath, "cloth-config-15.0.128-fabric.jar", progressBar);
+                                        downloadFile(CLOTH_CONFIG_BASE_URL + CLOTH_CONFIG_URL_FABRIC, folderPath, "cloth-config-15.0.130-fabric.jar", progressBar);
+                                    }
+                                }
+                                if (selectedLoader.equals("NeoForge")) {
+                                    if (selectedVersion.equals("1.21 [Beta]")) {
+                                        downloadFile(CLOTH_CONFIG_BASE_URL + CLOTH_CONFIG_URL_NEO, folderPath, "cloth-config-15.0.130-neoforge.jar", progressBar);
+                                        downloadFile(CONNECTER_121, folderPath, "connector-2.0.0-beta.1+1.21-full.jar", progressBar);
+                                        downloadFile(FORGIFIED_121, folderPath, "forgified-fabric-api-0.101.2+2.0.10+1.21.jar", progressBar);
+                                    }
+                                    if (selectedVersion.equals("1.21.1 [Beta]")) {
+                                        downloadFile(CLOTH_CONFIG_BASE_URL + CLOTH_CONFIG_URL_NEO, folderPath, "cloth-config-15.0.130-neoforge.jar", progressBar);
+                                        downloadFile(CONNECTER_1211, folderPath, "connector-2.0.0-beta.2+1.21.1-full.jar", progressBar);
+                                        downloadFile(FORGIFIED_1211, folderPath, "forgified-fabric-api-0.102.0+2.0.12+1.21.1.jar", progressBar);
                                     }
                                 }
                                 JOptionPane.showMessageDialog(frame, "Download completed!");
@@ -204,7 +222,11 @@ public class ZtrolixLibsDownloader {
             case "Spigot":
                 return SPIGOT_URL;
             case "NeoForge":
-                return NEOFORGE_URL;
+                if (version.equals("1.21 [Beta]") || version.equals("1.21.1 [Beta]")) {
+                    return FABRIC_QUILT_21_URL;
+                } else {
+                    return NEOFORGE_URL;
+                }
             case "Forge":
                 return FORGE_URL;
             default:
@@ -302,6 +324,8 @@ public class ZtrolixLibsDownloader {
                 break;
             case "NeoForge":
                 versionDropdown.addItem("1.20.4");
+                versionDropdown.addItem("1.21 [Beta]");
+                versionDropdown.addItem("1.21.1 [Beta]");
                 break;
             case "Forge":
                 versionDropdown.addItem("1.20.1");

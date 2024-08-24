@@ -4,7 +4,6 @@ import com.mojang.brigadier.Command;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.ztrolix.zlibs.init.ItemGroupInit;
 import com.ztrolix.zlibs.init.ItemInit;
-import lombok.Getter;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.gamerule.v1.GameRuleFactory;
@@ -36,11 +35,14 @@ public class ZtrolixLibs implements ModInitializer {
     public static GameRules.Key<GameRules.IntRule> VAULT_BLOCK_COOLDOWN;
     public static GameRules.Key<GameRules.IntRule> OMINOUS_VAULT_BLOCK_COOLDOWN;
 
-    @Getter
     private static boolean eulaAccepted = false;
 
     public static void acceptEula() {
         eulaAccepted = true;
+    }
+
+    public static boolean isEulaAccepted() {
+        return eulaAccepted;
     }
 
     @Contract("_ -> new")
