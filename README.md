@@ -31,15 +31,24 @@ The universal installer is an installer that installs the library straight into 
 <details>
 <summary>1.21 - 1.21.1 Fabric (2.X.X)</summary>
 
-- [FabricAPI](https://modrinth.com/mod/fabric-api/versions?g=1.21&g=1.21.1)
+- [Fabric API](https://modrinth.com/mod/fabric-api/versions?platform=fabric&gameVersion=1.21.1&gameVersion=1.21)
 - [Cloth Config](https://modrinth.com/mod/cloth-config/versions?l=fabric&g=1.21&g=1.21.1)
+
+</details>
+
+<details>
+<summary>1.21 - 1.21.1 NeoForge (2.X.X)</summary>
+
+- [Sinytra Connector](https://modrinth.com/mod/connector/versions?gameVersion=1.21.1&gameVersion=1.21&platform=neoforge)
+- [Forgified Faric API](https://modrinth.com/mod/forgified-fabric-api/versions?gameVersion=1.21.1&gameVersion=1.21&platform=neoforge)
+- [Cloth Config](https://modrinth.com/mod/cloth-config/versions?gameVersion=1.21.1&gameVersion=1.21&platform=neoforge)
 
 </details>
 
 <details>
 <summary>1.21 - 1.21.1 Quilt (2.X.X)</summary>
 
-- [QSL](https://modrinth.com/mod/qsl/versions?g=1.21)
+- [QSL](https://modrinth.com/mod/qsl/versions?gameVersion=1.21&platform=quilt)
 - [Cloth Config](https://modrinth.com/mod/cloth-config/versions?l=fabric&g=1.21&g=1.21.1)
 
 </details>
@@ -47,14 +56,14 @@ The universal installer is an installer that installs the library straight into 
 <details>
 <summary>1.20 - 1.20.4 Fabric (1.X.X)</summary>
 
-- [FabricAPI](https://modrinth.com/mod/fabric-api/versions?g=1.20&g=1.20.1&g=1.20.2&g=1.20.3&g=1.20.4)
+- [FabricAPI](https://modrinth.com/mod/fabric-api/versions?platform=fabric&gameVersion=1.20.4&gameVersion=1.20.3&gameVersion=1.20.2&gameVersion=1.20.1&gameVersion=1.20)
 
 </details>
 
 <details>
 <summary>1.20 - 1.20.4 Quilt (1.X.X)</summary>
 
-- [QSL](https://modrinth.com/mod/qsl/versions?g=1.20&g=1.20.1&g=1.20.2&g=1.20.4)
+- [QSL](https://modrinth.com/mod/qsl/versions?gameVersion=1.20.4&gameVersion=1.20.2&gameVersion=1.20.1&gameVersion=1.20&platform=quilt)
 
 </details>
 
