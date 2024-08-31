@@ -62,8 +62,6 @@ dependencies {
 	include(implementation("com.github.MinnDevelopment:java-discord-rpc:v2.0.1"))
 	implementation "com.squareup.okhttp3:okhttp:4.9.3"
 	include(implementation("com.ztrolix.fakeid1:modmenu-badges-lib:0.0.0"))
-	include(implementation("com.ztrolix.api:zlibs-api:1.0.0"))
-	include(implementation("com.ztrolix.zfixes:zfixes:1.0.0"))
 }
 
 processResources {

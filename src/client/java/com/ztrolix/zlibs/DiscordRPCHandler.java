@@ -56,7 +56,7 @@ public class DiscordRPCHandler {
             }
             DiscordRPC.INSTANCE.Discord_Shutdown();
         } catch (Exception e) {
-            LOGGER.error("ZtrolixLibs - Failed to shutdown Discord RPC.", e);
+            LOGGER.error("ZtrolixLibs - Failed to shutdown Discord RPC: ", e);
         } finally {
             initialized = false;
         }

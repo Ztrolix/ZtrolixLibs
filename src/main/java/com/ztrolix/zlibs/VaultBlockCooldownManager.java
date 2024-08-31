@@ -11,6 +11,18 @@ import java.util.List;
 import java.util.UUID;
 
 public class VaultBlockCooldownManager {
+    private static final Codec<Pair<UUID, Long>> PAIR_CODEC = RecordCodecBuilder.create(
+            instance -> instance.group(
+                    Uuids.INT_STREAM_CODEC.fieldOf("uuid").forGetter(Pair::getFirst),
+                    Codec.LONG.fieldOf("cooldown_ends_at").forGetter(Pair::getSecond)
+            ).apply(instance, Pair::of)
+    );
+    public static final Codec<VaultBlockCooldownManager> codec = RecordCodecBuilder.create(
+            instance -> instance.group(
+                    Codecs.NONNEGATIVE_INT.fieldOf("cooldown_length").forGetter(VaultBlockCooldownManager::getCooldownLength),
+                    PAIR_CODEC.listOf().fieldOf("player_cooldowns").forGetter(VaultBlockCooldownManager::getPlayerCooldowns)
+            ).apply(instance, VaultBlockCooldownManager::new)
+    );
     public int cooldownLength;
     private List<Pair<UUID, Long>> playerCooldowns;
 
@@ -22,20 +34,6 @@ public class VaultBlockCooldownManager {
         this.cooldownLength = cooldownLength;
         this.playerCooldowns = new ArrayList<>(playerCooldowns);
     }
-
-    private static final Codec<Pair<UUID, Long>> PAIR_CODEC = RecordCodecBuilder.create(
-            instance -> instance.group(
-                    Uuids.INT_STREAM_CODEC.fieldOf("uuid").forGetter(Pair::getFirst),
-                    Codec.LONG.fieldOf("cooldown_ends_at").forGetter(Pair::getSecond)
-            ).apply(instance, Pair::of)
-    );
-
-    public static final Codec<VaultBlockCooldownManager> codec = RecordCodecBuilder.create(
-            instance -> instance.group(
-                    Codecs.NONNEGATIVE_INT.fieldOf("cooldown_length").forGetter(VaultBlockCooldownManager::getCooldownLength),
-                    PAIR_CODEC.listOf().fieldOf("player_cooldowns").forGetter(VaultBlockCooldownManager::getPlayerCooldowns)
-            ).apply(instance, VaultBlockCooldownManager::new)
-    );
 
     public void addPlayer(UUID player, long cooldownEnd) {
         this.playerCooldowns.add(new Pair<>(player, cooldownEnd));
