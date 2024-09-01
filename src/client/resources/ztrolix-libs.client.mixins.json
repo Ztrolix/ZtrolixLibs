@@ -15,7 +15,8 @@
     "AddServerMixin",
     "PlayerMixin",
     "AnvilScreenHandlerMixin",
-    "AnvilScreenMixin"
+    "AnvilScreenMixin",
+    "TitleScreenMixin"
   ],
   "injectors": {
     "defaultRequire": 1
