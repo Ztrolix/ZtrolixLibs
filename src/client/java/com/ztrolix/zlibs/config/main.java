@@ -10,6 +10,6 @@ public class main implements ConfigData {
     public boolean injectToWorld = false;
     @Comment("Count Your Client To The Player Count")
     public boolean contributeToPlayerCount = true;
-    @Comment("Show 'ZtrolixLibs has started!' On First Statup")
-    public boolean zlibsStartedPopup = true;
+    @Comment("Show Changelog On Statup (Disables Each Startup)")
+    public boolean zlibsStartupPopup1 = true;
 }

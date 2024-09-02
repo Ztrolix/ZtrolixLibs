@@ -16,7 +16,8 @@
     "PlayerMixin",
     "AnvilScreenHandlerMixin",
     "AnvilScreenMixin",
-    "TitleScreenMixin"
+    "TitleScreenMixin",
+    "HideModdedMixin"
   ],
   "injectors": {
     "defaultRequire": 1
