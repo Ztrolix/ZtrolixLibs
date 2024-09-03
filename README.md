@@ -1,3 +1,5 @@
+<h1 align="center"></h1>
+
 <img src="https://raw.githubusercontent.com/ZtrolixGit/ZtrolixLibs/main/assets/strip.png">
 
 <h1 align="center">Ztrolix Libs</h1>
