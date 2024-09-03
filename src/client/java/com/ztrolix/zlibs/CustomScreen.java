@@ -40,7 +40,7 @@ public class CustomScreen extends Screen {
                 currentToast = new SystemToast(SystemToast.Type.NARRATOR_TOGGLE, Text.of("ZtrolixLibs"), Text.of("Updating..."));
                 toastManager.add(currentToast);
             });
-            new Thread(this::simulateLoading).start();
+            new Thread(this::simulateLoading, "Update-Thread").start();
         }
 
         int centerX = this.width / 2;
@@ -92,11 +92,12 @@ public class CustomScreen extends Screen {
         MutableText text = Text.literal("Changelog:\n\n")
                 .setStyle(Style.EMPTY.withColor(Formatting.WHITE).withBold(true));
 
-        text.append(Text.literal("- Fixed Changelog Showing Each Startup\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
-        text.append(Text.literal("- Changed Config Text\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
-        text.append(Text.literal("- Added Changelog Box\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
-        text.append(Text.literal("- Added Hide Modded Text\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
-        text.append(Text.literal("- Started Markdown Parsing\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
+        text.append(Text.literal("- Removed PopupAlert API\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
+        text.append(Text.literal("- Added Popup API\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
+        text.append(Text.literal("- Optimized Code\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
+        text.append(Text.literal("- Changed 'ZLibs Item' Model\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
+        text.append(Text.literal("- Started Screen API\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
+        text.append(Text.literal("- Fixed Bugs\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
 
         return text;
     }

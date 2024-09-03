@@ -39,7 +39,7 @@ public class DiscordRPCHandler {
                         Thread.currentThread().interrupt();
                     }
                 }
-            }, "RPC-Callback-Handler");
+            }, "RPC-Handler");
             callbackThread.start();
 
             initialized = true;

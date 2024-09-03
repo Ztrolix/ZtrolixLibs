@@ -23,8 +23,7 @@ public class TitleScreenMixin {
     @Inject(method = "init", at = @At("TAIL"))
     public void onInit(CallbackInfo ci) {
         ZLibsConfig config = AutoConfig.getConfigHolder(ZLibsConfig.class).getConfig();
-
-        if (config.main.zlibsStartupPopup1 && !Shown) {
+        if (config.main.zlibsStartupPopup2 && !Shown) {
             CompletableFuture.supplyAsync(() -> {
                 try {
                     Thread.sleep(2000);
@@ -34,7 +33,7 @@ public class TitleScreenMixin {
                 return 0;
             }).thenAcceptAsync(result -> {
                 Shown = true;
-                config.main.zlibsStartupPopup1 = false;
+                config.main.zlibsStartupPopup2 = false;
                 AutoConfig.getConfigHolder(ZLibsConfig.class).save();
 
                 MinecraftClient client = MinecraftClient.getInstance();
