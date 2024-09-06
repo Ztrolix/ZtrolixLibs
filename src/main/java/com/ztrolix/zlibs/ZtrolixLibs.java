@@ -2,13 +2,16 @@ package com.ztrolix.zlibs;
 
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import com.ztrolix.zlibs.api.custom;
 import com.ztrolix.zlibs.init.ItemGroupInit;
 import com.ztrolix.zlibs.init.ItemInit;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.gamerule.v1.GameRuleFactory;
 import net.fabricmc.fabric.api.gamerule.v1.GameRuleRegistry;
+import net.minecraft.block.Block;
 import net.minecraft.command.argument.EntityArgumentType;
+import net.minecraft.item.*;
 import net.minecraft.scoreboard.AbstractTeam;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -22,6 +25,9 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Arrays;
+import java.util.List;
 
 import static net.minecraft.command.argument.MessageArgumentType.getMessage;
 import static net.minecraft.command.argument.MessageArgumentType.message;
@@ -142,9 +148,9 @@ public class ZtrolixLibs implements ModInitializer {
         }
         LOGGER.info("-- -- -- -- -- -- -- -- -- -- -- --");
 
-        ItemGroupInit.load();
+        //ItemGroupInit.load();
         LOGGER.info("Loaded: ItemGroupInit");
-        ItemInit.load();
+        //ItemInit.load();
         LOGGER.info("Loaded: ItemInit");
         LOGGER.info("Loaded: Config");
         ModNetworkHandler.registerServer();
@@ -180,6 +186,12 @@ public class ZtrolixLibs implements ModInitializer {
         LOGGER.info("Loaded: PopupAlert");
         LOGGER.info("Loaded: LanguageUtil");
         LOGGER.info("Loaded: Sounds");
+
+        Item zlibs_item = custom.Item("zlibs_item", MOD_ID, ItemGroups.TOOLS);
+        List<Item> items = Arrays.asList(
+                zlibs_item
+        );
+        custom.ItemGroup("zlibs_group", MOD_ID, zlibs_item, items);
 
         LOGGER.info("-- -- -- -- -- -- -- -- -- -- -- --");
         LOGGER.warn("Warning: 'Error loading parent data from mod: ztrolix-libs' is a allowed error please do not report this error!");
