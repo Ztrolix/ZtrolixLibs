@@ -22,9 +22,9 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(VaultBlockEntity.class)
 public abstract class VaultBlockEntityMixin implements CooldownManagerProvider {
-
     @Shadow
     private static final Logger LOGGER = LogUtils.getLogger();
+
     @Unique
     private VaultBlockCooldownManager cooldownManager;
 

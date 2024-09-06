@@ -19,10 +19,10 @@ import java.util.Scanner;
 
 @Mixin(EulaReader.class)
 public abstract class EulaMixin {
-
     @Shadow
     @Final
     private static Logger LOGGER;
+
     @Shadow
     @Final
     private Path eulaFile;

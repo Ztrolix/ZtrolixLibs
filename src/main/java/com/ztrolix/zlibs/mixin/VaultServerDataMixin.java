@@ -11,7 +11,6 @@ import java.util.UUID;
 
 @Mixin(VaultServerData.class)
 public class VaultServerDataMixin implements RewardedPlayersProvider {
-
     @Shadow
     private final Set<UUID> rewardedPlayers = new ObjectLinkedOpenHashSet<>();
 

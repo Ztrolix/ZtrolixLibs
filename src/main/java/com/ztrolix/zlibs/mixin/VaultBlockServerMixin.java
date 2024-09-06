@@ -27,7 +27,6 @@ import java.util.UUID;
 
 @Mixin(VaultBlockEntity.Server.class)
 public class VaultBlockServerMixin {
-
     @Inject(method = "tryUnlock", at = @At(value = "INVOKE",
             target = "Lnet/minecraft/block/vault/VaultServerData;markPlayerAsRewarded(Lnet/minecraft/entity/player/PlayerEntity;)V", shift = At.Shift.AFTER))
     private static void tryUnlock(ServerWorld world, BlockPos pos, BlockState state, VaultConfig config, VaultServerData serverData, VaultSharedData sharedData, PlayerEntity player, ItemStack stack, CallbackInfo info) {

@@ -12,6 +12,5 @@ public class ItemInit {
         return Registry.register(Registries.ITEM, ZtrolixLibs.id(name), item);
     }
 
-    public static void load() {
-    }
+    public static void load() { }
 }

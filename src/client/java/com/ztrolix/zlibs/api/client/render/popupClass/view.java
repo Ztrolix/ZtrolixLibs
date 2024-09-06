@@ -3,7 +3,6 @@ package com.ztrolix.zlibs.api.client.render.popupClass;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.client.toast.SystemToast;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
@@ -16,8 +15,6 @@ public class view extends Screen {
     private static final boolean toastShown = false;
     private final Screen parent;
     private final MutableText changelogText;
-    private final int progress = 0;
-    private SystemToast currentToast;
 
     public view(Text text, Screen parent, String title, String description) {
         super(text);

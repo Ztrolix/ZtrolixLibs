@@ -23,6 +23,7 @@ public class VaultBlockCooldownManager {
                     PAIR_CODEC.listOf().fieldOf("player_cooldowns").forGetter(VaultBlockCooldownManager::getPlayerCooldowns)
             ).apply(instance, VaultBlockCooldownManager::new)
     );
+
     public int cooldownLength;
     private List<Pair<UUID, Long>> playerCooldowns;
 

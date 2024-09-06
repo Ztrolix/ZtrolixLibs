@@ -7,7 +7,5 @@ public class CustomOptions {
         }
     }
 
-    private static void addCustomOptions() {
-
-    }
+    private static void addCustomOptions() { }
 }

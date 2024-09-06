@@ -9,8 +9,6 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
-import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import org.slf4j.Logger;
@@ -23,15 +21,6 @@ import java.nio.charset.StandardCharsets;
 
 public class ZtrolixLibsClient implements ClientModInitializer {
     public static final Logger LOGGER = LoggerFactory.getLogger("ztrolix-libs");
-    public static final ZLibsConfig CONFIG = new ZLibsConfig();
-
-    public static Screen getConfigScreen(Screen parent) {
-        return AutoConfig.getConfigScreen(ZLibsConfig.class, parent).get();
-    }
-
-    public static boolean isSodiumLoaded() {
-        return FabricLoader.getInstance().isModLoaded("sodium");
-    }
 
     @Override
     public void onInitializeClient() {
