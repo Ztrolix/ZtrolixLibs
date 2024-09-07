@@ -20,16 +20,22 @@ public class custom {
         itemGroupID = itemGroupID.toLowerCase();
         modID = modID.toLowerCase();
         RegistryKey<ItemGroup> ITEM_GROUP_KEY = RegistryKey.of(Registries.ITEM_GROUP.getKey(), Identifier.of(modID, itemGroupID));
-        ItemGroup ITEM_GROUP = FabricItemGroup.builder()
-                .displayName(Text.translatable("itemGroup." + modID + "." + itemGroupID))
-                .icon(() -> new ItemStack(itemIconID))
-                .build();
-        Registry.register(Registries.ITEM_GROUP, ITEM_GROUP_KEY, ITEM_GROUP);
+        if (itemIconID != null) {
+            ItemGroup ITEM_GROUP = FabricItemGroup.builder()
+                    .displayName(Text.translatable("itemGroup." + modID + "." + itemGroupID))
+                    .icon(() -> new ItemStack(itemIconID))
+                    .build();
+            Registry.register(Registries.ITEM_GROUP, ITEM_GROUP_KEY, ITEM_GROUP);
+        }
         ItemGroupEvents.modifyEntriesEvent(ITEM_GROUP_KEY).register(itemGroup -> {
             for (Item item : itemsToAdd) {
                 itemGroup.add(item);
             }
         });
+    }
+
+    public static void ItemGroup(String itemGroupID, String modID, List<Item> itemsToAdd) {
+        ItemGroup(itemGroupID, modID, null, itemsToAdd);
     }
 
     public static Item Item(String itemID, String modID, RegistryKey<ItemGroup> itemGroup) {

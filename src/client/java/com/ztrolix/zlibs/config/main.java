@@ -11,5 +11,5 @@ public class main implements ConfigData {
     @Comment("Count Your Client To The Player Count")
     public boolean contributeToPlayerCount = true;
     @Comment("Show Changelog On Statup (Disables Each Startup)")
-    public boolean zlibsStartupPopup5 = true;
+    public boolean zlibsStartupPopup6 = true;
 }
