@@ -10,6 +10,8 @@ public class main implements ConfigData {
     public boolean injectToWorld = false;
     @Comment("Count Your Client To The Player Count")
     public boolean contributeToPlayerCount = true;
+    @Comment("Add Custom Badges to Modmenu")
+    public boolean customBadges = true;
     @Comment("Show Changelog On Statup (Disables Each Startup)")
-    public boolean zlibsStartupPopup6 = true;
+    public boolean zlibsStartupPopup7 = true;
 }

@@ -92,7 +92,12 @@ public class CustomScreen extends Screen {
         MutableText text = Text.literal("Changelog:\n\n")
                 .setStyle(Style.EMPTY.withColor(Formatting.WHITE).withBold(true));
 
-        text.append(Text.literal("- Fixed ItemGroups\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
+        text.append(Text.literal("- Added Bubble Pop SFX\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
+        text.append(Text.literal("- Updated Chests -> Static Block\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
+        text.append(Text.literal("- Updated Crop Textures\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
+        text.append(Text.literal("- Updated Enchanted Glint\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
+        text.append(Text.literal("- Updated Mace Model\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
+        text.append(Text.literal("- Fixed Modmenu Badges\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
 
         return text;
     }

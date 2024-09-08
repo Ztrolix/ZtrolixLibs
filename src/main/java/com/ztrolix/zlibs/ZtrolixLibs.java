@@ -183,6 +183,13 @@ public class ZtrolixLibs implements ModInitializer {
         LOGGER.info("Loaded: PopupAlert");
         LOGGER.info("Loaded: LanguageUtil");
         LOGGER.info("Loaded: Sounds");
+        LOGGER.info("Loaded: BubblesPop");
+        LOGGER.info("Loaded: BetterTextures");
+        LOGGER.info("Loaded: InGameHud");
+        LOGGER.info("Loaded: CustomScreen");
+        LOGGER.info("Loaded: CustomItemGroups");
+        LOGGER.info("Loaded: CustomArmor");
+        LOGGER.info("Loaded: CustomWeapons");
 
         Item zlibs_item = custom.Item("zlibs_item", MOD_ID);
         List<Item> items = List.of(

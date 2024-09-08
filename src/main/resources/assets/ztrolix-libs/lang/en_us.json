@@ -1,7 +1,8 @@
 {
   "text.autoconfig.ztrolix-libs.option.main.injectToWorld": "Inject To World",
   "text.autoconfig.ztrolix-libs.option.main.contributeToPlayerCount": "Contribute To Player Count",
-  "text.autoconfig.ztrolix-libs.option.main.zlibsStartupPopup6": "Show Changelog On Statup",
+  "text.autoconfig.ztrolix-libs.option.main.customBadges": "Add Custom Modmenu Badges",
+  "text.autoconfig.ztrolix-libs.option.main.zlibsStartupPopup7": "Show Changelog On Statup",
   "text.autoconfig.ztrolix-libs.option.compatibility.discordRPC": "Discord RPC",
   "text.autoconfig.ztrolix-libs.option.compatibility.sodiumIntegration": "Integrate with Sodium",
   "text.autoconfig.ztrolix-libs.category.main": "Main",
