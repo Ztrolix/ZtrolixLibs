@@ -48,7 +48,7 @@ public class CustomScreen extends Screen {
 
         ButtonWidget buttonWidget = ButtonWidget.builder(Text.of("Dismiss"), (btn) -> {
             close();
-        }).dimensions(centerX - 60, centerY + 60, 120, 20).build();
+        }).dimensions(centerX - 60, centerY + 80, 120, 20).build();
         this.addDrawableChild(buttonWidget);
     }
 
@@ -62,11 +62,11 @@ public class CustomScreen extends Screen {
         int centerX = this.width / 2;
         int buttonY = this.height / 2;
 
-        context.drawText(this.textRenderer, "Welcome to ZtrolixLibs!", centerX - this.textRenderer.getWidth("Welcome to ZtrolixLibs!") / 2, buttonY - this.textRenderer.fontHeight - 80, 0xFFFFFFFF, true);
+        context.drawText(this.textRenderer, "Welcome to ZtrolixLibs!", centerX - this.textRenderer.getWidth("Welcome to ZtrolixLibs!") / 2, buttonY - this.textRenderer.fontHeight - 100, 0xFFFFFFFF, true);
 
         if (changelogText != null) {
-            int boxWidth = 200;
-            int boxHeight = 100;
+            int boxWidth = 300;
+            int boxHeight = 150;
             int boxX = centerX - boxWidth / 2;
             int boxY = buttonY - boxHeight / 2 - 20;
 
@@ -77,8 +77,8 @@ public class CustomScreen extends Screen {
     }
 
     private void renderChangelogBox(DrawContext context, int x, int y) {
-        int boxWidth = 200;
-        int boxHeight = 100;
+        int boxWidth = 300;
+        int boxHeight = 150;
 
         context.fill(x, y, x + boxWidth, y + boxHeight, 0xFF333333);
         context.drawBorder(x, y, boxWidth, boxHeight, 0xFF000000);
@@ -92,12 +92,17 @@ public class CustomScreen extends Screen {
         MutableText text = Text.literal("Changelog:\n\n")
                 .setStyle(Style.EMPTY.withColor(Formatting.WHITE).withBold(true));
 
-        text.append(Text.literal("- Added Bubble Pop SFX\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
-        text.append(Text.literal("- Updated Chests -> Static Block\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
-        text.append(Text.literal("- Updated Crop Textures\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
-        text.append(Text.literal("- Updated Enchanted Glint\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
-        text.append(Text.literal("- Updated Mace Model\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
-        text.append(Text.literal("- Fixed Modmenu Badges\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
+        text.append(Text.literal("- Added Hostile Mob Highlight\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
+        text.append(Text.literal("- Added Is Mod Loaded API\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
+        text.append(Text.literal("- Added Transparent Nametags\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
+        text.append(Text.literal("- Added Sodium Translations\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
+        text.append(Text.literal("- Added 3D Sun/Moon\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
+        text.append(Text.literal("- Added Stop Looking In Me!\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
+        text.append(Text.literal("- Updated Flame Particle Texture\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
+        text.append(Text.literal("- Updated Fabric Loader to 0.16.5\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
+        text.append(Text.literal("- Fixed Shield Following Camera\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
+        text.append(Text.literal("- Fixed Many Issues and Bugs\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
+        text.append(Text.literal("- Removed Loading Terrain Screen\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
 
         return text;
     }

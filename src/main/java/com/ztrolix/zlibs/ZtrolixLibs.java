@@ -8,8 +8,8 @@ import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.gamerule.v1.GameRuleFactory;
 import net.fabricmc.fabric.api.gamerule.v1.GameRuleRegistry;
 import net.minecraft.command.argument.EntityArgumentType;
+import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroups;
 import net.minecraft.scoreboard.AbstractTeam;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -24,6 +24,7 @@ import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static net.minecraft.command.argument.MessageArgumentType.getMessage;
@@ -34,6 +35,8 @@ import static net.minecraft.server.command.CommandManager.literal;
 public class ZtrolixLibs implements ModInitializer {
     public static final Logger LOGGER = LoggerFactory.getLogger("ztrolix-libs");
     public static final String MOD_ID = "ztrolix-libs";
+    public static int duration = -1;
+    public static List<HostileEntity> list = new ArrayList<>();
 
     public static GameRules.Key<GameRules.IntRule> VAULT_BLOCK_COOLDOWN;
     public static GameRules.Key<GameRules.IntRule> OMINOUS_VAULT_BLOCK_COOLDOWN;

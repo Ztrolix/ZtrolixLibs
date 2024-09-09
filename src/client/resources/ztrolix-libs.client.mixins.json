@@ -18,7 +18,15 @@
     "AnvilScreenMixin",
     "TitleScreenMixin",
     "HideModdedMixin",
-    "InGameHudMixin"
+    "InGameHudMixin",
+    "EntityModelMixin",
+    "PlayerEntityMixin",
+    "ProgressScreenMixin",
+    "DownloadingTerrainScreenMixin",
+    "PlayerNameTagMixin",
+    "MessageHandlerMixin",
+    "ClientPlayerEntityMixin",
+    "MinecraftClientMixin"
   ],
   "injectors": {
     "defaultRequire": 1

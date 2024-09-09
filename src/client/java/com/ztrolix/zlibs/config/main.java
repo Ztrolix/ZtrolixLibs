@@ -13,5 +13,5 @@ public class main implements ConfigData {
     @Comment("Add Custom Badges to Modmenu")
     public boolean customBadges = true;
     @Comment("Show Changelog On Statup (Disables Each Startup)")
-    public boolean zlibsStartupPopup7 = true;
+    public boolean zlibsStartupPopup8 = true;
 }

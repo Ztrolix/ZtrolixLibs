@@ -9,6 +9,7 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
+import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import org.slf4j.Logger;
@@ -18,9 +19,13 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ZtrolixLibsClient implements ClientModInitializer {
     public static final Logger LOGGER = LoggerFactory.getLogger("ztrolix-libs");
+    public static int duration = -1;
+    public static List<HostileEntity> list = new ArrayList<>();
 
     @Override
     public void onInitializeClient() {
