@@ -21,6 +21,9 @@
   "icon": "assets/ztrolix-libs/icon.png",
   "environment": "*",
   "entrypoints": {
+    "preLaunch": [
+      "com.ztrolix.zlibs.EarlyLoadingBarPreLaunch"
+    ],
     "main": [
       "com.ztrolix.zlibs.ZtrolixLibs"
     ],
@@ -34,6 +37,7 @@
       "com.ztrolix.zlibs.ModMenuIntegration"
     ]
   },
+  "accessWidener": "ztrolix-libs.accesswidener",
   "mixins": [
     "ztrolix-libs.mixins.json",
     {

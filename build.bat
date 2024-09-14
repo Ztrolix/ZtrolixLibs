@@ -2,5 +2,5 @@
 title Ztrolix Libs - Building
 cls
 
-gradlew clean build
+gradlew clean build --warning-mode all
 pause

@@ -15,6 +15,10 @@ public class ZLibsConfig extends PartitioningSerializer.GlobalData {
     @ConfigEntry.Gui.TransitiveObject
     public compatibility compatibility = new compatibility();
 
+    @ConfigEntry.Category("lastServer")
+    @ConfigEntry.Gui.TransitiveObject
+    public lastServer lastServer = new lastServer();
+
     public static ZLibsConfig get() {
         return AutoConfig.getConfigHolder(ZLibsConfig.class).getConfig();
     }

@@ -1,17 +1,27 @@
 package com.ztrolix.zlibs;
 
+import com.google.common.io.Files;
 import com.ztrolix.zlibs.config.ZLibsConfig;
+import com.ztrolix.zlibs.gui.PreLaunchWindow;
 import com.ztrolix.zlibs.sodium.CustomOptions;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.ConfigHolder;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.api.EnvType;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
+import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.client.network.ServerInfo;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.WorldSavePath;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,6 +29,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +37,28 @@ public class ZtrolixLibsClient implements ClientModInitializer {
     public static final Logger LOGGER = LoggerFactory.getLogger("ztrolix-libs");
     public static int duration = -1;
     public static List<HostileEntity> list = new ArrayList<>();
+    private static final boolean isInServerList = false;
+    public static boolean lastLocal = true;
+    public static String serverName = "";
+    public static String serverAddress = "";
+
+    public static boolean isWindows() {
+        return System.getProperty("os.name").toLowerCase().contains("windows");
+    }
+
+    public boolean isModLoaded(String modID) {
+        return FabricLoader.getInstance().isModLoaded(modID);
+    }
+
+    public boolean isNoEarlyLoaders() {
+        return !(isModLoaded("early-loading-screen") ||
+                isModLoaded("early_loading_bar") ||
+                isModLoaded("earlyloadingscreen") ||
+                isModLoaded("mindful-loading-info") ||
+                isModLoaded("neoforge") ||
+                isModLoaded("connector") ||
+                isModLoaded("mod-loading-screen"));
+    }
 
     @Override
     public void onInitializeClient() {
@@ -94,6 +127,38 @@ public class ZtrolixLibsClient implements ClientModInitializer {
                 return 1;
             }));
         });
+
+        ClientPlayConnectionEvents.JOIN.register((handler, sender, client) -> {
+            if (client.isIntegratedServerRunning()) {
+                lastLocal = true;
+                String levelName = client.getServer().getSaveProperties().getLevelName();
+                Path pathtoSave = Path.of(Files.simplifyPath(client.getServer().getSavePath(WorldSavePath.ROOT).toString()));
+                String folderName = pathtoSave.normalize().toFile().getName();
+                serverName = levelName;
+                serverAddress = folderName;
+            } else {
+                ServerInfo serverInfo = client.getCurrentServerEntry();
+                lastLocal = false;
+                serverName = serverInfo.name;
+                serverAddress = serverInfo.address;
+            }
+            config.lastServer.serverName = serverName;
+            config.lastServer.serverAddress = serverAddress;
+            AutoConfig.getConfigHolder(ZLibsConfig.class).save();
+        });
+
+        ClientTickEvents.END_CLIENT_TICK.register(client -> {
+            if (client.player != null) {
+                StatusEffectInstance darknessEffect = client.player.getStatusEffect(StatusEffects.DARKNESS);
+                if (darknessEffect != null) {
+                    client.player.removeStatusEffect(StatusEffects.DARKNESS);
+                }
+            }
+        });
+
+        if (isWindows() && FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT && isNoEarlyLoaders()) {
+            ClientLifecycleEvents.CLIENT_STARTED.register(client -> PreLaunchWindow.remove());
+        }
     }
 
     public void applyConfig() {

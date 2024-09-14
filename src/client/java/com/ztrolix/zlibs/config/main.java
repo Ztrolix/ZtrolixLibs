@@ -12,6 +12,8 @@ public class main implements ConfigData {
     public boolean contributeToPlayerCount = true;
     @Comment("Add Custom Badges to Modmenu")
     public boolean customBadges = true;
-    @Comment("Show Changelog On Statup (Disables Each Startup)")
-    public boolean zlibsStartupPopup8 = true;
+    @Comment("Show Changelog On First Startup (Disables Each Startup)")
+    public boolean zlibsStartupPopup9 = true;
+    @Comment("Show Changelog On Every Startup (Overrides First Startup)")
+    public boolean changelogEveryStartup = false;
 }

@@ -36,6 +36,7 @@ public class ZtrolixLibsDownloader {
     private static final String FORGIFIED_1211 = "https://cdn.modrinth.com/data/Aqlf1Shp/versions/GMkGuXO4/forgified-fabric-api-0.102.0%2B2.0.12%2B1.21.1.jar";
 
     private static final String FABRIC_QUILT_21_URL = "https://github.com/ZtrolixGit/ZtrolixLibs/raw/main/api/1.21/fabric.jar";
+    private static final String NEO_21_URL = "https://github.com/ZtrolixGit/ZtrolixLibs/raw/main/api/1.21/neo.jar";
     private static final String FABRIC_QUILT_URL = "https://github.com/ZtrolixGit/ZtrolixLibs/raw/main/api/1.20/fabric.jar";
     private static final String SPIGOT_URL = "https://github.com/ZtrolixGit/ZtrolixLibs/raw/main/api/1.20/spigot.jar";
     private static final String NEOFORGE_URL = "https://github.com/ZtrolixGit/ZtrolixLibs/raw/main/api/1.20/neo.jar";
@@ -223,7 +224,7 @@ public class ZtrolixLibsDownloader {
                 return SPIGOT_URL;
             case "NeoForge":
                 if (version.equals("1.21 [Beta]") || version.equals("1.21.1 [Beta]")) {
-                    return FABRIC_QUILT_21_URL;
+                    return NEO_21_URL;
                 } else {
                     return NEOFORGE_URL;
                 }

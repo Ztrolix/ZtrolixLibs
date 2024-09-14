@@ -1,4 +1,5 @@
 {
+  "verbose": true,
   "required": true,
   "package": "com.ztrolix.zlibs.mixin.client",
   "compatibilityLevel": "JAVA_21",
@@ -26,7 +27,16 @@
     "PlayerNameTagMixin",
     "MessageHandlerMixin",
     "ClientPlayerEntityMixin",
-    "MinecraftClientMixin"
+    "MinecraftClientMixin",
+    "GameMenuScreenMixin",
+    "GameOptionsMixin",
+    "ContinueMixin",
+    "DrawContextAccessor",
+    "ChatHudMixin",
+    "AbstractClientPlayerEntityMixin",
+    "PlayerEntityRendererMixin",
+    "LivingEntityMixin",
+    "ScreenAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

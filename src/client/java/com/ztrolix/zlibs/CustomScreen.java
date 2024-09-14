@@ -20,6 +20,7 @@ public class CustomScreen extends Screen {
     private int progress = 0;
     private SystemToast currentToast;
     private final MutableText changelogText;
+    private final boolean Shown = false;
 
     public CustomScreen(Text title, Screen parent) {
         super(title);
@@ -48,7 +49,7 @@ public class CustomScreen extends Screen {
 
         ButtonWidget buttonWidget = ButtonWidget.builder(Text.of("Dismiss"), (btn) -> {
             close();
-        }).dimensions(centerX - 60, centerY + 80, 120, 20).build();
+        }).dimensions(centerX - 60, centerY + 110, 120, 20).build();
         this.addDrawableChild(buttonWidget);
     }
 
@@ -62,11 +63,11 @@ public class CustomScreen extends Screen {
         int centerX = this.width / 2;
         int buttonY = this.height / 2;
 
-        context.drawText(this.textRenderer, "Welcome to ZtrolixLibs!", centerX - this.textRenderer.getWidth("Welcome to ZtrolixLibs!") / 2, buttonY - this.textRenderer.fontHeight - 100, 0xFFFFFFFF, true);
+        context.drawText(this.textRenderer, "Welcome to ZtrolixLibs!", centerX - this.textRenderer.getWidth("Welcome to ZtrolixLibs!") / 2, buttonY - this.textRenderer.fontHeight - 130, 0xFFFFFFFF, true);
 
         if (changelogText != null) {
             int boxWidth = 300;
-            int boxHeight = 150;
+            int boxHeight = 200;
             int boxX = centerX - boxWidth / 2;
             int boxY = buttonY - boxHeight / 2 - 20;
 
@@ -78,7 +79,7 @@ public class CustomScreen extends Screen {
 
     private void renderChangelogBox(DrawContext context, int x, int y) {
         int boxWidth = 300;
-        int boxHeight = 150;
+        int boxHeight = 200;
 
         context.fill(x, y, x + boxWidth, y + boxHeight, 0xFF333333);
         context.drawBorder(x, y, boxWidth, boxHeight, 0xFF000000);
@@ -92,17 +93,22 @@ public class CustomScreen extends Screen {
         MutableText text = Text.literal("Changelog:\n\n")
                 .setStyle(Style.EMPTY.withColor(Formatting.WHITE).withBold(true));
 
-        text.append(Text.literal("- Added Hostile Mob Highlight\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
-        text.append(Text.literal("- Added Is Mod Loaded API\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
-        text.append(Text.literal("- Added Transparent Nametags\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
-        text.append(Text.literal("- Added Sodium Translations\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
-        text.append(Text.literal("- Added 3D Sun/Moon\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
-        text.append(Text.literal("- Added Stop Looking In Me!\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
-        text.append(Text.literal("- Updated Flame Particle Texture\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
-        text.append(Text.literal("- Updated Fabric Loader to 0.16.5\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
-        text.append(Text.literal("- Fixed Shield Following Camera\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
-        text.append(Text.literal("- Fixed Many Issues and Bugs\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
-        text.append(Text.literal("- Removed Loading Terrain Screen\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
+        text.append(Text.literal("- Updated Build Script\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
+        text.append(Text.literal("- Updated Gradle -> 8.10.1\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
+        text.append(Text.literal("- Updated Installer -> #19\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
+        text.append(Text.literal("- Updated Minecraft Support -> 1.21 - 24W37A\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
+        text.append(Text.literal("- Updated Shadow Texture\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
+        text.append(Text.literal("- Updated First Startup Changelog\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
+        text.append(Text.literal("- Added Every Startup Changelog\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
+        text.append(Text.literal("- Added Continue Button\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
+        text.append(Text.literal("- Added Chat Bubbles\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
+        text.append(Text.literal("- Added Early Loading Bar\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
+        text.append(Text.literal("- Removed Player Reporting\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
+        text.append(Text.literal("- Removed BG from Nametags\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
+        text.append(Text.literal("- Removed Custom GUI Textures\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
+        text.append(Text.literal("- Removed FAPI\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
+        text.append(Text.literal("- Removed NeoForge Support\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
+        text.append(Text.literal("- Removed Darkness Effect\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
 
         return text;
     }
@@ -133,6 +139,15 @@ public class CustomScreen extends Screen {
 
                     this.client.getToastManager().add(
                             new SystemToast(SystemToast.Type.NARRATOR_TOGGLE, Text.of("ZtrolixLibs"), Text.of("Recommends the use of 'Reese's Sodium Options' when using Sodium."))
+                    );
+                }
+                if (isModLoaded("iris") || isModLoaded("optifine")) {
+                    LOGGER.warn("-----------------------------------");
+                    LOGGER.warn("Ztrolix Libs - Does not support shaders!");
+                    LOGGER.warn("-----------------------------------");
+
+                    this.client.getToastManager().add(
+                            new SystemToast(SystemToast.Type.NARRATOR_TOGGLE, Text.of("ZtrolixLibs"), Text.of("Does not support shaders, somethings won't render!"))
                     );
                 }
             });

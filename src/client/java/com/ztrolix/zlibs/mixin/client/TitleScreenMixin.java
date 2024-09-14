@@ -23,24 +23,32 @@ public class TitleScreenMixin {
     @Inject(method = "init", at = @At("TAIL"))
     public void onInit(CallbackInfo ci) {
         ZLibsConfig config = AutoConfig.getConfigHolder(ZLibsConfig.class).getConfig();
-        if (config.main.zlibsStartupPopup8 && !Shown) {
-            CompletableFuture.supplyAsync(() -> {
-                try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-                return 0;
-            }).thenAcceptAsync(result -> {
-                Shown = true;
-                config.main.zlibsStartupPopup8 = false;
-                AutoConfig.getConfigHolder(ZLibsConfig.class).save();
-
-                MinecraftClient client = MinecraftClient.getInstance();
-                Screen currentScreen = client.currentScreen;
-
-                client.execute(() -> client.setScreen(new CustomScreen(Text.empty(), currentScreen)));
-            }, MinecraftClient.getInstance());
+        if (config.main.zlibsStartupPopup9 && !Shown) {
+            showPopup();
+        } else if (config.main.changelogEveryStartup && !Shown) {
+            showPopup();
         }
+    }
+
+    @Unique
+    private void showPopup() {
+        ZLibsConfig config = AutoConfig.getConfigHolder(ZLibsConfig.class).getConfig();
+        CompletableFuture.supplyAsync(() -> {
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            return 0;
+        }).thenAcceptAsync(result -> {
+            Shown = true;
+            config.main.zlibsStartupPopup9 = false;
+            AutoConfig.getConfigHolder(ZLibsConfig.class).save();
+
+            MinecraftClient client = MinecraftClient.getInstance();
+            Screen currentScreen = client.currentScreen;
+
+            client.execute(() -> client.setScreen(new CustomScreen(Text.empty(), currentScreen)));
+        }, MinecraftClient.getInstance());
     }
 }
