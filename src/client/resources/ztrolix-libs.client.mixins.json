@@ -19,7 +19,6 @@
     "AnvilScreenMixin",
     "TitleScreenMixin",
     "HideModdedMixin",
-    "InGameHudMixin",
     "EntityModelMixin",
     "PlayerEntityMixin",
     "ProgressScreenMixin",

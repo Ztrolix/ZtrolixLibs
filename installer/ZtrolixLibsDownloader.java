@@ -35,8 +35,11 @@ public class ZtrolixLibsDownloader {
     private static final String FORGIFIED_121 = "https://cdn.modrinth.com/data/Aqlf1Shp/versions/K5REyk0w/forgified-fabric-api-0.101.2%2B2.0.10%2B1.21.jar";
     private static final String FORGIFIED_1211 = "https://cdn.modrinth.com/data/Aqlf1Shp/versions/GMkGuXO4/forgified-fabric-api-0.102.0%2B2.0.12%2B1.21.1.jar";
 
+    private static final String CONNECTEREXTRAS_121 = "https://cdn.modrinth.com/data/FYpiwiBR/versions/WUktoh8L/ConnectorExtras-1.12.0%2B1.21.jar";
+    private static final String CONNECTEREXTRAS_1211 = "https://cdn.modrinth.com/data/FYpiwiBR/versions/dgLCqZyo/ConnectorExtras-1.12.1%2B1.21.1.jar";
+
     private static final String FABRIC_QUILT_21_URL = "https://github.com/ZtrolixGit/ZtrolixLibs/raw/main/api/1.21/fabric.jar";
-    private static final String NEO_21_URL = "https://github.com/ZtrolixGit/ZtrolixLibs/raw/main/api/1.21/neo.jar";
+    private static final String NEO_21_URL = "https://github.com/ZtrolixGit/ZtrolixLibs/raw/main/api/1.21/fabric.jar";
     private static final String FABRIC_QUILT_URL = "https://github.com/ZtrolixGit/ZtrolixLibs/raw/main/api/1.20/fabric.jar";
     private static final String SPIGOT_URL = "https://github.com/ZtrolixGit/ZtrolixLibs/raw/main/api/1.20/spigot.jar";
     private static final String NEOFORGE_URL = "https://github.com/ZtrolixGit/ZtrolixLibs/raw/main/api/1.20/neo.jar";
@@ -148,11 +151,13 @@ public class ZtrolixLibsDownloader {
                                         downloadFile(CLOTH_CONFIG_BASE_URL + CLOTH_CONFIG_URL_NEO, folderPath, "cloth-config-15.0.130-neoforge.jar", progressBar);
                                         downloadFile(CONNECTER_121, folderPath, "connector-2.0.0-beta.1+1.21-full.jar", progressBar);
                                         downloadFile(FORGIFIED_121, folderPath, "forgified-fabric-api-0.101.2+2.0.10+1.21.jar", progressBar);
+                                        downloadFile(CONNECTEREXTRAS_121, folderPath, "ConnectorExtras-1.12.0+1.21.jar", progressBar);
                                     }
                                     if (selectedVersion.equals("1.21.1 [Beta]")) {
                                         downloadFile(CLOTH_CONFIG_BASE_URL + CLOTH_CONFIG_URL_NEO, folderPath, "cloth-config-15.0.130-neoforge.jar", progressBar);
                                         downloadFile(CONNECTER_1211, folderPath, "connector-2.0.0-beta.2+1.21.1-full.jar", progressBar);
                                         downloadFile(FORGIFIED_1211, folderPath, "forgified-fabric-api-0.102.0+2.0.12+1.21.1.jar", progressBar);
+                                        downloadFile(CONNECTEREXTRAS_1211, folderPath, "ConnectorExtras-1.12.1+1.21.1.jar", progressBar);
                                     }
                                 }
                                 JOptionPane.showMessageDialog(frame, "Download completed!");
@@ -259,7 +264,7 @@ public class ZtrolixLibsDownloader {
                     case "1.21 [Beta]":
                         return FABRIC_API_BASE_URL + "oGwyXeEI/fabric-api-0.102.0%2B1.21.jar";
                     case "1.21.1 [Beta]":
-                        return FABRIC_API_BASE_URL + "bK6OgzFj/fabric-api-0.102.1%2B1.21.1.jar";
+                        return FABRIC_API_BASE_URL + "qKPgBeHl/fabric-api-0.104.0%2B1.21.1.jar";
                     default:
                         return null;
                 }
