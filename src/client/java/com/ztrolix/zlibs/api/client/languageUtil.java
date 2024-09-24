@@ -1,12 +1,22 @@
 package com.ztrolix.zlibs.api.client;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.resource.language.LanguageManager;
 
-@Environment(EnvType.CLIENT)
+import java.util.Objects;
+
 public class languageUtil {
     public static String getLang() {
-        return MinecraftClient.getInstance().getLanguageManager().getLanguage();
+        MinecraftClient client = MinecraftClient.getInstance();
+        return client.getLanguageManager().getLanguage();
+    }
+
+    public static void setLang(String lang) {
+        MinecraftClient client = MinecraftClient.getInstance();
+        LanguageManager languageManager = client.getLanguageManager();
+        if (!Objects.equals(getLang(), lang)) {
+            languageManager.setLanguage(lang);
+            client.reloadResources();
+        }
     }
 }

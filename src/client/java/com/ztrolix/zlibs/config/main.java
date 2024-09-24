@@ -8,12 +8,8 @@ import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.Comment;
 public class main implements ConfigData {
     @Comment("Add The Mod To The World (Not Working)")
     public boolean injectToWorld = false;
-    @Comment("Count Your Client To The Player Count")
-    public boolean contributeToPlayerCount = true;
     @Comment("Add Custom Badges to Modmenu")
     public boolean customBadges = true;
-    @Comment("Show Changelog On First Startup (Disables Each Startup)")
-    public boolean zlibsStartupPopup9 = true;
-    @Comment("Show Changelog On Every Startup (Overrides First Startup)")
+    @Comment("Show Changelog On Every Startup")
     public boolean changelogEveryStartup = false;
 }

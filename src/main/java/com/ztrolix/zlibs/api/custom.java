@@ -34,7 +34,7 @@ public class custom {
         });
     }
 
-    public static void ItemGroup(String itemGroupID, String modID, List<Item> itemsToAdd) {
+    public static void AddToItemGroup(String itemGroupID, String modID, List<Item> itemsToAdd) {
         ItemGroup(itemGroupID, modID, null, itemsToAdd);
     }
 

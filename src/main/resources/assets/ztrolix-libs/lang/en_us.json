@@ -2,7 +2,7 @@
   "text.autoconfig.ztrolix-libs.option.main.injectToWorld": "Inject To World",
   "text.autoconfig.ztrolix-libs.option.main.contributeToPlayerCount": "Contribute To Player Count",
   "text.autoconfig.ztrolix-libs.option.main.customBadges": "Add Custom Modmenu Badges",
-  "text.autoconfig.ztrolix-libs.option.main.zlibsStartupPopup9": "Show Changelog On First Startup",
+  "text.autoconfig.ztrolix-libs.option.main.changelogFirstStartup": "Show Changelog On First Startup",
   "text.autoconfig.ztrolix-libs.option.main.changelogEveryStartup": "Show Changelog On Every Startup",
   "text.autoconfig.ztrolix-libs.option.compatibility.discordRPC": "Discord RPC",
   "text.autoconfig.ztrolix-libs.option.compatibility.sodiumIntegration": "Integrate with Sodium",
@@ -14,5 +14,6 @@
   "text.autoconfig.ztrolix-libs.title": "Ztrolix Libs",
   "itemGroup.ztrolix-libs.zlibs_group": "Ztrolix Libs",
   "item.ztrolix-libs.zlibs_item": "ZLibs Item",
-  "continuebutton.continueButtonTitle" : "Continue"
+  "button.ztrolix-libs.continuebutton" : "Continue",
+  "sound.ztrolix-libs.death": "Death"
 }

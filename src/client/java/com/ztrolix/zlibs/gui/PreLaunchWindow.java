@@ -4,8 +4,6 @@ import com.formdev.flatlaf.FlatDarkLaf;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.geom.RoundRectangle2D;
 
 public class PreLaunchWindow {
@@ -21,7 +19,7 @@ public class PreLaunchWindow {
 
         frame.setUndecorated(true);
         frame.setResizable(false);
-        frame.setSize(400, 45);
+        frame.setSize(400, 20);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         frame.setAlwaysOnTop(true);
@@ -41,35 +39,10 @@ public class PreLaunchWindow {
         mainPanel.setLayout(new BorderLayout());
         mainPanel.setOpaque(false);
 
-        JPanel titleBar = new JPanel(new BorderLayout());
-        titleBar.setBackground(new Color(60, 63, 65));
-
-        JLabel titleLabel = new JLabel("Loading Minecraft...");
-        titleLabel.setForeground(Color.WHITE);
-        titleLabel.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
-        titleBar.add(titleLabel, BorderLayout.WEST);
-
-        JButton closeButton = new JButton("-");
-        closeButton.setBackground(new Color(60, 63, 65));
-        closeButton.setForeground(Color.WHITE);
-        closeButton.setFocusPainted(false);
-        closeButton.setBorderPainted(false);
-        closeButton.setOpaque(true);
-        closeButton.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        closeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.dispose();
-                disposed = true;
-            }
-        });
-        titleBar.add(closeButton, BorderLayout.EAST);
-        mainPanel.add(titleBar, BorderLayout.NORTH);
-
         JProgressBar progressBar = new JProgressBar();
         progressBar.setIndeterminate(true);
         progressBar.setStringPainted(true);
-        progressBar.setString("Launching...");
+        progressBar.setString("Launching Minecraft...");
         progressBar.setBackground(new Color(60, 63, 65));
         progressBar.setForeground(new Color(3, 169, 244));
         mainPanel.add(progressBar, BorderLayout.CENTER);

@@ -2,8 +2,8 @@ package com.ztrolix.zlibs.mixin.client;
 
 import com.terraformersmc.modmenu.util.mod.Mod;
 import com.terraformersmc.modmenu.util.mod.ModBadgeRenderer;
+import com.ztrolix.zlibs.api.client.loader;
 import com.ztrolix.zlibs.config.ZLibsConfig;
-import me.shedaniel.autoconfig.AutoConfig;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.text.OrderedText;
@@ -17,21 +17,40 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.lang.reflect.Method;
+
 @Mixin(ModBadgeRenderer.class)
 public abstract class ModBadgeRendererMixin {
     @Shadow
     protected Mod mod;
 
     @Unique
+    private static boolean clothConfig = loader.isModLoaded("cloth-config");
+
+    @Unique
     private static final Logger LOGGER = LoggerFactory.getLogger("ztrolix-libs");
+
+    @Unique
+    boolean customBadges = true;
 
     @Shadow
     public abstract void drawBadge(DrawContext DrawContext, OrderedText text, int outlineColor, int fillColor, int mouseX, int mouseY);
 
     @Inject(method = "draw", at = @At("TAIL"))
     public void drawCustomBadges(DrawContext DrawContext, int mouseX, int mouseY, CallbackInfo ci) {
-        ZLibsConfig config = AutoConfig.getConfigHolder(ZLibsConfig.class).getConfig();
-        if (config.main.customBadges) {
+        if (clothConfig) {
+            try {
+                Class<?> autoConfigClass = Class.forName("me.shedaniel.autoconfig.AutoConfig");
+                Method getConfigHolderMethod = autoConfigClass.getMethod("getConfigHolder", Class.class);
+                Object configHolder = getConfigHolderMethod.invoke(null, ZLibsConfig.class);
+                ZLibsConfig config = (ZLibsConfig) configHolder.getClass().getMethod("getConfig").invoke(configHolder);
+                customBadges = config.main.customBadges;
+                configHolder.getClass().getMethod("save").invoke(configHolder);
+            } catch (Exception e) {
+                System.err.println("Error saving AutoConfig: " + e.getMessage());
+            }
+        }
+        if (customBadges) {
             try {
                 FabricLoader.getInstance().getModContainer(mod.getId()).orElse(null)
                         .getMetadata().getCustomValue("mcb").getAsArray().forEach(customValue -> {

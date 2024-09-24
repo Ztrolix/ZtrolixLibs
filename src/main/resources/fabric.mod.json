@@ -14,8 +14,8 @@
   ],
   "contact": {
     "homepage": "https://ztrolix.vercel.app/mc/zlibs",
-    "sources": "https://github.com/ZtrolixGit/ZtrolixLibs",
-    "issues": "https://github.com/ZtrolixGit/ZtrolixLibs/issues"
+    "sources": "https://github.com/Ztrolix/ZtrolixLibs",
+    "issues": "https://github.com/Ztrolix/ZtrolixLibs/issues"
   },
   "license": "Apache-2.0",
   "icon": "assets/ztrolix-libs/icon.png",
@@ -46,17 +46,18 @@
     }
   ],
   "depends": {
-    "fabricloader": ">=0.16.0",
+    "fabricloader": ">=0.16.4",
     "minecraft": ">=1.21",
     "java": ">=21",
-    "fabric-api": "*",
-    "cloth-config": ">=15.0.127"
+    "fabric-api": "*"
   },
   "recommends": {
-    "modmenu": "*"
+    "modmenu": "*",
+    "cloth-config": ">=15.0.127"
   },
   "breaks": {
-    "sodium": "<0.5.9"
+    "sodium": "<0.5.9",
+    "cloth-config": "<15.0.127"
   },
   "custom": {
     "modmenu": {
@@ -76,11 +77,6 @@
         "name": "Client or Server",
         "fillColor": -16172759,
         "outlineColor": -15698860
-      },
-      {
-        "name": "Beta",
-        "fillColor": -5939429,
-        "outlineColor": -881624
       }
     ]
   }

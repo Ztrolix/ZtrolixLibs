@@ -7,6 +7,10 @@ import org.spongepowered.asm.mixin.Overwrite;
 
 @Mixin(ProgressScreen.class)
 public class ProgressScreenMixin {
+    /**
+     * @author author
+     * @reason reason
+     */
     @Overwrite
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
     }

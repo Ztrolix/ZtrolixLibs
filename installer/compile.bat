@@ -3,7 +3,7 @@ set JAVA_FILE=ZtrolixLibsDownloader.java
 set CLASS_FILES=ZtrolixLibsDownloader*.class
 set MANIFEST_FILE=manifest.txt
 set JAR_FILE=ZLibsInstaller.jar
-set FLATLAF_JAR=flatlaf-3.5.jar
+set FLATLAF_JAR=flatlaf-3.5.1.jar
 
 echo Compiling %JAVA_FILE%...
 javac -cp %FLATLAF_JAR% -Xlint:deprecation %JAVA_FILE%

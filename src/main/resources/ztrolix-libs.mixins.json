@@ -10,7 +10,11 @@
     "SoulSandMixin",
     "MagmaBlockMixin",
     "BubbleColumnBlockMixin",
-    "BedBlockMixin"
+    "BedBlockMixin",
+    "CauldronBehaviorMixin",
+    "PacketCodecDispatcherMixin",
+    "ItemFrameEntityMixin",
+    "ServerPlayNetworkHandlerMixin"
   ],
   "server": [
     "ServerPlayerEntityMixin"

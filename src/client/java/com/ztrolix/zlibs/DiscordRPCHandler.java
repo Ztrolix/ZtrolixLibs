@@ -14,7 +14,6 @@ public class DiscordRPCHandler {
     public static void init() {
         try {
             if (initialized) {
-                LOGGER.warn("ZtrolixLibs - Discord RPC already initialized.");
                 return;
             }
 

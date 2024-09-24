@@ -32,7 +32,7 @@ public abstract class EulaMixin {
 
     @Redirect(method = "<init>", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/dedicated/EulaReader;checkEulaAgreement()Z"))
     private boolean init(EulaReader instance) {
-        if (ZtrolixLibs.isEulaAccepted() || checkEulaAgreement()) return true;
+        if (ZtrolixLibs.eulaAccepted || checkEulaAgreement()) return true;
 
         LOGGER.warn("Please indicate your agreement to the minecraft EULA (https://aka.ms/MinecraftEULA)");
         LOGGER.warn("Agree [Y/n]: ");

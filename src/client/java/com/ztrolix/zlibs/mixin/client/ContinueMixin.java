@@ -50,7 +50,7 @@ public class ContinueMixin extends Screen {
     public void drawMenuButton(int y, int spacingY, CallbackInfo info) {
         showButton = !ZtrolixLibsClient.serverAddress.isBlank();
         if (showButton) {
-            ButtonWidget.Builder continueButtonBuilder = ButtonWidget.builder(Text.translatable("continuebutton.continueButtonTitle"), button -> {
+            ButtonWidget.Builder continueButtonBuilder = ButtonWidget.builder(Text.translatable("button.ztrolix-libs.continuebutton"), button -> {
                 if (ZtrolixLibsClient.lastLocal) {
                     if (!ZtrolixLibsClient.serverName.isBlank()) {
                         QuickPlay.startSingleplayer(client, ZtrolixLibsClient.serverAddress);
@@ -78,7 +78,7 @@ public class ContinueMixin extends Screen {
         showButton = !ZtrolixLibsClient.serverAddress.isBlank();
         if (showButton) {
             for (ClickableWidget button : Screens.getButtons(this)) {
-                if (button.visible && !button.getMessage().equals(Text.translatable("continuebutton.continueButtonTitle"))) {
+                if (button.visible && !button.getMessage().equals(Text.translatable("button.ztrolix-libs.continuebutton"))) {
                     button.setX(this.width / 2 + 2);
                     button.setWidth(98);
                     break;

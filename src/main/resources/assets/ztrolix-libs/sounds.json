@@ -1,0 +1,8 @@
+{
+  "death": {
+    "subtitle": "sound.ztrolix-libs.death",
+    "sounds": [
+      "ztrolix-libs:death"
+    ]
+  }
+}

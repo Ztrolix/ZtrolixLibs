@@ -1,5 +1,4 @@
 {
-  "verbose": true,
   "required": true,
   "package": "com.ztrolix.zlibs.mixin.client",
   "compatibilityLevel": "JAVA_21",
@@ -35,7 +34,25 @@
     "AbstractClientPlayerEntityMixin",
     "PlayerEntityRendererMixin",
     "LivingEntityMixin",
-    "ScreenAccessor"
+    "ScreenAccessor",
+    "DeathScreenMixin",
+    "WindowMixin",
+    "FishingBobberEntityRendererMixin",
+    "MouseMixin",
+    "MultiplayerServerListWidgetMixin",
+    "ResourcePackProfileMixin",
+    "ResourcePackSendS2CPacketMixin",
+    "MojangBlockListSupplierMixin",
+    "MinecraftMixin",
+    "MinecraftClientMixin2",
+    "MultiplayerServerListWidgetServerEntryMixin",
+    "WorldListWidgetWorldEntryMixin",
+    "WorldIconAccessor",
+    "IntegratedServerLoaderMixin",
+    "ChatScreenMixin",
+    "GlDebugMixin",
+    "WorldMixin",
+    "FluidRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

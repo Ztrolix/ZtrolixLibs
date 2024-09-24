@@ -1,46 +1,58 @@
 package com.ztrolix.zlibs;
 
 import com.google.common.io.Files;
+import com.ztrolix.zlibs.api.client.loader;
 import com.ztrolix.zlibs.config.ZLibsConfig;
+import com.ztrolix.zlibs.config.configHelper;
 import com.ztrolix.zlibs.gui.PreLaunchWindow;
 import com.ztrolix.zlibs.sodium.CustomOptions;
-import me.shedaniel.autoconfig.AutoConfig;
-import me.shedaniel.autoconfig.ConfigHolder;
-import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.network.ServerInfo;
+import net.minecraft.client.texture.NativeImage;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.HostileEntity;
+import net.minecraft.resource.InputSupplier;
 import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
 import net.minecraft.util.WorldSavePath;
+import net.minecraft.world.World;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.lang.reflect.Method;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ZtrolixLibsClient implements ClientModInitializer {
     public static final Logger LOGGER = LoggerFactory.getLogger("ztrolix-libs");
     public static int duration = -1;
     public static List<HostileEntity> list = new ArrayList<>();
-    private static final boolean isInServerList = false;
     public static boolean lastLocal = true;
     public static String serverName = "";
     public static String serverAddress = "";
+    private static final boolean clothConfig = loader.isModLoaded("cloth-config");
+    private static final float ADDITIONAL_CLOUD_HEIGHT = 3.0F;
+    private static final float GRADIENT_HEIGHT = 6.0F;
+    private static final float INVERTED_GRADIENT_HEIGHT = 1.0F / GRADIENT_HEIGHT;
+    public static Map<String, Float> WorldCloudHeights = new HashMap<>();
+    boolean injectToWorld = true;
 
     public static boolean isWindows() {
         return System.getProperty("os.name").toLowerCase().contains("windows");
@@ -60,64 +72,101 @@ public class ZtrolixLibsClient implements ClientModInitializer {
                 isModLoaded("mod-loading-screen"));
     }
 
+    boolean discordRPC = true;
+    boolean sodiumIntegration = true;
+    String configServerName = "";
+    String configServerAddress = "";
+
+    public static float getCloudHeight(World world) {
+        if (world.isClient) {
+            return getCloudHeightClient(world);
+        } else {
+            String regKey = world.getRegistryKey().getValue().toString();
+            return WorldCloudHeights.getOrDefault(regKey, Float.MAX_VALUE);
+        }
+    }
+
+    @Environment(EnvType.CLIENT)
+    private static float getCloudHeightClient(World world) {
+        if (world instanceof ClientWorld clientWorld) {
+            return clientWorld.getDimensionEffects().getCloudsHeight();
+        }
+        return world.getBottomY();
+    }
+
+    @Environment(EnvType.CLIENT)
+    public static float getRainGradient(World world, float original) {
+        if (MinecraftClient.getInstance().cameraEntity != null) {
+            double playerY = MinecraftClient.getInstance().cameraEntity.getPos().y;
+            float cloudY = ZtrolixLibsClient.getCloudHeight(world) + ADDITIONAL_CLOUD_HEIGHT;
+
+            if (playerY < cloudY - GRADIENT_HEIGHT) {
+                // normal
+            } else if (playerY < cloudY) {
+                return (float) ((cloudY - playerY) * INVERTED_GRADIENT_HEIGHT) * original;
+            } else {
+                return 0.0F;
+            }
+
+        }
+        return original;
+    }
+
+    public static void setIcon(InputSupplier<InputStream> icon) {
+        ((IconSetter) MinecraftClient.getInstance()).ztrolixLibs$setIcon(icon);
+    }
+
+    public static void resetIcon() {
+        ((IconSetter) MinecraftClient.getInstance()).ztrolixLibs$resetIcon();
+    }
+
+    public static void setIcon(NativeImage nativeImage) {
+        try {
+            byte[] bytes = nativeImage.getBytes();
+            setIcon(bytes);
+        } catch (IOException e) {
+            LOGGER.error("Could not set icon: ", e);
+        }
+    }
+
+    public static void setIcon(byte[] favicon) {
+        if (favicon == null) resetIcon();
+        else setIcon(() -> new ByteArrayInputStream(favicon));
+    }
+
     @Override
     public void onInitializeClient() {
         String osName = System.getProperty("os.name").toLowerCase();
-        AutoConfig.register(ZLibsConfig.class, GsonConfigSerializer::new);
-        ZLibsConfig config = AutoConfig.getConfigHolder(ZLibsConfig.class).getConfig();
-
+        if (clothConfig) {
+            configHelper.registerConfig();
+            configHelper.ConfigSettings clientSettings = configHelper.zlibsClientConfig();
+            injectToWorld = clientSettings.injectToWorld;
+            discordRPC = clientSettings.discordRPC;
+            sodiumIntegration = clientSettings.sodiumIntegration;
+            configServerName = clientSettings.configServerName;
+            configServerAddress = clientSettings.configServerAddress;
+        }
         LOGGER.info("-----------------------------------");
         LOGGER.info("Ztrolix Libs - Applying Config...");
-        LOGGER.info("-- -- -- -- -- -- -- -- -- -- -- --");
-        if (config.main.injectToWorld) {
-            LOGGER.info("Inject: Enabled!");
-        } else {
-            LOGGER.info("Inject: Disabled!");
-        }
-        if (config.main.contributeToPlayerCount) {
-            clientOnline();
-            ClientLifecycleEvents.CLIENT_STOPPING.register(client -> {
-                clientOffline();
-            });
-            LOGGER.info("Player Count: Enabled!");
-        } else {
-            LOGGER.info("Player Count: Disabled!");
-        }
-        LOGGER.info("-- -- -- -- -- -- -- -- -- -- -- --");
-        if (config.compatibility.discordRPC) {
-
+        if (discordRPC) {
             if (osName.contains("win")) {
                 DiscordRPCHandler.init();
                 ClientLifecycleEvents.CLIENT_STOPPING.register(client -> {
                     DiscordRPCHandler.shutdown();
                 });
-                LOGGER.info("Discord RPC: Enabled!");
             } else {
-                LOGGER.info("Discord RPC: Enabled!");
-                LOGGER.info("Running on an unsupported OS: " + osName);
-                LOGGER.info("Disabled DiscordRPC you can ReEnable it in config!");
-                LOGGER.info("Discord RPC: Disabled!");
-
-                config.compatibility.discordRPC = false;
+                LOGGER.warn("Discord RPC: Running on an unsupported OS: " + osName);
             }
-        } else {
-            LOGGER.info("Discord RPC: Disabled!");
         }
-        if (config.compatibility.sodiumIntegration) {
+        if (sodiumIntegration) {
             CustomOptions.integrate();
-            LOGGER.info("Sodium Integration: Enabled!");
-        } else {
-            LOGGER.info("Sodium Integration: Disabled!");
         }
-        LOGGER.info("-- -- -- -- -- -- -- -- -- -- -- --");
         LOGGER.info("Ztrolix Libs - Applied Config!");
         LOGGER.info("-----------------------------------");
 
-        ConfigHolder<ZLibsConfig> holder = AutoConfig.getConfigHolder(ZLibsConfig.class);
-        holder.registerSaveListener((configHolder, config1) -> {
-            applyConfig();
-            return ActionResult.SUCCESS;
-        });
+        if (clothConfig) {
+            configHelper.registerSaveListener(discordRPC, sodiumIntegration);
+        }
 
         ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> {
             dispatcher.register(ClientCommandManager.literal("zlibs").executes(context -> {
@@ -142,9 +191,21 @@ public class ZtrolixLibsClient implements ClientModInitializer {
                 serverName = serverInfo.name;
                 serverAddress = serverInfo.address;
             }
-            config.lastServer.serverName = serverName;
-            config.lastServer.serverAddress = serverAddress;
-            AutoConfig.getConfigHolder(ZLibsConfig.class).save();
+            configServerName = serverName;
+            configServerAddress = serverAddress;
+            if (clothConfig) {
+                try {
+                    Class<?> autoConfigClass = Class.forName("me.shedaniel.autoconfig.AutoConfig");
+                    Method getConfigHolderMethod = autoConfigClass.getMethod("getConfigHolder", Class.class);
+                    Object configHolder = getConfigHolderMethod.invoke(null, ZLibsConfig.class);
+                    ZLibsConfig config = (ZLibsConfig) configHolder.getClass().getMethod("getConfig").invoke(configHolder);
+                    config.lastServer.serverAddress = configServerAddress;
+                    config.lastServer.serverName = configServerName;
+                    configHolder.getClass().getMethod("save").invoke(configHolder);
+                } catch (Exception e) {
+                    System.err.println("Error saving AutoConfig: " + e.getMessage());
+                }
+            }
         });
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
@@ -159,96 +220,15 @@ public class ZtrolixLibsClient implements ClientModInitializer {
         if (isWindows() && FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT && isNoEarlyLoaders()) {
             ClientLifecycleEvents.CLIENT_STARTED.register(client -> PreLaunchWindow.remove());
         }
-    }
 
-    public void applyConfig() {
-        ZLibsConfig config = AutoConfig.getConfigHolder(ZLibsConfig.class).getConfig();
-        String osName = System.getProperty("os.name").toLowerCase();
-
-        LOGGER.info("-----------------------------------");
-        LOGGER.info("Ztrolix Libs - Applying Config...");
-        LOGGER.info("-- -- -- -- -- -- -- -- -- -- -- --");
-        if (config.main.injectToWorld) {
-            LOGGER.info("Inject: Enabled!");
-        } else {
-            LOGGER.info("Inject: Disabled!");
+        if (WorldCloudHeights.isEmpty()) {
+            WorldCloudHeights.put("minecraft:overworld", 182.0F);
         }
-        if (config.main.contributeToPlayerCount) {
-            clientOnline();
-            ClientLifecycleEvents.CLIENT_STOPPING.register(client -> {
-                clientOffline();
-            });
-            LOGGER.info("Player Count: Enabled!");
-        } else {
-            clientOffline();
-            LOGGER.info("Player Count: Disabled!");
-        }
-        LOGGER.info("-- -- -- -- -- -- -- -- -- -- -- --");
-        if (config.compatibility.discordRPC) {
 
-            if (osName.contains("win")) {
-                DiscordRPCHandler.init();
-                ClientLifecycleEvents.CLIENT_STOPPING.register(client -> {
-                    DiscordRPCHandler.shutdown();
-                });
-                LOGGER.info("Discord RPC: Enabled!");
-            } else {
-                LOGGER.info("Discord RPC: Enabled!");
-                LOGGER.info("Running on an unsupported OS: " + osName);
+        ClientTickEvents.END_CLIENT_TICK.register(client -> {
+            if (Screen.hasControlDown() && Screen.hasAltDown() && Screen.hasShiftDown()) {
+                client.setScreen(new TerminalScreen());
             }
-        } else {
-            LOGGER.info("Discord RPC: Disabled!");
-            DiscordRPCHandler.shutdown();
-        }
-        if (config.compatibility.sodiumIntegration) {
-            CustomOptions.integrate();
-            LOGGER.info("Sodium Integration: Enabled!");
-        } else {
-            LOGGER.info("Sodium Integration: Disabled!");
-        }
-        LOGGER.info("-- -- -- -- -- -- -- -- -- -- -- --");
-        LOGGER.info("Ztrolix Libs - Applied Config!");
-        LOGGER.info("-----------------------------------");
-    }
-
-    private void clientOnline() {
-        try {
-            URL url = new URL("https://ztrolix-server.vercel.app/clientOnline");
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("POST");
-            connection.setRequestProperty("Content-Type", "application/json; utf-8");
-            connection.setRequestProperty("Accept", "application/json");
-            connection.setDoOutput(true);
-
-            String jsonInputString = "{\"mod\":\"ztrolix-libs\", \"status\":\"online\"}";
-
-            try (OutputStream os = connection.getOutputStream()) {
-                byte[] input = jsonInputString.getBytes(StandardCharsets.UTF_8);
-                os.write(input, 0, input.length);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void clientOffline() {
-        try {
-            URL url = new URL("https://ztrolix-server.vercel.app/clientOffline");
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("POST");
-            connection.setRequestProperty("Content-Type", "application/json; utf-8");
-            connection.setRequestProperty("Accept", "application/json");
-            connection.setDoOutput(true);
-
-            String jsonInputString = "{\"mod\":\"ztrolix-libs\", \"status\":\"offline\"}";
-
-            try (OutputStream os = connection.getOutputStream()) {
-                byte[] input = jsonInputString.getBytes(StandardCharsets.UTF_8);
-                os.write(input, 0, input.length);
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        });
     }
 }
