@@ -1,47 +1,47 @@
 {
   "schemaVersion": 1,
-  "id": "ztrolix-libs",
+  "id": "xdlib",
   "version": "${version}",
-  "name": "Ztrolix Libs",
-  "description": "This is a mod/modpack library and counter for Ztrolix's mods and modpacks.",
+  "name": "XD's Library",
+  "description": "This is a library for many uses and is included as an player counter for XDPXI's mods and modpacks!",
   "authors": [
     {
-      "name": "Ztrolix",
+      "name": "XDPXI",
       "contact": {
         "homepage": "https://ztrolix.vercel.app"
       }
     }
   ],
   "contact": {
-    "homepage": "https://ztrolix.vercel.app/mc/zlibs",
-    "sources": "https://github.com/Ztrolix/ZtrolixLibs",
-    "issues": "https://github.com/Ztrolix/ZtrolixLibs/issues"
+    "homepage": "https://ztrolix.vercel.app/mc/xdlib",
+    "sources": "https://github.com/Ztrolix/XDLib",
+    "issues": "https://github.com/Ztrolix/XDLib/issues"
   },
   "license": "Apache-2.0",
-  "icon": "assets/ztrolix-libs/icon.png",
+  "icon": "assets/xdlib/icon.png",
   "environment": "*",
   "entrypoints": {
     "preLaunch": [
-      "com.ztrolix.zlibs.EarlyLoadingBarPreLaunch"
+      "dev.xdpxi.xdlib.EarlyLoadingBarPreLaunch"
     ],
     "main": [
-      "com.ztrolix.zlibs.ZtrolixLibs"
+      "dev.xdpxi.xdlib.XDsLibrary"
     ],
     "client": [
-      "com.ztrolix.zlibs.ZtrolixLibsClient"
+      "dev.xdpxi.xdlib.XDsLibraryClient"
     ],
     "fabric-datagen": [
-      "com.ztrolix.zlibs.ZtrolixLibsDataGenerator"
+      "dev.xdpxi.xdlib.XDsLibraryDataGenerator"
     ],
     "modmenu": [
-      "com.ztrolix.zlibs.ModMenuIntegration"
+      "dev.xdpxi.xdlib.ModMenuIntegration"
     ]
   },
-  "accessWidener": "ztrolix-libs.accesswidener",
+  "accessWidener": "xdlib.accesswidener",
   "mixins": [
-    "ztrolix-libs.mixins.json",
+    "xdlib.mixins.json",
     {
-      "config": "ztrolix-libs.client.mixins.json",
+      "config": "xdlib.client.mixins.json",
       "environment": "client"
     }
   ],
@@ -56,19 +56,12 @@
     "cloth-config": ">=15.0.127"
   },
   "breaks": {
-    "sodium": "<0.5.9",
     "cloth-config": "<15.0.127"
   },
   "custom": {
     "modmenu": {
-      "parent": {
-        "id": "ztrolix-libs",
-        "name": "Ztrolix Libs",
-        "description": "This is a mod/modpack library and counter for Ztrolix's mods and modpacks.",
-        "icon": "assets/ztrolix-libs/icon.png"
-      },
       "links": {
-        "modmenu.modrinth": "https://modrinth.com/plugin/ztrolixlibs"
+        "modmenu.modrinth": "https://modrinth.com/plugin/xdlib"
       },
       "update_checker": true
     },

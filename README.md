@@ -1,12 +1,12 @@
 <h1 id="readme" align="center"></h1>
 
-<img src="https://raw.githubusercontent.com/ZtrolixGit/ZtrolixLibs/main/assets/strip.png">
+<img src="https://raw.githubusercontent.com/Ztrolix/ZtrolixLibs/main/assets/strip.png">
 
-<h1 align="center">Ztrolix Libs</h1>
+<h1 align="center">XD's Library</h1>
 
-<img src="https://raw.githubusercontent.com/ZtrolixGit/ZtrolixLibs/main/assets/strip.png">
+<img src="https://raw.githubusercontent.com/Ztrolix/ZtrolixLibs/main/assets/strip.png">
 
-<img src="https://raw.githubusercontent.com/ZtrolixGit/ZtrolixLibs/main/assets/installer.png">
+<img src="https://raw.githubusercontent.com/Ztrolix/ZtrolixLibs/main/assets/installer.png">
 
 The universal installer is an installer that installs the library straight into the folder you want. It is not recommended if you use the Modrinth app!
 
@@ -14,9 +14,9 @@ The universal installer is an installer that installs the library straight into 
 
 [DWLD]: https://github.com/ZtrolixGit/ZtrolixLibs/releases/latest/download/zlibsinstaller.jar
 
-<img src="https://raw.githubusercontent.com/ZtrolixGit/ZtrolixLibs/main/assets/strip.png">
+<img src="https://raw.githubusercontent.com/Ztrolix/ZtrolixLibs/main/assets/strip.png"> 
 
-<img src="https://raw.githubusercontent.com/ZtrolixGit/ZtrolixLibs/main/assets/installation.png">
+<img src="https://raw.githubusercontent.com/Ztrolix/ZtrolixLibs/main/assets/installation.png">
 
 ### How to Install
 
@@ -34,16 +34,6 @@ The universal installer is an installer that installs the library straight into 
 <summary>1.21 - 1.21.1 Fabric (2.X.X)</summary>
 
 - [Fabric API](https://modrinth.com/mod/fabric-api/versions?platform=fabric&gameVersion=1.21.1&gameVersion=1.21)
-- [Cloth Config](https://modrinth.com/mod/cloth-config/versions?l=fabric&g=1.21&g=1.21.1)
-
-</details>
-
-<details>
-<summary>1.21 - 1.21.1 NeoForge (2.X.X)</summary>
-
-- [Sinytra Connector](https://modrinth.com/mod/connector/versions?gameVersion=1.21.1&gameVersion=1.21&platform=neoforge)
-- [Forgified Faric API](https://modrinth.com/mod/forgified-fabric-api/versions?gameVersion=1.21.1&gameVersion=1.21&platform=neoforge)
-- [Cloth Config](https://modrinth.com/mod/cloth-config/versions?gameVersion=1.21.1&gameVersion=1.21&platform=neoforge)
 
 </details>
 
@@ -51,7 +41,14 @@ The universal installer is an installer that installs the library straight into 
 <summary>1.21 - 1.21.1 Quilt (2.X.X)</summary>
 
 - [QSL](https://modrinth.com/mod/qsl/versions?gameVersion=1.21&platform=quilt)
-- [Cloth Config](https://modrinth.com/mod/cloth-config/versions?l=fabric&g=1.21&g=1.21.1)
+
+</details>
+
+<details>
+<summary>1.21 - 1.21.1 NeoForge (2.X.X)</summary>
+
+- [Forgified Fabric API](https://modrinth.com/mod/forgified-fabric-api/versions?g=1.21.1&g=1.21&l=neoforge)
+- [Connector](https://modrinth.com/mod/connector/versions?g=1.21.1&g=1.21&l=neoforge)
 
 </details>
 
@@ -69,19 +66,19 @@ The universal installer is an installer that installs the library straight into 
 
 </details>
 
-<img src="https://raw.githubusercontent.com/ZtrolixGit/ZtrolixLibs/main/assets/strip.png">
+<img src="https://raw.githubusercontent.com/Ztrolix/ZtrolixLibs/main/assets/strip.png">
 
-<img src="https://raw.githubusercontent.com/ZtrolixGit/ZtrolixLibs/main/assets/building.png">
+<img src="https://raw.githubusercontent.com/Ztrolix/ZtrolixLibs/main/assets/building.png">
 
-▶️ Clone the [Git Repo](https://github.com/ZtrolixGit/ZtrolixLibs/tree/main)
+▶️ Clone the [Git Repo](https://github.com/Ztrolix/ZtrolixLibs/tree/main)
 
 ▶️ Either run `build.bat` or in terminal run `gradlew build`
 
 ▶️ The mod will be made in `build\libs`
 
-<img src="https://raw.githubusercontent.com/ZtrolixGit/ZtrolixLibs/main/assets/strip.png">
+<img src="https://raw.githubusercontent.com/Ztrolix/ZtrolixLibs/main/assets/strip.png">
 
-<img src="https://raw.githubusercontent.com/ZtrolixGit/ZtrolixLibs/main/assets/faq.png">
+<img src="https://raw.githubusercontent.com/Ztrolix/ZtrolixLibs/main/assets/faq.png">
 
 <details>
 <summary>API</summary>
@@ -97,4 +94,4 @@ The Source is currently available but not for any versions below `2.0.0`.
 
 </details>
 
-<img src="https://raw.githubusercontent.com/ZtrolixGit/ZtrolixLibs/main/assets/strip.png">
+<img src="https://raw.githubusercontent.com/Ztrolix/ZtrolixLibs/main/assets/strip.png">

@@ -1,5 +1,5 @@
 @echo off
-title Ztrolix Libs - Testing
+title XD's Library - Testing
 cls
 
 gradlew runClient

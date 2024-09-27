@@ -1,0 +1,8 @@
+{
+  "death": {
+    "subtitle": "sound.xdlib.death",
+    "sounds": [
+      "xdlib:death"
+    ]
+  }
+}

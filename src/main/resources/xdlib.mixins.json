@@ -1,0 +1,25 @@
+{
+  "required": true,
+  "package": "dev.xdpxi.xdlib.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "BedBlockMixin",
+    "BubbleColumnBlockMixin",
+    "CauldronBehaviorMixin",
+    "EulaMixin",
+    "ItemFrameEntityMixin",
+    "MagmaBlockMixin",
+    "PacketCodecDispatcherMixin",
+    "ServerPlayNetworkHandlerMixin",
+    "SoulSandMixin",
+    "VaultBlockEntityMixin",
+    "VaultBlockServerMixin",
+    "VaultServerDataMixin"
+  ],
+  "server": [
+    "ServerPlayerEntityMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

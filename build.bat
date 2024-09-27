@@ -1,5 +1,5 @@
 @echo off
-title Ztrolix Libs - Building
+title XD's Library - Building
 cls
 
 gradlew clean build --warning-mode all

@@ -24,10 +24,10 @@ repositories {
 
 loom {
 	splitEnvironmentSourceSets()
-	accessWidenerPath = file("src/main/resources/ztrolix-libs.accesswidener")
+	accessWidenerPath = file("src/main/resources/xdlib.accesswidener")
 
 	mods {
-		"ztrolix-libs" {
+		"xdlib" {
 			sourceSet sourceSets.main
 			sourceSet sourceSets.client
 		}
@@ -53,6 +53,7 @@ dependencies {
 	implementation("org.commonmark:commonmark:0.23.0")
 	implementation("org.projectlombok:lombok:1.18.34")
 	implementation("org.beanshell:bsh:2.0b4")
+	implementation("com.moandjiezana.toml:toml4j:0.7.2")
 }
 
 processResources {
