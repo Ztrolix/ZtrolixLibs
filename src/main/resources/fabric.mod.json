@@ -56,7 +56,8 @@
     "cloth-config": ">=15.0.127"
   },
   "breaks": {
-    "cloth-config": "<15.0.127"
+    "cloth-config": "<15.0.127",
+    "vulkanmod": "*"
   },
   "custom": {
     "modmenu": {

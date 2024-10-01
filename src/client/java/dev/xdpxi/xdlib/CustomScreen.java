@@ -1,6 +1,7 @@
 package dev.xdpxi.xdlib;
 
-import net.fabricmc.loader.api.FabricLoader;
+import dev.xdpxi.xdlib.api.loader;
+import dev.xdpxi.xdlib.config.configHelper;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
@@ -16,6 +17,7 @@ public class CustomScreen extends Screen {
     private static final Logger LOGGER = LoggerFactory.getLogger("xdlib");
     private final Screen parent;
     private final MutableText changelogText;
+    private static boolean shownToast = false;
 
     public CustomScreen(Text title, Screen parent) {
         super(title);
@@ -23,22 +25,14 @@ public class CustomScreen extends Screen {
         this.changelogText = createChangelogText();
     }
 
-    public static boolean isModLoaded(String modID) {
-        return FabricLoader.getInstance().isModLoaded(modID);
-    }
-
     @Override
     protected void init() {
-        boolean shownToast = false;
-        if (!shownToast) {
-            shownToast = true;
-            if (isModLoaded("iris") || isModLoaded("optifine")) {
-                LOGGER.warn("[XDLib] - Does not support shaders!");
-
-                this.client.getToastManager().add(
-                        new SystemToast(SystemToast.Type.NARRATOR_TOGGLE, Text.of("XD's Library"), Text.of("Does not support shaders, somethings won't render!"))
-                );
+        if (loader.isModLoaded("cloth-config")) {
+            if (!configHelper.isTitlePopupsDisabled()) {
+                showPopups();
             }
+        } else {
+            showPopups();
         }
 
         int centerX = this.width / 2;
@@ -48,6 +42,24 @@ public class CustomScreen extends Screen {
             close();
         }).dimensions(centerX - 60, centerY + 170, 120, 20).build();
         this.addDrawableChild(buttonWidget);
+    }
+
+    private void showPopups() {
+        if (!shownToast) {
+            shownToast = true;
+            if (loader.isModLoaded("iris") || loader.isModLoaded("optifine")) {
+                LOGGER.warn("[XDLib] - Does not support shaders!");
+                this.client.getToastManager().add(
+                        new SystemToast(SystemToast.Type.NARRATOR_TOGGLE, Text.of("XD's Library"), Text.of("Does not support shaders!"))
+                );
+            }
+            if (!loader.isModLoaded("cloth-config")) {
+                LOGGER.warn("[XDLib] - Recommends the use of 'cloth-config'");
+                this.client.getToastManager().add(
+                        new SystemToast(SystemToast.Type.NARRATOR_TOGGLE, Text.of("XD's Library"), Text.of("Recommends the use of 'cloth-config'"))
+                );
+            }
+        }
     }
 
     @Override
@@ -81,13 +93,12 @@ public class CustomScreen extends Screen {
         MutableText text = Text.literal("Changelog:\n\n")
                 .setStyle(Style.EMPTY.withColor(Formatting.WHITE).withBold(true));
 
-        text.append(Text.literal("- Reformatted Code\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
-        text.append(Text.literal("- Updated Package Name\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
-        text.append(Text.literal("- Updated Mod ID\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
-        text.append(Text.literal("- Updated Icon\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
-        text.append(Text.literal("- Updated Description\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
-        text.append(Text.literal("- Updated Name\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
-        text.append(Text.literal("- Fixed Modmenu Errors\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
+        text.append(Text.literal("- Added 'Version of Mod' API\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
+        text.append(Text.literal("- Added 'Disable Title Screen Warnings' Config\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
+        text.append(Text.literal("- Added 'Custom Biomes' API\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
+        text.append(Text.literal("- Fixed Title Screen Warnings\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
+        text.append(Text.literal("- Removed 'VulkanMod' Support\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
+        text.append(Text.literal("- Removed 'Inject to World' Config\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
 
         return text;
     }

@@ -30,10 +30,10 @@ public class XDLibInstaller {
     private static final String CLOTH_CONFIG_URL_NEO = "izKINKFg/cloth-config-15.0.140-neoforge.jar";
 
     private static final String CONNECTER_121 = "https://cdn.modrinth.com/data/u58R1TMW/versions/PHaoQIFN/connector-2.0.0-beta.1%2B1.21-full.jar";
-    private static final String CONNECTER_1211 = "https://cdn.modrinth.com/data/u58R1TMW/versions/WFiIDhbD/connector-2.0.0-beta.2%2B1.21.1-full.jar";
+    private static final String CONNECTER_1211 = "https://cdn.modrinth.com/data/u58R1TMW/versions/x3AHjKpg/connector-2.0.0-beta.3%2B1.21.1-full.jar";
 
     private static final String FORGIFIED_121 = "https://cdn.modrinth.com/data/Aqlf1Shp/versions/K5REyk0w/forgified-fabric-api-0.101.2%2B2.0.10%2B1.21.jar";
-    private static final String FORGIFIED_1211 = "https://cdn.modrinth.com/data/Aqlf1Shp/versions/GMkGuXO4/forgified-fabric-api-0.102.0%2B2.0.12%2B1.21.1.jar";
+    private static final String FORGIFIED_1211 = "https://cdn.modrinth.com/data/Aqlf1Shp/versions/Jfn0eaw3/forgified-fabric-api-0.104.0%2B2.0.14%2B1.21.1.jar";
 
     private static final String CONNECTEREXTRAS_121 = "https://cdn.modrinth.com/data/FYpiwiBR/versions/WUktoh8L/ConnectorExtras-1.12.0%2B1.21.jar";
     private static final String CONNECTEREXTRAS_1211 = "https://cdn.modrinth.com/data/FYpiwiBR/versions/dgLCqZyo/ConnectorExtras-1.12.1%2B1.21.1.jar";
@@ -154,8 +154,8 @@ public class XDLibInstaller {
                                     }
                                     if (selectedVersion.equals("1.21.1")) {
                                         downloadFile(CLOTH_CONFIG_BASE_URL + CLOTH_CONFIG_URL_NEO, folderPath, "cloth-config-15.0.140-neoforge.jar", progressBar);
-                                        downloadFile(CONNECTER_1211, folderPath, "connector-2.0.0-beta.2+1.21.1-full.jar", progressBar);
-                                        downloadFile(FORGIFIED_1211, folderPath, "forgified-fabric-api-0.102.0+2.0.12+1.21.1.jar", progressBar);
+                                        downloadFile(CONNECTER_1211, folderPath, "connector-2.0.0-beta.3+1.21.1-full.jar", progressBar);
+                                        downloadFile(FORGIFIED_1211, folderPath, "forgified-fabric-api-0.104.0+2.0.14+1.21.1.jar", progressBar);
                                         downloadFile(CONNECTEREXTRAS_1211, folderPath, "ConnectorExtras-1.12.1+1.21.1.jar", progressBar);
                                     }
                                 }
@@ -259,11 +259,11 @@ public class XDLibInstaller {
                     case "1.20.3":
                         return FABRIC_API_BASE_URL + "Yolngp3s/fabric-api-0.91.1%2B1.20.3.jar";
                     case "1.20.4":
-                        return FABRIC_API_BASE_URL + "tAwdMmKY/fabric-api-0.97.1%2B1.20.4.jar";
+                        return FABRIC_API_BASE_URL + "QVBohPm2/fabric-api-0.97.2%2B1.20.4.jar";
                     case "1.21":
                         return FABRIC_API_BASE_URL + "oGwyXeEI/fabric-api-0.102.0%2B1.21.jar";
                     case "1.21.1":
-                        return FABRIC_API_BASE_URL + "qKPgBeHl/fabric-api-0.104.0%2B1.21.1.jar";
+                        return FABRIC_API_BASE_URL + "WTaAx4ah/fabric-api-0.105.0%2B1.21.1.jar";
                     default:
                         return null;
                 }
@@ -296,41 +296,41 @@ public class XDLibInstaller {
         versionDropdown.removeAllItems();
         switch (selectedLoader) {
             case "Fabric":
-                versionDropdown.addItem("1.20");
-                versionDropdown.addItem("1.20.1");
-                versionDropdown.addItem("1.20.2");
-                versionDropdown.addItem("1.20.3");
-                versionDropdown.addItem("1.20.4");
-                versionDropdown.addItem("1.21");
                 versionDropdown.addItem("1.21.1");
+                versionDropdown.addItem("1.21");
+                versionDropdown.addItem("1.20.4");
+                versionDropdown.addItem("1.20.3");
+                versionDropdown.addItem("1.20.2");
+                versionDropdown.addItem("1.20.1");
+                versionDropdown.addItem("1.20");
                 break;
             case "Quilt":
-                versionDropdown.addItem("1.20");
-                versionDropdown.addItem("1.20.1");
-                versionDropdown.addItem("1.20.2");
-                versionDropdown.addItem("1.20.4");
                 versionDropdown.addItem("1.21");
+                versionDropdown.addItem("1.20.4");
+                versionDropdown.addItem("1.20.2");
+                versionDropdown.addItem("1.20.1");
+                versionDropdown.addItem("1.20");
                 break;
             case "Spigot":
-                versionDropdown.addItem("1.19 [Experimental]");
-                versionDropdown.addItem("1.19.1 [Experimental]");
-                versionDropdown.addItem("1.19.2 [Experimental]");
-                versionDropdown.addItem("1.19.3 [Experimental]");
-                versionDropdown.addItem("1.19.4 [Experimental]");
-                versionDropdown.addItem("1.20");
-                versionDropdown.addItem("1.20.1");
-                versionDropdown.addItem("1.20.2");
-                versionDropdown.addItem("1.20.3");
-                versionDropdown.addItem("1.20.4");
-                versionDropdown.addItem("1.20.5");
-                versionDropdown.addItem("1.20.6");
-                versionDropdown.addItem("1.21");
                 versionDropdown.addItem("1.21.1");
+                versionDropdown.addItem("1.21");
+                versionDropdown.addItem("1.20.6");
+                versionDropdown.addItem("1.20.5");
+                versionDropdown.addItem("1.20.4");
+                versionDropdown.addItem("1.20.3");
+                versionDropdown.addItem("1.20.2");
+                versionDropdown.addItem("1.20.1");
+                versionDropdown.addItem("1.20");
+                versionDropdown.addItem("1.19.4");
+                versionDropdown.addItem("1.19.3");
+                versionDropdown.addItem("1.19.2");
+                versionDropdown.addItem("1.19.1");
+                versionDropdown.addItem("1.19");
                 break;
             case "NeoForge":
-                versionDropdown.addItem("1.20.4");
-                versionDropdown.addItem("1.21");
                 versionDropdown.addItem("1.21.1");
+                versionDropdown.addItem("1.21");
+                versionDropdown.addItem("1.20.4");
                 break;
             case "Forge":
                 versionDropdown.addItem("1.20.1");

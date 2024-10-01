@@ -43,7 +43,6 @@ public class configHelper {
     public static ConfigSettings zlibsClientConfig() {
         ZLibsConfig config = AutoConfig.getConfigHolder(ZLibsConfig.class).getConfig();
         return new ConfigSettings(
-                config.main.injectToWorld,
                 config.compatibility.discordRPC,
                 config.compatibility.sodiumIntegration,
                 config.lastServer.serverName,
@@ -76,7 +75,6 @@ public class configHelper {
 
     public static class ConfigSettings {
         public boolean changelogEveryStartup;
-        public boolean injectToWorld;
         public boolean discordRPC;
         public boolean sodiumIntegration;
         public String configServerName;
@@ -87,17 +85,26 @@ public class configHelper {
         }
 
         public ConfigSettings(
-                boolean injectToWorld,
                 boolean discordRPC,
                 boolean sodiumIntegration,
                 String configServerName,
                 String configServerAddress
         ) {
-            this.injectToWorld = injectToWorld;
             this.discordRPC = discordRPC;
             this.sodiumIntegration = sodiumIntegration;
             this.configServerName = configServerName;
             this.configServerAddress = configServerAddress;
         }
     }
+
+    public static boolean isTitlePopupsDisabled() {
+        return getConfig().main.disableTitlePopups;
+    }
+
+    public static void updateDisableTitlePopups(boolean disable) {
+        ZLibsConfig config = getConfig();
+        config.main.disableTitlePopups = disable;
+        AutoConfig.getConfigHolder(ZLibsConfig.class).save();
+    }
+
 }

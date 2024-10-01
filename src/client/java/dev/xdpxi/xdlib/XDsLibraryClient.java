@@ -52,7 +52,6 @@ public class XDsLibraryClient implements ClientModInitializer {
     private static final float GRADIENT_HEIGHT = 6.0F;
     private static final float INVERTED_GRADIENT_HEIGHT = 1.0F / GRADIENT_HEIGHT;
     public static Map<String, Float> WorldCloudHeights = new HashMap<>();
-    boolean injectToWorld = true;
 
     public static boolean isWindows() {
         return System.getProperty("os.name").toLowerCase().contains("windows");
@@ -140,7 +139,6 @@ public class XDsLibraryClient implements ClientModInitializer {
         if (clothConfig) {
             configHelper.registerConfig();
             configHelper.ConfigSettings clientSettings = configHelper.zlibsClientConfig();
-            injectToWorld = clientSettings.injectToWorld;
             discordRPC = clientSettings.discordRPC;
             sodiumIntegration = clientSettings.sodiumIntegration;
             configServerName = clientSettings.configServerName;
