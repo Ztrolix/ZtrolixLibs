@@ -42,39 +42,24 @@ import java.util.Map;
 
 public class XDsLibraryClient implements ClientModInitializer {
     public static final Logger LOGGER = LoggerFactory.getLogger("xdlib");
+    private static final boolean clothConfig = loader.isModLoaded("cloth-config");
+    private static final float ADDITIONAL_CLOUD_HEIGHT = 3.0F;
+    private static final float GRADIENT_HEIGHT = 6.0F;
+    private static final float INVERTED_GRADIENT_HEIGHT = 1.0F / GRADIENT_HEIGHT;
     public static int duration = -1;
     public static List<HostileEntity> list = new ArrayList<>();
     public static boolean lastLocal = true;
     public static String serverName = "";
     public static String serverAddress = "";
-    private static final boolean clothConfig = loader.isModLoaded("cloth-config");
-    private static final float ADDITIONAL_CLOUD_HEIGHT = 3.0F;
-    private static final float GRADIENT_HEIGHT = 6.0F;
-    private static final float INVERTED_GRADIENT_HEIGHT = 1.0F / GRADIENT_HEIGHT;
     public static Map<String, Float> WorldCloudHeights = new HashMap<>();
-
-    public static boolean isWindows() {
-        return System.getProperty("os.name").toLowerCase().contains("windows");
-    }
-
-    public boolean isModLoaded(String modID) {
-        return FabricLoader.getInstance().isModLoaded(modID);
-    }
-
-    public boolean isNoEarlyLoaders() {
-        return !(isModLoaded("early-loading-screen") ||
-                isModLoaded("early_loading_bar") ||
-                isModLoaded("earlyloadingscreen") ||
-                isModLoaded("mindful-loading-info") ||
-                isModLoaded("neoforge") ||
-                isModLoaded("connector") ||
-                isModLoaded("mod-loading-screen"));
-    }
-
     boolean discordRPC = true;
     boolean sodiumIntegration = true;
     String configServerName = "";
     String configServerAddress = "";
+
+    public static boolean isWindows() {
+        return System.getProperty("os.name").toLowerCase().contains("windows");
+    }
 
     public static float getCloudHeight(World world) {
         if (world.isClient) {
@@ -131,6 +116,20 @@ public class XDsLibraryClient implements ClientModInitializer {
     public static void setIcon(byte[] favicon) {
         if (favicon == null) resetIcon();
         else setIcon(() -> new ByteArrayInputStream(favicon));
+    }
+
+    public boolean isModLoaded(String modID) {
+        return FabricLoader.getInstance().isModLoaded(modID);
+    }
+
+    public boolean isNoEarlyLoaders() {
+        return !(isModLoaded("early-loading-screen") ||
+                isModLoaded("early_loading_bar") ||
+                isModLoaded("earlyloadingscreen") ||
+                isModLoaded("mindful-loading-info") ||
+                isModLoaded("neoforge") ||
+                isModLoaded("connector") ||
+                isModLoaded("mod-loading-screen"));
     }
 
     @Override

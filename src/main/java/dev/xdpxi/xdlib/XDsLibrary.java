@@ -45,9 +45,9 @@ import static net.minecraft.server.command.CommandManager.literal;
 public class XDsLibrary implements ModInitializer {
     public static final Logger LOGGER = LoggerFactory.getLogger("xdlib");
     public static final String MOD_ID = "xdlib";
+    public static final Identifier DEATH_SOUND_ID = Identifier.of("xdlib:death");
     public static int duration = -1;
     public static List<HostileEntity> list = new ArrayList<>();
-    public static final Identifier DEATH_SOUND_ID = Identifier.of("xdlib:death");
     public static SoundEvent DEATH_SOUND_EVENT = SoundEvent.of(DEATH_SOUND_ID);
 
     public static GameRules.Key<GameRules.IntRule> VAULT_BLOCK_COOLDOWN;

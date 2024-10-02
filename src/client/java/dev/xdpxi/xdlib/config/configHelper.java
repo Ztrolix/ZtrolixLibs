@@ -73,6 +73,16 @@ public class configHelper {
         }
     }
 
+    public static boolean isTitlePopupsDisabled() {
+        return getConfig().main.disableTitlePopups;
+    }
+
+    public static void updateDisableTitlePopups(boolean disable) {
+        ZLibsConfig config = getConfig();
+        config.main.disableTitlePopups = disable;
+        AutoConfig.getConfigHolder(ZLibsConfig.class).save();
+    }
+
     public static class ConfigSettings {
         public boolean changelogEveryStartup;
         public boolean discordRPC;
@@ -95,16 +105,6 @@ public class configHelper {
             this.configServerName = configServerName;
             this.configServerAddress = configServerAddress;
         }
-    }
-
-    public static boolean isTitlePopupsDisabled() {
-        return getConfig().main.disableTitlePopups;
-    }
-
-    public static void updateDisableTitlePopups(boolean disable) {
-        ZLibsConfig config = getConfig();
-        config.main.disableTitlePopups = disable;
-        AutoConfig.getConfigHolder(ZLibsConfig.class).save();
     }
 
 }

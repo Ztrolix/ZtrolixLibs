@@ -15,9 +15,9 @@ import org.slf4j.LoggerFactory;
 
 public class CustomScreen extends Screen {
     private static final Logger LOGGER = LoggerFactory.getLogger("xdlib");
+    private static boolean shownToast = false;
     private final Screen parent;
     private final MutableText changelogText;
-    private static boolean shownToast = false;
 
     public CustomScreen(Text title, Screen parent) {
         super(title);
@@ -93,12 +93,11 @@ public class CustomScreen extends Screen {
         MutableText text = Text.literal("Changelog:\n\n")
                 .setStyle(Style.EMPTY.withColor(Formatting.WHITE).withBold(true));
 
-        text.append(Text.literal("- Added 'Version of Mod' API\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
-        text.append(Text.literal("- Added 'Disable Title Screen Warnings' Config\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
-        text.append(Text.literal("- Added 'Custom Biomes' API\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
-        text.append(Text.literal("- Fixed Title Screen Warnings\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
-        text.append(Text.literal("- Removed 'VulkanMod' Support\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
-        text.append(Text.literal("- Removed 'Inject to World' Config\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
+        text.append(Text.literal("- Added 'Network' API\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
+        text.append(Text.literal("- Reformed Code\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
+        text.append(Text.literal("- Fixed 'DiscordRPC'\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
+        text.append(Text.literal("- Removed 'Biome' API\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
+        text.append(Text.literal("- Removed 'JCenter' from Gradle\n").setStyle(Style.EMPTY.withColor(Formatting.GRAY).withBold(false)));
 
         return text;
     }

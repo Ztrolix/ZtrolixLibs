@@ -21,15 +21,12 @@ import java.lang.reflect.Method;
 
 @Mixin(ModBadgeRenderer.class)
 public abstract class ModBadgeRendererMixin {
-    @Shadow
-    protected Mod mod;
-
-    @Unique
-    private static boolean clothConfig = loader.isModLoaded("cloth-config");
-
     @Unique
     private static final Logger LOGGER = LoggerFactory.getLogger("xdlib");
-
+    @Unique
+    private static boolean clothConfig = loader.isModLoaded("cloth-config");
+    @Shadow
+    protected Mod mod;
     @Unique
     boolean customBadges = true;
 
@@ -60,7 +57,9 @@ public abstract class ModBadgeRendererMixin {
                             var fill = obj.get("fillColor").getAsNumber().intValue();
                             drawBadge(DrawContext, Text.literal(name).asOrderedText(), outline, fill, mouseX, mouseY);
                         });
-            }catch(Exception ignored){} try {
+            } catch (Exception ignored) {
+            }
+            try {
                 FabricLoader.getInstance().getModContainer(mod.getId()).orElse(null)
                         .getMetadata().getCustomValue("modmenu-badges").getAsArray().forEach(customValue -> {
                             var obj = customValue.getAsObject();
@@ -69,7 +68,9 @@ public abstract class ModBadgeRendererMixin {
                             var fill = obj.get("fillColor").getAsNumber().intValue();
                             drawBadge(DrawContext, Text.literal(name).asOrderedText(), outline, fill, mouseX, mouseY);
                         });
-            }catch(Exception ignored){} try {
+            } catch (Exception ignored) {
+            }
+            try {
                 FabricLoader.getInstance().getModContainer(mod.getId()).orElse(null)
                         .getMetadata().getCustomValue("xdlib").getAsArray().forEach(customValue -> {
                             var obj = customValue.getAsObject();
@@ -78,7 +79,8 @@ public abstract class ModBadgeRendererMixin {
                             var fill = obj.get("fillColor").getAsNumber().intValue();
                             drawBadge(DrawContext, Text.literal(name).asOrderedText(), outline, fill, mouseX, mouseY);
                         });
-            }catch(Exception ignored){}
+            } catch (Exception ignored) {
+            }
         }
     }
 }

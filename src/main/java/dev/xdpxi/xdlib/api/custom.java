@@ -12,8 +12,6 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeEffects;
 
 import java.util.List;
 
@@ -35,10 +33,7 @@ public class custom {
             }
         });
     }
-
-    public static void AddToItemGroup(String itemGroupID, String modID, List<Item> itemsToAdd) {
-        ItemGroup(itemGroupID, modID, null, itemsToAdd);
-    }
+    public static void AddToItemGroup(String itemGroupID, String modID, List<Item> itemsToAdd) { ItemGroup(itemGroupID, modID, null, itemsToAdd); }
 
     public static Item Item(String itemID, String modID, RegistryKey<ItemGroup> itemGroup) {
         itemID = itemID.toLowerCase();
@@ -84,9 +79,7 @@ public class custom {
         return weapon;
     }
 
-    public static Item Weapon(String weaponID, String modID, ToolMaterial material) {
-        return Weapon(weaponID, modID, material, null);
-    }
+    public static Item Weapon(String weaponID, String modID, ToolMaterial material) { return Weapon(weaponID, modID, material, null); }
 
     public static Item Armor(String armorID, String modID, RegistryEntry<ArmorMaterial> armorType, ArmorItem.Type armorPart, RegistryKey<ItemGroup> itemGroup) {
         armorID = armorID.toLowerCase();
@@ -99,19 +92,5 @@ public class custom {
         }
         return armor;
     }
-    public static Item Armor(String armorID, String modID, RegistryEntry<ArmorMaterial> armorType, ArmorItem.Type armorPart) {
-        return Armor(armorID, modID, armorType, armorPart, null);
-    }
-
-    public static Biome Biome(String biomeID, String modID) {
-        biomeID = biomeID.toLowerCase();
-        modID = modID.toLowerCase();
-        BiomeEffects defaultEffects = new BiomeEffects.Builder()
-                .fogColor(12638463)
-                .waterColor(4159204)
-                .waterFogColor(329011)
-                .skyColor(7972607)
-                .build();
-        return null;
-    }
+    public static Item Armor(String armorID, String modID, RegistryEntry<ArmorMaterial> armorType, ArmorItem.Type armorPart) { return Armor(armorID, modID, armorType, armorPart, null); }
 }
