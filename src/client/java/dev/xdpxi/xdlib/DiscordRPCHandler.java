@@ -3,6 +3,8 @@ package dev.xdpxi.xdlib;
 import club.minnced.discord.rpc.DiscordEventHandlers;
 import club.minnced.discord.rpc.DiscordRPC;
 import club.minnced.discord.rpc.DiscordRichPresence;
+import dev.xdpxi.xdlib.api.loader;
+import dev.xdpxi.xdlib.config.configHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,7 +27,7 @@ public class DiscordRPCHandler {
             lib.Discord_Initialize(applicationId, handlers, true, steamId);
 
             DiscordRichPresence presence = new DiscordRichPresence();
-            presence.startTimestamp = System.currentTimeMillis() / 1000; // epoch second
+            presence.startTimestamp = System.currentTimeMillis() / 1000;
             presence.details = "Playing Minecraft";
             lib.Discord_UpdatePresence(presence);
 
@@ -44,6 +46,12 @@ public class DiscordRPCHandler {
             initialized = true;
         } catch (Exception e) {
             LOGGER.error("[XDLib] - Failed to initialize Discord RPC.", e);
+        }
+
+        if (loader.isModLoaded("cloth-config")) {
+            if (!configHelper.isDiscordRPCEnabled()) {
+                shutdown();
+            }
         }
     }
 

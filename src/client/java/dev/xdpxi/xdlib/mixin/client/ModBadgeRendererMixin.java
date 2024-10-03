@@ -61,17 +61,6 @@ public abstract class ModBadgeRendererMixin {
             }
             try {
                 FabricLoader.getInstance().getModContainer(mod.getId()).orElse(null)
-                        .getMetadata().getCustomValue("modmenu-badges").getAsArray().forEach(customValue -> {
-                            var obj = customValue.getAsObject();
-                            var name = obj.get("name").getAsString();
-                            var outline = obj.get("outlineColor").getAsNumber().intValue();
-                            var fill = obj.get("fillColor").getAsNumber().intValue();
-                            drawBadge(DrawContext, Text.literal(name).asOrderedText(), outline, fill, mouseX, mouseY);
-                        });
-            } catch (Exception ignored) {
-            }
-            try {
-                FabricLoader.getInstance().getModContainer(mod.getId()).orElse(null)
                         .getMetadata().getCustomValue("xdlib").getAsArray().forEach(customValue -> {
                             var obj = customValue.getAsObject();
                             var name = obj.get("name").getAsString();

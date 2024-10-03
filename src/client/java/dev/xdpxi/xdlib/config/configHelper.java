@@ -77,10 +77,8 @@ public class configHelper {
         return getConfig().main.disableTitlePopups;
     }
 
-    public static void updateDisableTitlePopups(boolean disable) {
-        ZLibsConfig config = getConfig();
-        config.main.disableTitlePopups = disable;
-        AutoConfig.getConfigHolder(ZLibsConfig.class).save();
+    public static boolean isDiscordRPCEnabled() {
+        return getConfig().compatibility.discordRPC;
     }
 
     public static class ConfigSettings {
@@ -106,5 +104,4 @@ public class configHelper {
             this.configServerAddress = configServerAddress;
         }
     }
-
 }

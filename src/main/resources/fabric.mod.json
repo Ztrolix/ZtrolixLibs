@@ -8,14 +8,14 @@
     {
       "name": "XDPXI",
       "contact": {
-        "homepage": "https://ztrolix.vercel.app"
+        "homepage": "https://xdpxi.vercel.app"
       }
     }
   ],
   "contact": {
-    "homepage": "https://ztrolix.vercel.app/mc/xdlib",
-    "sources": "https://github.com/Ztrolix/XDLib",
-    "issues": "https://github.com/Ztrolix/XDLib/issues"
+    "homepage": "https://xdpxi.vercel.app/mc/xdlib",
+    "sources": "https://github.com/XDPXI/XDLib",
+    "issues": "https://github.com/XDPXI/XDLib/issues"
   },
   "license": "Apache-2.0",
   "icon": "assets/xdlib/icon.png",
@@ -62,11 +62,11 @@
   "custom": {
     "modmenu": {
       "links": {
-        "modmenu.modrinth": "https://modrinth.com/plugin/xdlib"
+        "modmenu.modrinth": "https://modrinth.com/mod/xdlib"
       },
       "update_checker": true
     },
-    "modmenu-badges": [
+    "xdlib": [
       {
         "name": "Client or Server",
         "fillColor": -16172759,
