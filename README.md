@@ -12,7 +12,7 @@ The universal installer is an installer that installs the library straight into 
 
 [<kbd> <br>    Download    <br> </kbd>][DWLD]
 
-[DWLD]: https://github.com/ZtrolixGit/ZtrolixLibs/releases/latest/download/zlibsinstaller.jar
+[DWLD]: https://github.com/ZtrolixGit/ZtrolixLibs/releases/latest/download/XDLibInstaller.jar
 
 <img src="https://raw.githubusercontent.com/Ztrolix/ZtrolixLibs/main/assets/strip.png"> 
 
