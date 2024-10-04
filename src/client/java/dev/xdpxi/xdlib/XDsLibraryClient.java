@@ -163,6 +163,7 @@ public class XDsLibraryClient implements ClientModInitializer {
             configHelper.registerSaveListener(discordRPC, sodiumIntegration);
         }
 
+        /*
         ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> {
             dispatcher.register(ClientCommandManager.literal("xdlib").executes(context -> {
                 context.getSource().sendFeedback(Text.literal("-------------------------------"));
@@ -171,6 +172,7 @@ public class XDsLibraryClient implements ClientModInitializer {
                 return 1;
             }));
         });
+        */
 
         ClientPlayConnectionEvents.JOIN.register((handler, sender, client) -> {
             if (client.isIntegratedServerRunning()) {
@@ -220,10 +222,12 @@ public class XDsLibraryClient implements ClientModInitializer {
             WorldCloudHeights.put("minecraft:overworld", 182.0F);
         }
 
+        /*
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             if (Screen.hasControlDown() && Screen.hasAltDown() && Screen.hasShiftDown()) {
                 client.setScreen(new TerminalScreen());
             }
         });
+        */
     }
 }

@@ -39,7 +39,9 @@ public class XDLibInstaller {
     private static final String CONNECTEREXTRAS_1211 = "https://cdn.modrinth.com/data/FYpiwiBR/versions/dgLCqZyo/ConnectorExtras-1.12.1%2B1.21.1.jar";
 
     private static final String FABRIC_QUILT_21_URL = "https://github.com/ZtrolixGit/ZtrolixLibs/raw/main/api/1.21/fabric.jar";
-    private static final String NEO_21_URL = "https://github.com/ZtrolixGit/ZtrolixLibs/raw/main/api/1.21/fabric.jar";
+    private static final String NEO_21_URL = "https://github.com/ZtrolixGit/ZtrolixLibs/raw/main/api/1.21/neo.jar";
+    private static final String SPIGOT_21_URL = "https://github.com/ZtrolixGit/ZtrolixLibs/raw/main/api/1.21/spigot.jar";
+
     private static final String FABRIC_QUILT_URL = "https://github.com/ZtrolixGit/ZtrolixLibs/raw/main/api/1.20/fabric.jar";
     private static final String SPIGOT_URL = "https://github.com/ZtrolixGit/ZtrolixLibs/raw/main/api/1.20/spigot.jar";
     private static final String NEOFORGE_URL = "https://github.com/ZtrolixGit/ZtrolixLibs/raw/main/api/1.20/neo.jar";
@@ -225,7 +227,11 @@ public class XDLibInstaller {
                     return FABRIC_QUILT_URL;
                 }
             case "Spigot":
-                return SPIGOT_URL;
+                if (version.equals("1.21") || version.equals("1.21.1")) {
+                    return SPIGOT_21_URL;
+                } else {
+                    return SPIGOT_URL;
+                }
             case "NeoForge":
                 if (version.equals("1.21") || version.equals("1.21.1")) {
                     return NEO_21_URL;

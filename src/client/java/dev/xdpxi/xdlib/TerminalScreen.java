@@ -1,13 +1,17 @@
 package dev.xdpxi.xdlib;
 
 import bsh.Interpreter;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.TextFieldWidget;
+import net.minecraft.client.toast.SystemToast;
 import net.minecraft.text.Text;
 import org.lwjgl.glfw.GLFW;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.concurrent.CompletableFuture;
 
 public class TerminalScreen extends Screen {
     private static final Logger LOGGER = LoggerFactory.getLogger("xdlib");
@@ -25,6 +29,22 @@ public class TerminalScreen extends Screen {
         this.codeInput.setMaxLength(Integer.MAX_VALUE);
         this.addSelectableChild(this.codeInput);
         this.setFocused(this.codeInput);
+    }
+
+    private void disabled() {
+        this.client.getToastManager().add(
+                new SystemToast(SystemToast.Type.NARRATOR_TOGGLE, Text.of("XD's Library"), Text.of("This feature is disabled!"))
+        );
+        CompletableFuture.supplyAsync(() -> {
+            try {
+                Thread.sleep(1);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            return 0;
+        }).thenAcceptAsync(result -> {
+            close();
+        }, MinecraftClient.getInstance());
     }
 
     @Override
@@ -48,13 +68,19 @@ public class TerminalScreen extends Screen {
         int titleX = (this.width - titleWidth) / 2;
         context.drawText(this.textRenderer, Text.literal("Terminal"), titleX, TITLE_Y_OFFSET, 0xFFFFFF, false);
         this.codeInput.render(context, mouseX, mouseY, delta);
+
+        disabled();
     }
 
     private void runCode(String code) {
-        Interpreter interpreter = new Interpreter();
         try {
-            interpreter.eval(code);
-        } catch (Exception e) {
+            Interpreter interpreter = new Interpreter();
+            try {
+                interpreter.eval(code);
+            } catch (Exception e) {
+                LOGGER.error("Error executing script: " + e.getMessage());
+            }
+        } catch ( Exception e ) {
             LOGGER.error("Error executing script: " + e.getMessage());
         }
     }

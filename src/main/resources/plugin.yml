@@ -1,0 +1,14 @@
+name: XDLib
+version: '2.2.0'
+main: dev.xdpxi.xdlib.plugin.xdlib
+api-version: '1.21'
+prefix: XDLib
+load: STARTUP
+authors: [ XDPXI ]
+description: This is a library for many uses and is included as an player counter for XDPXI's mods and modpacks!
+website: https://xdpxi.vercel.app/mc/xdlib
+folia-supported: true
+commands:
+  xdlib:
+    description: Executes the XDLib command
+    usage: /<command> [reload|help]
