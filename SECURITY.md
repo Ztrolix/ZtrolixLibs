@@ -1,21 +1,15 @@
 # Security Policy
 
 ## Supported Versions
-
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
-
-| Version | Supported          |
-| ------- | ------------------ |
-| 2.X.X     | ✅                 |
-| 1.2.X     | :x:                |
-| 1.1.X     | :x:                |
-| 1.10     | :x:                |
+| Version | Fabric             | Quilt          | Forge | NeoForge       |
+| ------- | ------------------ | -------------- | ----- | -------------- |
+| 2.X.X   | :white_check_mark: | :construction: | :x:   | :construction: |
+| 1.X.X   | :x:                | :x:            | :x:   | :x:            |
 
 ## Reporting a Vulnerability
 
-Use this section to tell people how to report a vulnerability.
+To report a vulnerability create a new issue as the [`Report a security vulnerability`](https://github.com/XDPXI/XDLib/security/advisories/new) template or click the button below to notify us for any vulnerabilities.
 
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+[<kbd> <br>    Report Vulnerability    <br> </kbd>][DWLD]
+
+[DWLD]: https://github.com/XDPXI/XDLib/security/advisories/new
