@@ -1,10 +1,10 @@
 # Security Policy
 
-## Supported Versions
-| Version | Fabric             | Quilt          | Forge | NeoForge       |
-| ------- | ------------------ | -------------- | ----- | -------------- |
-| 2.X.X   | :white_check_mark: | :construction: | :x:   | :construction: |
-| 1.X.X   | :x:                | :x:            | :x:   | :x:            |
+## Supported Versions 
+| Version | Fabric             | Quilt          | Forge | NeoForge       | Bukkit             |
+| ------- | ------------------ | -------------- | ----- | -------------- | ------------------ |
+| 2.X.X   | :white_check_mark: | :construction: | :x:   | :construction: | :white_check_mark: |
+| 1.X.X   | :x:                | :x:            | :x:   | :x:            | :x:                |
 
 ## Reporting a Vulnerability
 
